@@ -3,8 +3,8 @@ import { Chart } from '../../components/ui/Chart';
 import {
   FunnelIcon,
   ChartBarIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowArrowTrendingUpIcon,
+  ArrowArrowTrendingDownIcon,
   UserGroupIcon,
   CurrencyDollarIcon,
   ClockIcon,
@@ -209,7 +209,7 @@ const ConversionMetrics: React.FC<ConversionMetricsProps> = ({ stages }) => {
     {
       label: 'Overall Conversion',
       value: `${overallConversion}%`,
-      icon: TrendingUpIcon,
+      icon: ArrowTrendingUpIcon,
       color: 'text-green-600',
       bgColor: 'bg-green-50'
     },
@@ -524,7 +524,7 @@ export const AnalyticsConversion: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <div className="flex items-center mb-2">
-              <TrendingUpIcon className="w-5 h-5 text-blue-600 mr-2" />
+              <ArrowTrendingUpIcon className="w-5 h-5 text-blue-600 mr-2" />
               <span className="font-semibold text-blue-800">Improve Lead Quality</span>
             </div>
             <p className="text-sm text-blue-700">

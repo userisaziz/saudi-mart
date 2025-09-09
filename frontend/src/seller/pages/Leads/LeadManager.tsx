@@ -502,7 +502,7 @@ const LeadManager: React.FC = () => {
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium border ${statusConfig[lead.status].color}`}>
-                  <statusConfig[lead.status].icon className="w-4 h-4" />
+                  {React.createElement(statusConfig[lead.status].icon, { className: "w-4 h-4" })}
                   {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
                 </div>
                 <div className="text-xs text-gray-500 mt-1">Status</div>

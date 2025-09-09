@@ -96,20 +96,20 @@ export const AnalyticsGrowth: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-900">{t('analytics.growth.title', 'Growth Analytics')}</h1>
           <p className="text-gray-600">{t('analytics.growth.subtitle', 'Track your business growth and performance trends')}</p>
         </div>
-          <div className="flex items-center space-x-3">
-            <CalendarIcon className="w-5 h-5 text-gray-400" />
-            <select
-              value={timeRange}
-              onChange={(e) => setTimeRange(e.target.value as any)}
-              className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="7d">{t('analytics.timeRange.7d', 'Last 7 days')}</option>
-              <option value="30d">{t('analytics.timeRange.30d', 'Last 30 days')}</option>
-              <option value="90d">{t('analytics.timeRange.90d', 'Last 90 days')}</option>
-              <option value="1y">{t('analytics.timeRange.1y', 'Last year')}</option>
-            </select>
-          </div>
+        <div className="flex items-center space-x-3">
+          <CalendarIcon className="w-5 h-5 text-gray-400" />
+          <select
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value as any)}
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="7d">{t('analytics.timeRange.7d', 'Last 7 days')}</option>
+            <option value="30d">{t('analytics.timeRange.30d', 'Last 30 days')}</option>
+            <option value="90d">{t('analytics.timeRange.90d', 'Last 90 days')}</option>
+            <option value="1y">{t('analytics.timeRange.1y', 'Last year')}</option>
+          </select>
         </div>
+      </div>
 
         {/* Growth Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -361,7 +361,6 @@ export const AnalyticsGrowth: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

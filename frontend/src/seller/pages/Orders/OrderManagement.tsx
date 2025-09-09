@@ -456,14 +456,14 @@ const OrderManagement: React.FC = () => {
                 <div>
                   <label className="text-sm text-gray-500">Order Status</label>
                   <div className={`mt-1 inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium border ${statusConfig[order.status].color}`}>
-                    <statusConfig[order.status].icon className="w-3 h-3" />
+                    {React.createElement(statusConfig[order.status].icon, { className: "w-3 h-3" })}
                     {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                   </div>
                 </div>
                 <div>
                   <label className="text-sm text-gray-500">Payment Status</label>
                   <div className={`mt-1 inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${paymentStatusConfig[order.paymentStatus].color}`}>
-                    <paymentStatusConfig[order.paymentStatus].icon className="w-3 h-3" />
+                    {React.createElement(paymentStatusConfig[order.paymentStatus].icon, { className: "w-3 h-3" })}
                     {order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1)}
                   </div>
                 </div>

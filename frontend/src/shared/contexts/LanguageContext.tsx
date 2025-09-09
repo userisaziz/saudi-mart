@@ -243,7 +243,6 @@ const translations = {
     'addProduct.nameAr': 'Product Name (Arabic)',
     'addProduct.sku': 'Product Code (SKU)',
     'addProduct.category': 'Category',
-    'addProduct.selectCategory': 'Select Category',
     'addProduct.tags': 'Tags',
     'addProduct.addTag': 'Add Tag',
     'addProduct.descriptionEn': 'Description (English)',
