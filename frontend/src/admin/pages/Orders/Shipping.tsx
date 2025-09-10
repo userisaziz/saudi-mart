@@ -178,7 +178,7 @@ const carrierConfig = {
   local: { name: 'Local Delivery', trackingUrl: '#' }
 }
 
-export const Shipping: React.FC = () => {
+const Shipping: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [carrierFilter, setCarrierFilter] = useState<string>('all')
@@ -685,3 +685,5 @@ export const Shipping: React.FC = () => {
     </div>
   )
 }
+
+export default Shipping

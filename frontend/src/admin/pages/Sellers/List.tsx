@@ -33,6 +33,7 @@ import { SaudiUser, UserRole, UserStatus, VerificationLevel, SaudiRegion } from 
 import { UsersService } from '@/admin/services/users.service';
 import { formatDistanceToNow } from 'date-fns';
 import { ar } from 'date-fns/locale';
+import { useLanguage } from '@/shared/contexts/LanguageContext';
 
 export default function UsersList() {
   const [users, setUsers] = useState<SaudiUser[]>([]);

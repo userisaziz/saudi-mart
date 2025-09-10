@@ -234,6 +234,25 @@ const translations = {
     'admin.logs.failedLogin': 'Failed Login',
     'admin.logs.accountLockout': 'Account Lockout',
 
+    // Admin General
+    'admin.users.list': 'Users List',
+    'admin.users.management': 'User Management',
+    'admin.sellers.list': 'Sellers List', 
+    'admin.buyers.list': 'Buyers List',
+    'admin.viewDetails': 'View Details',
+    'admin.edit': 'Edit',
+    'admin.delete': 'Delete',
+    'admin.manageRoles': 'Manage Roles',
+    'admin.save': 'Save',
+    'admin.cancel': 'Cancel',
+    'admin.add': 'Add',
+    'admin.search': 'Search',
+    'admin.filter': 'Filter',
+    'admin.export': 'Export',
+    'admin.import': 'Import',
+    'admin.refresh': 'Refresh',
+    'admin.settings': 'Settings',
+
     // Analytics
     'analytics.growth.title': 'Growth Analytics',
     'analytics.growth.subtitle': 'Track your business growth and performance trends',
@@ -956,6 +975,25 @@ const translations = {
     'admin.logs.suspiciousActivity': 'نشاط مشبوه',
     'admin.logs.failedLogin': 'فشل تسجيل الدخول',
     'admin.logs.accountLockout': 'قفل الحساب',
+
+    // Admin General
+    'admin.users.list': 'قائمة المستخدمين',
+    'admin.users.management': 'إدارة المستخدمين',
+    'admin.sellers.list': 'قائمة البائعين', 
+    'admin.buyers.list': 'قائمة المشترين',
+    'admin.viewDetails': 'عرض التفاصيل',
+    'admin.edit': 'تعديل',
+    'admin.delete': 'حذف',
+    'admin.manageRoles': 'إدارة الأدوار',
+    'admin.save': 'حفظ',
+    'admin.cancel': 'إلغاء',
+    'admin.add': 'إضافة',
+    'admin.search': 'بحث',
+    'admin.filter': 'تصفية',
+    'admin.export': 'تصدير',
+    'admin.import': 'استيراد',
+    'admin.refresh': 'تحديث',
+    'admin.settings': 'إعدادات',
 
     // Lead Statuses
     'leadStatus.new': 'جديد',

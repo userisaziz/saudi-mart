@@ -179,7 +179,7 @@ const priorityConfig = {
   urgent: { label: 'عاجلة', color: 'bg-red-100 text-red-800' }
 }
 
-export const Returns: React.FC = () => {
+const Returns: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [reasonFilter, setReasonFilter] = useState<string>('all')
@@ -778,3 +778,5 @@ export const Returns: React.FC = () => {
     </div>
   )
 }
+
+export default Returns

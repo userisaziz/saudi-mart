@@ -17,9 +17,11 @@ const AdminDashboard = React.lazy(() => import('@/admin/pages/dashboard'))
 const AdminSellers = React.lazy(() => import('@/admin/pages/Sellers/Management'))
 const AdminSellersList = React.lazy(() => import('@/admin/pages/Sellers/List'))
 const AdminSellersAdd = React.lazy(() => import('@/admin/pages/Sellers/Add'))
+const AdminSellersDetails = React.lazy(() => import('@/admin/pages/Sellers/Details'))
 const AdminBuyers = React.lazy(() => import('@/admin/pages/Buyers/Management'))
 const AdminBuyersList = React.lazy(() => import('@/admin/pages/Buyers/List'))
 const AdminBuyersAdd = React.lazy(() => import('@/admin/pages/Buyers/Add'))
+const AdminBuyersDetails = React.lazy(() => import('@/admin/pages/Buyers/Details'))
 const AdminProducts = React.lazy(() => import('@/admin/pages/Products/Management'))
 const AdminProductsList = React.lazy(() => import('@/admin/pages/Products/List'))
 const AdminProductsAdd = React.lazy(() => import('@/admin/pages/Products/Add'))
@@ -157,6 +159,7 @@ function App() {
                 <Route path="sellers" element={<AdminSellers />} />
                 <Route path="sellers/list" element={<AdminSellersList />} />
                 <Route path="sellers/add" element={<AdminSellersAdd />} />
+                <Route path="sellers/details/:id" element={<AdminSellersDetails />} />
                 <Route path="sellers/verification" element={<AdminSellerVerification />} />
                 <Route path="sellers/roles" element={<AdminSellersRoles />} />
                 
@@ -164,6 +167,7 @@ function App() {
                 <Route path="buyers" element={<AdminBuyers />} />
                 <Route path="buyers/list" element={<AdminBuyersList />} />
                 <Route path="buyers/add" element={<AdminBuyersAdd />} />
+                <Route path="buyers/details/:id" element={<AdminBuyersDetails />} />
                 <Route path="buyers/roles" element={<AdminBuyersRoles />} />
                 
                 {/* Products Routes */}
@@ -172,6 +176,7 @@ function App() {
                 <Route path="products/add" element={<AdminProductsAdd />} />
                 <Route path="products/inventory" element={<AdminProductsInventory />} />
                 <Route path="products/bulk" element={<AdminProductsBulk />} />
+                <Route path="products/approval" element={<ProductApproval />} />
                 <Route path="product-approval" element={<ProductApproval />} />
                 
                 {/* Categories Routes */}

@@ -155,7 +155,7 @@ const statusLabels: Record<string, string> = {
   returned: 'مُرتجعة'
 }
 
-export const Analytics: React.FC = () => {
+const Analytics: React.FC = () => {
   const [timeRange, setTimeRange] = useState('30d')
   const [selectedMetric, setSelectedMetric] = useState('orders')
 
@@ -540,3 +540,5 @@ export const Analytics: React.FC = () => {
     </div>
   )
 }
+
+export default Analytics
