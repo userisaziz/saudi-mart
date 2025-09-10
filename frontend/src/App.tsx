@@ -15,10 +15,22 @@ const AdminDashboard = React.lazy(() => import('@/admin/pages/dashboard'))
 
 // Admin Pages
 const AdminSellers = React.lazy(() => import('@/admin/pages/Sellers/Management'))
+const AdminSellersList = React.lazy(() => import('@/admin/pages/Sellers/List'))
+const AdminSellersAdd = React.lazy(() => import('@/admin/pages/Sellers/Add'))
 const AdminBuyers = React.lazy(() => import('@/admin/pages/Buyers/Management'))
+const AdminBuyersList = React.lazy(() => import('@/admin/pages/Buyers/List'))
 const AdminProducts = React.lazy(() => import('@/admin/pages/Products/Management'))
+const AdminProductsList = React.lazy(() => import('@/admin/pages/Products/List'))
+const AdminProductsAdd = React.lazy(() => import('@/admin/pages/Products/Add'))
 const AdminCategories = React.lazy(() => import('@/admin/pages/Categories/Management'))
+const AdminCategoriesList = React.lazy(() => import('@/admin/pages/Categories/List'))
+const AdminCategoriesAdd = React.lazy(() => import('@/admin/pages/Categories/Add'))
 const AdminOrders = React.lazy(() => import('@/admin/pages/Orders/Management'))
+const AdminOrdersList = React.lazy(() => import('@/admin/pages/Orders/List'))
+const AdminOrdersPending = React.lazy(() => import('@/admin/pages/Orders/Pending'))
+const AdminOrdersShipping = React.lazy(() => import('@/admin/pages/Orders/Shipping'))
+const AdminOrdersReturns = React.lazy(() => import('@/admin/pages/Orders/Returns'))
+const AdminOrdersAnalytics = React.lazy(() => import('@/admin/pages/Orders/Analytics'))
 const AdminNotifications = React.lazy(() => import('@/admin/pages/Notifications/Management'))
 const AdminAnalytics = React.lazy(() => import('@/admin/pages/Analytics/Dashboard'))
 const AdminReports = React.lazy(() => import('@/admin/pages/Reports/Dashboard'))
@@ -133,19 +145,42 @@ function App() {
                 }
               >
                 <Route index element={<AdminDashboard />} />
+                
+                {/* Sellers Routes */}
                 <Route path="sellers" element={<AdminSellers />} />
+                <Route path="sellers/list" element={<AdminSellersList />} />
+                <Route path="sellers/add" element={<AdminSellersAdd />} />
                 <Route path="sellers/verification" element={<AdminSellerVerification />} />
+                
+                {/* Buyers Routes */}
                 <Route path="buyers" element={<AdminBuyers />} />
+                <Route path="buyers/list" element={<AdminBuyersList />} />
+                
+                {/* Products Routes */}
                 <Route path="products" element={<AdminProducts />} />
+                <Route path="products/list" element={<AdminProductsList />} />
+                <Route path="products/add" element={<AdminProductsAdd />} />
+                <Route path="product-approval" element={<ProductApproval />} />
+                
+                {/* Categories Routes */}
                 <Route path="categories" element={<AdminCategories />} />
+                <Route path="categories/list" element={<AdminCategoriesList />} />
+                <Route path="categories/add" element={<AdminCategoriesAdd />} />
+                <Route path="category-requests" element={<CategoryRequests />} />
+                <Route path="category-analytics" element={<CategoryAnalytics />} />
+                
+                {/* Orders Routes */}
                 <Route path="orders" element={<AdminOrders />} />
+                <Route path="orders/list" element={<AdminOrdersList />} />
+                <Route path="orders/pending" element={<AdminOrdersPending />} />
+                <Route path="orders/shipping" element={<AdminOrdersShipping />} />
+                <Route path="orders/returns" element={<AdminOrdersReturns />} />
+                <Route path="orders/analytics" element={<AdminOrdersAnalytics />} />
+                
                 <Route path="notifications" element={<AdminNotifications />} />
                 <Route path="analytics" element={<AdminAnalytics />} />
                 <Route path="reports" element={<AdminReports />} />
                 <Route path="logs" element={<AdminLogs />} />
-                <Route path="category-requests" element={<CategoryRequests />} />
-                <Route path="category-analytics" element={<CategoryAnalytics />} />
-                <Route path="product-approval" element={<ProductApproval />} />
                 
                 {/* Enterprise Features */}
                 <Route path="contracts" element={<ContractManagement />} />
