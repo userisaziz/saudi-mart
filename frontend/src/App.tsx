@@ -28,6 +28,8 @@ const AdminProductsAdd = React.lazy(() => import('@/admin/pages/Products/Add'))
 const AdminCategories = React.lazy(() => import('@/admin/pages/Categories/Management'))
 const AdminCategoriesList = React.lazy(() => import('@/admin/pages/Categories/List'))
 const AdminCategoriesAdd = React.lazy(() => import('@/admin/pages/Categories/Add'))
+const AdminCategoriesApproval = React.lazy(() => import('@/admin/pages/Categories/Approval'))
+const AdminCategoriesTree = React.lazy(() => import('@/admin/pages/Categories/Tree'))
 const AdminOrders = React.lazy(() => import('@/admin/pages/Orders/Management'))
 const AdminOrdersList = React.lazy(() => import('@/admin/pages/Orders/List'))
 const AdminOrdersPending = React.lazy(() => import('@/admin/pages/Orders/Pending'))
@@ -37,7 +39,7 @@ const AdminOrdersAnalytics = React.lazy(() => import('@/admin/pages/Orders/Analy
 const AdminNotifications = React.lazy(() => import('@/admin/pages/Notifications/Management'))
 const AdminAnalytics = React.lazy(() => import('@/admin/pages/Analytics/Dashboard'))
 const AdminReports = React.lazy(() => import('@/admin/pages/Reports/Dashboard'))
-const AdminLogs = React.lazy(() => import('@/admin/pages/Logs/Activity'))
+const AdminLogs = React.lazy(() => import('@/admin/pages/Logs/Activity.tsx'))
 const AdminSellerVerification = React.lazy(() => import('@/admin/pages/Sellers/Verification/SellerVerification'))
 const AdminSettings = React.lazy(() => import('@/admin/pages/Settings/General'))
 
@@ -183,6 +185,8 @@ function App() {
                 <Route path="categories" element={<AdminCategories />} />
                 <Route path="categories/list" element={<AdminCategoriesList />} />
                 <Route path="categories/add" element={<AdminCategoriesAdd />} />
+                <Route path="categories/approval" element={<AdminCategoriesApproval />} />
+                <Route path="categories/tree" element={<AdminCategoriesTree />} />
                 <Route path="category-requests" element={<CategoryRequests />} />
                 <Route path="category-analytics" element={<CategoryAnalytics />} />
                 
