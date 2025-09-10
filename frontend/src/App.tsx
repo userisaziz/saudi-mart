@@ -39,7 +39,6 @@ const AdminOrdersAnalytics = React.lazy(() => import('@/admin/pages/Orders/Analy
 const AdminNotifications = React.lazy(() => import('@/admin/pages/Notifications/Management'))
 const AdminAnalytics = React.lazy(() => import('@/admin/pages/Analytics/Dashboard'))
 const AdminReports = React.lazy(() => import('@/admin/pages/Reports/Dashboard'))
-// const AdminLogs = React.lazy(() => import('@/admin/pages/Logs/Activity'))
 const AdminSellerVerification = React.lazy(() => import('@/admin/pages/Sellers/Verification/SellerVerification'))
 const AdminSettings = React.lazy(() => import('@/admin/pages/Settings/General'))
 
@@ -201,7 +200,6 @@ function App() {
                 <Route path="notifications" element={<AdminNotifications />} />
                 <Route path="analytics" element={<AdminAnalytics />} />
                 <Route path="reports" element={<AdminReports />} />
-                {/* <Route path="logs" element={<AdminLogs />} /> */}
                 
                 {/* Enterprise Features */}
                 <Route path="contracts" element={<ContractManagement />} />
