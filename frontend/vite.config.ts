@@ -65,12 +65,6 @@ export default defineConfig({
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
-    },
-    terserOptions: {
-      compress: {
-        drop_console: process.env.NODE_ENV === 'production',
-        drop_debugger: process.env.NODE_ENV === 'production',
-      }
     }
   },
   optimizeDeps: {
