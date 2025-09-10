@@ -620,3 +620,5 @@ export const ProfileDocuments: React.FC = () => {
     </div>
   );
 };
+
+export default ProfileDocuments;

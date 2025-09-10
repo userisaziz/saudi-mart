@@ -256,3 +256,5 @@ export const LeadsFunnel: React.FC = () => {
     </SellerLayout>
   );
 };
+
+export default LeadsFunnel;

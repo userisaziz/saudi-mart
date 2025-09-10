@@ -43,6 +43,11 @@ const LeadsDetails = React.lazy(() => import('@/seller/pages/Leads/Details'))
 
 const ProfileCompanyInfo = React.lazy(() => import('@/seller/pages/Profile/CompanyInfo'))
 const ProfileDocuments = React.lazy(() => import('@/seller/pages/Profile/Documents'))
+const ProfileSettings = React.lazy(() => import('@/seller/pages/Profile/Settings'))
+const ProfileAccount = React.lazy(() => import('@/seller/pages/Profile/Account'))
+const ProfileBusinessDetails = React.lazy(() => import('@/seller/pages/Profile/BusinessDetails'))
+const ProfileVerification = React.lazy(() => import('@/seller/pages/Profile/Verification'))
+const ProfileCompletion = React.lazy(() => import('@/seller/pages/Profile/Completion'))
 
 const AnalyticsGrowth = React.lazy(() => import('@/seller/pages/Analytics/Growth'))
 const AnalyticsConversion = React.lazy(() => import('@/seller/pages/Analytics/Conversion'))
@@ -65,6 +70,7 @@ const FinanceReports = React.lazy(() => import('@/seller/pages/Finance/Reports')
 const LeadsFollowUp = React.lazy(() => import('@/seller/pages/Leads/FollowUp'))
 const LeadsTemplates = React.lazy(() => import('@/seller/pages/Leads/Templates'))
 const LeadsScoring = React.lazy(() => import('@/seller/pages/Leads/Scoring'))
+const Profile = React.lazy(() => import('@/seller/pages/Profile'))
 const ProfileContacts = React.lazy(() => import('@/seller/pages/Profile/Contacts'))
 const ProfileBusinessHours = React.lazy(() => import('@/seller/pages/Profile/BusinessHours'))
 const AnalyticsProductInsights = React.lazy(() => import('@/seller/pages/Analytics/ProductInsights'))
@@ -85,6 +91,15 @@ const RequestCategory = React.lazy(() => import('@/seller/pages/Categories/Reque
 const CategoryRequests = React.lazy(() => import('@/admin/pages/Categories/CategoryRequests'))
 const CategoryAnalytics = React.lazy(() => import('@/admin/pages/Categories/Analytics'))
 const ProductApproval = React.lazy(() => import('@/admin/pages/Products/ProductApproval'))
+
+// Enterprise Features - Admin
+const ContractManagement = React.lazy(() => import('@/admin/pages/Contracts/Management'))
+const SupplierSRM = React.lazy(() => import('@/admin/pages/Suppliers/SRM'))
+const ProcurementWorkflows = React.lazy(() => import('@/admin/pages/Procurement/Workflows'))
+const AuditTrails = React.lazy(() => import('@/admin/pages/Compliance/AuditTrails'))
+
+// Enterprise Features - Seller
+const PricingTools = React.lazy(() => import('@/seller/pages/Negotiations/PricingTools'))
 
 
 function App() {
@@ -131,6 +146,13 @@ function App() {
                 <Route path="category-requests" element={<CategoryRequests />} />
                 <Route path="category-analytics" element={<CategoryAnalytics />} />
                 <Route path="product-approval" element={<ProductApproval />} />
+                
+                {/* Enterprise Features */}
+                <Route path="contracts" element={<ContractManagement />} />
+                <Route path="suppliers/srm" element={<SupplierSRM />} />
+                <Route path="procurement" element={<ProcurementWorkflows />} />
+                <Route path="compliance" element={<AuditTrails />} />
+                
                 <Route path="settings" element={<AdminSettings />} />
               </Route>
 
@@ -182,16 +204,25 @@ function App() {
                 <Route path="leads/scoring" element={<LeadsScoring />} />
                 
                 {/* Profile Routes */}
+                <Route path="profile" element={<Profile />} />
                 <Route path="profile/company" element={<ProfileCompanyInfo />} />
                 <Route path="profile/documents" element={<ProfileDocuments />} />
                 <Route path="profile/contacts" element={<ProfileContacts />} />
                 <Route path="profile/hours" element={<ProfileBusinessHours />} />
+                <Route path="profile/settings" element={<ProfileSettings />} />
+                <Route path="profile/account" element={<ProfileAccount />} />
+                <Route path="profile/business" element={<ProfileBusinessDetails />} />
+                <Route path="profile/verification" element={<ProfileVerification />} />
+                <Route path="profile/completion" element={<ProfileCompletion />} />
                 
                 {/* Analytics Routes */}
                 <Route path="analytics/growth" element={<AnalyticsGrowth />} />
                 <Route path="analytics/conversion" element={<AnalyticsConversion />} />
                 <Route path="analytics/products" element={<AnalyticsProductInsights />} />
                 <Route path="analytics/feedback" element={<AnalyticsCustomerFeedback />} />
+                
+                {/* Negotiations Routes */}
+                <Route path="negotiations/pricing" element={<PricingTools />} />
                 
                 {/* Settings Routes */}
                 <Route path="settings" element={<SellerSettings />} />

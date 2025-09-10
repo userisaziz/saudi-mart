@@ -4,6 +4,9 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  define: {
+    global: 'globalThis',
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -16,20 +19,71 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    open: true
+    open: true,
+    host: true
+  },
+  preview: {
+    port: 4173,
+    host: true
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: process.env.NODE_ENV !== 'production',
+    minify: 'esbuild',
+    target: 'es2015',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          charts: ['recharts']
-        }
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'vendor-ui';
+            }
+            if (id.includes('recharts') || id.includes('chart')) {
+              return 'vendor-charts';
+            }
+            if (id.includes('lucide-react') || id.includes('@heroicons')) {
+              return 'vendor-icons';
+            }
+            return 'vendor';
+          }
+          if (id.includes('/admin/')) {
+            return 'admin';
+          }
+          if (id.includes('/seller/')) {
+            return 'seller';
+          }
+          if (id.includes('/shared/')) {
+            return 'shared';
+          }
+        },
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    },
+    terserOptions: {
+      compress: {
+        drop_console: process.env.NODE_ENV === 'production',
+        drop_debugger: process.env.NODE_ENV === 'production',
       }
     }
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      'lucide-react'
+    ]
+  },
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' }
   }
 })

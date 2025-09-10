@@ -270,7 +270,7 @@ export default function NotificationsPage() {
         </div>
         <div className="flex items-center gap-3">
           <Button variant="outline" onClick={handleMarkAllAsRead}>
-            <CheckCircle className="w-4 h-4 mr-2" />
+            <CheckCircle className="w-4 h-4 ml-2" />
             Mark All as Read
           </Button>
         </div>
@@ -336,15 +336,15 @@ export default function NotificationsPage() {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="p-6">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="notifications">
-              <Bell className="w-4 h-4 mr-2" />
+              <Bell className="w-4 h-4 ml-2" />
               Notifications
             </TabsTrigger>
             <TabsTrigger value="compose">
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="w-4 h-4 ml-2" />
               Create Notification
             </TabsTrigger>
             <TabsTrigger value="templates">
-              <Settings className="w-4 h-4 mr-2" />
+              <Settings className="w-4 h-4 ml-2" />
               Templates
             </TabsTrigger>
           </TabsList>
@@ -513,7 +513,7 @@ export default function NotificationsPage() {
                                           setSelectedNotification(null)
                                         }}
                                       >
-                                        <Check className="w-4 h-4 mr-2" />
+                                        <Check className="w-4 h-4 ml-2" />
                                         Mark as Read
                                       </Button>
                                     )}
@@ -531,17 +531,17 @@ export default function NotificationsPage() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem>
-                                <Eye className="w-4 h-4 mr-2" />
+                                <Eye className="w-4 h-4 ml-2" />
                                 View Details
                               </DropdownMenuItem>
                               {!notification.isRead && (
                                 <DropdownMenuItem onClick={() => handleMarkAsRead(notification.id)}>
-                                  <Check className="w-4 h-4 mr-2" />
+                                  <Check className="w-4 h-4 ml-2" />
                                   Mark as Read
                                 </DropdownMenuItem>
                               )}
                               <DropdownMenuItem className="text-red-600" onClick={() => handleDeleteNotification(notification.id)}>
-                                <Trash2 className="w-4 h-4 mr-2" />
+                                <Trash2 className="w-4 h-4 ml-2" />
                                 Delete
                               </DropdownMenuItem>
                             </DropdownMenuContent>
@@ -645,7 +645,7 @@ export default function NotificationsPage() {
 
                 <div className="flex justify-end pt-4">
                   <Button onClick={handleSendNotification} className="bg-blue-600 hover:bg-blue-700">
-                    <Send className="w-4 h-4 mr-2" />
+                    <Send className="w-4 h-4 ml-2" />
                     Send Notification
                   </Button>
                 </div>
@@ -657,7 +657,7 @@ export default function NotificationsPage() {
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Notification Templates</h3>
               <Button>
-                <Plus className="w-4 h-4 mr-2" />
+                <Plus className="w-4 h-4 ml-2" />
                 Create New Template
               </Button>
             </div>

@@ -350,3 +350,5 @@ export const LeadsInbox: React.FC = () => {
     </div>
   );
 };
+
+export default LeadsInbox;

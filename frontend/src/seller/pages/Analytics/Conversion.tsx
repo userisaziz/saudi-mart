@@ -3,8 +3,8 @@ import { Chart } from '../../components/ui/Chart';
 import {
   FunnelIcon,
   ChartBarIcon,
-  ArrowArrowTrendingUpIcon,
-  ArrowArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   UserGroupIcon,
   CurrencyDollarIcon,
   ClockIcon,
@@ -556,3 +556,5 @@ export const AnalyticsConversion: React.FC = () => {
     </div>
   );
 };
+
+export default AnalyticsConversion;

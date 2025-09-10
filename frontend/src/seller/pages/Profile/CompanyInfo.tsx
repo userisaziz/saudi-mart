@@ -316,3 +316,5 @@ export const ProfileCompanyInfo: React.FC = () => {
     </div>
   );
 };
+
+export default ProfileCompanyInfo;
