@@ -19,6 +19,7 @@ const AdminSellersList = React.lazy(() => import('@/admin/pages/Sellers/List'))
 const AdminSellersAdd = React.lazy(() => import('@/admin/pages/Sellers/Add'))
 const AdminBuyers = React.lazy(() => import('@/admin/pages/Buyers/Management'))
 const AdminBuyersList = React.lazy(() => import('@/admin/pages/Buyers/List'))
+const AdminBuyersAdd = React.lazy(() => import('@/admin/pages/Buyers/Add'))
 const AdminProducts = React.lazy(() => import('@/admin/pages/Products/Management'))
 const AdminProductsList = React.lazy(() => import('@/admin/pages/Products/List'))
 const AdminProductsAdd = React.lazy(() => import('@/admin/pages/Products/Add'))
@@ -110,6 +111,12 @@ const SupplierSRM = React.lazy(() => import('@/admin/pages/Suppliers/SRM'))
 const ProcurementWorkflows = React.lazy(() => import('@/admin/pages/Procurement/Workflows'))
 const AuditTrails = React.lazy(() => import('@/admin/pages/Compliance/AuditTrails'))
 
+// Missing Admin Pages
+const AdminProductsInventory = React.lazy(() => import('@/admin/pages/Products/Inventory'))
+const AdminProductsBulk = React.lazy(() => import('@/admin/pages/Products/Bulk'))
+const AdminSellersRoles = React.lazy(() => import('@/admin/pages/Sellers/Roles'))
+const AdminBuyersRoles = React.lazy(() => import('@/admin/pages/Buyers/Roles'))
+
 // Enterprise Features - Seller
 const PricingTools = React.lazy(() => import('@/seller/pages/Negotiations/PricingTools'))
 
@@ -151,15 +158,20 @@ function App() {
                 <Route path="sellers/list" element={<AdminSellersList />} />
                 <Route path="sellers/add" element={<AdminSellersAdd />} />
                 <Route path="sellers/verification" element={<AdminSellerVerification />} />
+                <Route path="sellers/roles" element={<AdminSellersRoles />} />
                 
                 {/* Buyers Routes */}
                 <Route path="buyers" element={<AdminBuyers />} />
                 <Route path="buyers/list" element={<AdminBuyersList />} />
+                <Route path="buyers/add" element={<AdminBuyersAdd />} />
+                <Route path="buyers/roles" element={<AdminBuyersRoles />} />
                 
                 {/* Products Routes */}
                 <Route path="products" element={<AdminProducts />} />
                 <Route path="products/list" element={<AdminProductsList />} />
                 <Route path="products/add" element={<AdminProductsAdd />} />
+                <Route path="products/inventory" element={<AdminProductsInventory />} />
+                <Route path="products/bulk" element={<AdminProductsBulk />} />
                 <Route path="product-approval" element={<ProductApproval />} />
                 
                 {/* Categories Routes */}
