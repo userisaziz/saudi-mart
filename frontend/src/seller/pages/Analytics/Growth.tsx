@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/shared/contexts/LanguageContext';
-import { Chart } from '../../components/ui/Chart';
-import { MetricsCard } from '../../components/ui/MetricsCard';
+import {
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Cell
+} from 'recharts';
 import {
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
@@ -109,59 +121,119 @@ export const AnalyticsGrowth: React.FC = () => {
               <option value="1y">{t('analytics.timeRange.1y', 'Last year')}</option>
             </select>
           </div>
+      </div>
 
       {/* Growth Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <MetricsCard
-          title={t('analytics.growth.revenueGrowth', 'Revenue Growth')}
-          value={formatCurrency(growthMetrics.revenue.current)}
-          change={growthMetrics.revenue.growth}
-          changeType="increase"
-          icon={CurrencyDollarIcon}
-          iconColor="text-green-600"
-          format="currency"
-        />
-        <MetricsCard
-          title={t('analytics.growth.ordersGrowth', 'Orders Growth')}
-          value={growthMetrics.orders.current}
-          change={growthMetrics.orders.growth}
-          changeType="increase"
-          icon={ShoppingBagIcon}
-          iconColor="text-blue-600"
-        />
-        <MetricsCard
-          title={t('analytics.growth.customerGrowth', 'Customer Growth')}
-          value={growthMetrics.customers.current}
-          change={growthMetrics.customers.growth}
-          changeType="increase"
-          icon={UserGroupIcon}
-          iconColor="text-purple-600"
-        />
-        <MetricsCard
-          title={t('analytics.growth.aovGrowth', 'AOV Growth')}
-          value={formatCurrency(growthMetrics.avgOrderValue.current)}
-          change={growthMetrics.avgOrderValue.growth}
-          changeType="increase"
-          icon={ChartBarIcon}
-          iconColor="text-orange-600"
-          format="currency"
-        />
+        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="p-3 rounded-lg bg-green-50">
+                <CurrencyDollarIcon className="w-6 h-6 text-green-600" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-600">{t('analytics.growth.revenueGrowth', 'Revenue Growth')}</p>
+                <p className="text-2xl font-bold text-gray-900">{formatCurrency(growthMetrics.revenue.current)}</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-1 text-green-600">
+              <ArrowUpIcon className="w-4 h-4" />
+              <span className="text-sm font-medium">{formatGrowth(growthMetrics.revenue.growth)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="p-3 rounded-lg bg-blue-50">
+                <ShoppingBagIcon className="w-6 h-6 text-blue-600" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-600">{t('analytics.growth.ordersGrowth', 'Orders Growth')}</p>
+                <p className="text-2xl font-bold text-gray-900">{growthMetrics.orders.current.toLocaleString()}</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-1 text-green-600">
+              <ArrowUpIcon className="w-4 h-4" />
+              <span className="text-sm font-medium">{formatGrowth(growthMetrics.orders.growth)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="p-3 rounded-lg bg-purple-50">
+                <UserGroupIcon className="w-6 h-6 text-purple-600" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-600">{t('analytics.growth.customerGrowth', 'Customer Growth')}</p>
+                <p className="text-2xl font-bold text-gray-900">{growthMetrics.customers.current.toLocaleString()}</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-1 text-green-600">
+              <ArrowUpIcon className="w-4 h-4" />
+              <span className="text-sm font-medium">{formatGrowth(growthMetrics.customers.growth)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="p-3 rounded-lg bg-orange-50">
+                <ChartBarIcon className="w-6 h-6 text-orange-600" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-600">{t('analytics.growth.aovGrowth', 'AOV Growth')}</p>
+                <p className="text-2xl font-bold text-gray-900">{formatCurrency(growthMetrics.avgOrderValue.current)}</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-1 text-green-600">
+              <ArrowUpIcon className="w-4 h-4" />
+              <span className="text-sm font-medium">{formatGrowth(growthMetrics.avgOrderValue.growth)}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Revenue and Orders Growth Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('analytics.growth.revenueGrowthTrend', 'Revenue Growth Trend')}</h3>
-          <Chart
-            data={revenueGrowthData}
-            type="line"
-            xKey="name"
-            yKey="current"
-            secondaryYKey="previous"
-            color="#10B981"
-            secondaryColor="#6B7280"
-            height={300}
-          />
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={revenueGrowthData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="name" stroke="#6b7280" fontSize={12} />
+              <YAxis stroke="#6b7280" fontSize={12} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: '#fff',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                }}
+              />
+              <Line
+                type="monotone"
+                dataKey="current"
+                stroke="#10B981"
+                strokeWidth={3}
+                dot={{ fill: '#10B981', strokeWidth: 2, r: 4 }}
+                activeDot={{ r: 6, stroke: '#10B981', strokeWidth: 2, fill: '#fff' }}
+              />
+              <Line
+                type="monotone"
+                dataKey="previous"
+                stroke="#6B7280"
+                strokeWidth={2}
+                strokeDasharray="5 5"
+                dot={{ fill: '#6B7280', strokeWidth: 2, r: 4 }}
+                activeDot={{ r: 6, stroke: '#6B7280', strokeWidth: 2, fill: '#fff' }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
           <div className="flex items-center justify-between mt-4 text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
@@ -176,14 +248,22 @@ export const AnalyticsGrowth: React.FC = () => {
 
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('analytics.growth.ordersGrowthTrend', 'Orders Growth Trend')}</h3>
-          <Chart
-            data={ordersGrowthData}
-            type="bar"
-            xKey="name"
-            yKey="current"
-            color="#3B82F6"
-            height={300}
-          />
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={ordersGrowthData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="name" stroke="#6b7280" fontSize={12} />
+              <YAxis stroke="#6b7280" fontSize={12} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: '#fff',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                }}
+              />
+              <Bar dataKey="current" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
@@ -191,16 +271,37 @@ export const AnalyticsGrowth: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('analytics.growth.customerAcquisition', 'Customer Acquisition')}</h3>
-          <Chart
-            data={customerAcquisitionData}
-            type="area"
-            xKey="name"
-            yKey="newCustomers"
-            secondaryYKey="returningCustomers"
-            color="#8B5CF6"
-            secondaryColor="#10B981"
-            height={300}
-          />
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={customerAcquisitionData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="name" stroke="#6b7280" fontSize={12} />
+              <YAxis stroke="#6b7280" fontSize={12} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: '#fff',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                }}
+              />
+              <Area
+                type="monotone"
+                dataKey="newCustomers"
+                stackId="1"
+                stroke="#8B5CF6"
+                fillOpacity={0.6}
+                fill="#8B5CF6"
+              />
+              <Area
+                type="monotone"
+                dataKey="returningCustomers"
+                stackId="1"
+                stroke="#10B981"
+                fillOpacity={0.6}
+                fill="#10B981"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
           <div className="flex items-center justify-between mt-4 text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-purple-500 rounded-full"></div>

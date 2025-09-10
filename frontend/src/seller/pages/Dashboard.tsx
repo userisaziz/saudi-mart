@@ -33,7 +33,7 @@ import {
   mockProducts,
 } from '../data/mockData';
 
-export const Dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [timeRange, setTimeRange] = useState('7d');
   const [viewMode, setViewMode] = useState<'realtime' | 'classic'>('realtime');
