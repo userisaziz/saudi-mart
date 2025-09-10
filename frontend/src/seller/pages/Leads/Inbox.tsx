@@ -322,13 +322,13 @@ export const LeadsInbox: React.FC = () => {
                           className="text-purple-600 hover:text-purple-800 p-1" 
                           title={t('leads.call', 'Call')}
                         >
-                          <PhoneIcon className="w-4 h-4" />
+                          <Phone className="w-4 h-4" />
                         </button>
                         <button 
                           className="text-gray-600 hover:text-gray-800 p-1" 
                           title={t('leads.email', 'Email')}
                         >
-                          <EnvelopeIcon className="w-4 h-4" />
+                          <Mail className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
