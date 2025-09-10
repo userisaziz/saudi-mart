@@ -16,6 +16,7 @@ export default defineConfig({
       "@/auth": path.resolve(__dirname, "./src/auth"),
       "@/assets": path.resolve(__dirname, "./src/assets")
     },
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
   server: {
     port: 5173,
