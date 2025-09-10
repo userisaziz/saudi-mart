@@ -102,17 +102,17 @@ const mockPendingOrders: PendingOrder[] = [
     id: 'ORD-2024-001',
     orderNumber: 'ORD-2024-001',
     customerId: 'CUST-001',
-    customerName: 'أحمد محمد الأحمد',
+    customerName: 'Ahmed Mohammed Al-Ahmad',
     customerEmail: 'ahmed@example.com',
     customerPhone: '+966501234567',
     sellerId: 'SELL-001',
-    sellerName: 'شركة الأحمد للصناعات',
+    sellerName: 'Al-Ahmad Industries Company',
     sellerPhone: '+966507654321',
     items: [
       {
         id: 'ITM-001',
         productName: 'Industrial Steel Pipe',
-        productNameAr: 'أنبوب صلب صناعي',
+        productNameAr: 'Industrial Steel Pipe',
         quantity: 50,
         price: 250,
         totalPrice: 12500,
@@ -129,15 +129,15 @@ const mockPendingOrders: PendingOrder[] = [
     pendingSince: '2024-01-15T10:30:00Z',
     paymentMethod: 'Bank Transfer',
     shippingAddress: {
-      street: 'شارع الملك فهد، حي العليا',
-      city: 'الرياض',
-      region: 'منطقة الرياض',
+      street: 'King Fahd Street, Al-Olaya District',
+      city: 'Riyadh',
+      region: 'Riyadh Province',
       postalCode: '12211',
-      country: 'السعودية'
+      country: 'Saudi Arabia'
     },
     orderDate: '2024-01-15T08:15:00Z',
     expectedDelivery: '2024-01-25',
-    notes: 'عاجل - مطلوب للمشروع الحكومي',
+    notes: 'Urgent - Required for government project',
     lastActivity: '2024-01-15T10:30:00Z',
     requiresAction: true,
     actionType: 'payment_verification',
@@ -147,17 +147,17 @@ const mockPendingOrders: PendingOrder[] = [
     id: 'ORD-2024-002',
     orderNumber: 'ORD-2024-002',
     customerId: 'CUST-002',
-    customerName: 'فاطمة علي السعيد',
+    customerName: 'Fatima Ali Al-Saeed',
     customerEmail: 'fatima@example.com',
     customerPhone: '+966502345678',
     sellerId: 'SELL-002',
-    sellerName: 'مصنع السعيد للمعادن',
+    sellerName: 'Al-Saeed Metals Factory',
     sellerPhone: '+966508765432',
     items: [
       {
         id: 'ITM-002',
         productName: 'LED Panel System',
-        productNameAr: 'نظام لوحات LED',
+        productNameAr: 'LED Panel System',
         quantity: 20,
         price: 450,
         totalPrice: 9000,
@@ -174,11 +174,11 @@ const mockPendingOrders: PendingOrder[] = [
     pendingSince: '2024-01-14T14:20:00Z',
     paymentMethod: 'Credit Card',
     shippingAddress: {
-      street: 'طريق الدمام السريع',
-      city: 'الدمام',
-      region: 'المنطقة الشرقية',
+      street: 'Dammam Expressway',
+      city: 'Dammam',
+      region: 'Eastern Province',
       postalCode: '31422',
-      country: 'السعودية'
+      country: 'Saudi Arabia'
     },
     orderDate: '2024-01-14T12:10:00Z',
     expectedDelivery: '2024-01-28',
@@ -245,11 +245,11 @@ const PendingOrdersPage: React.FC = () => {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending_payment: { color: 'bg-yellow-100 text-yellow-800', text: isRTL ? 'انتظار الدفع' : 'Pending Payment' },
-      payment_verified: { color: 'bg-blue-100 text-blue-800', text: isRTL ? 'تم التحقق من الدفع' : 'Payment Verified' },
-      pending_seller_approval: { color: 'bg-orange-100 text-orange-800', text: isRTL ? 'انتظار موافقة البائع' : 'Pending Seller Approval' },
-      pending_stock_confirmation: { color: 'bg-purple-100 text-purple-800', text: isRTL ? 'انتظار تأكيد المخزون' : 'Pending Stock Confirmation' },
-      pending_documentation: { color: 'bg-red-100 text-red-800', text: isRTL ? 'انتظار الوثائق' : 'Pending Documentation' }
+      pending_payment: { color: 'bg-yellow-100 text-yellow-800', text: isRTL ? 'Pending Payment' : 'Pending Payment' },
+      payment_verified: { color: 'bg-blue-100 text-blue-800', text: isRTL ? 'Payment Verified' : 'Payment Verified' },
+      pending_seller_approval: { color: 'bg-orange-100 text-orange-800', text: isRTL ? 'Pending Seller Approval' : 'Pending Seller Approval' },
+      pending_stock_confirmation: { color: 'bg-purple-100 text-purple-800', text: isRTL ? 'Pending Stock Confirmation' : 'Pending Stock Confirmation' },
+      pending_documentation: { color: 'bg-red-100 text-red-800', text: isRTL ? 'Pending Documentation' : 'Pending Documentation' }
     }
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending_payment
     return <Badge className={config.color}>{config.text}</Badge>
@@ -257,10 +257,10 @@ const PendingOrdersPage: React.FC = () => {
 
   const getPriorityBadge = (priority: string) => {
     const priorityConfig = {
-      low: { color: 'bg-green-100 text-green-800', text: isRTL ? 'منخفضة' : 'Low' },
-      medium: { color: 'bg-blue-100 text-blue-800', text: isRTL ? 'متوسطة' : 'Medium' },
-      high: { color: 'bg-orange-100 text-orange-800', text: isRTL ? 'عالية' : 'High' },
-      urgent: { color: 'bg-red-100 text-red-800', text: isRTL ? 'عاجل' : 'Urgent' }
+      low: { color: 'bg-green-100 text-green-800', text: isRTL ? 'Low' : 'Low' },
+      medium: { color: 'bg-blue-100 text-blue-800', text: isRTL ? 'Medium' : 'Medium' },
+      high: { color: 'bg-orange-100 text-orange-800', text: isRTL ? 'High' : 'High' },
+      urgent: { color: 'bg-red-100 text-red-800', text: isRTL ? 'Urgent' : 'Urgent' }
     }
     const config = priorityConfig[priority as keyof typeof priorityConfig]
     return <Badge className={config.color}>{config.text}</Badge>
@@ -297,20 +297,20 @@ const PendingOrdersPage: React.FC = () => {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            {isRTL ? 'الطلبات المعلقة' : 'Pending Orders'}
+            {isRTL ? 'Pending Orders' : 'Pending Orders'}
           </h1>
           <p className="text-gray-600">
-            {isRTL ? 'إدارة ومراجعة الطلبات التي تتطلب اتخاذ إجراء' : 'Manage and review orders that require action'}
+            {isRTL ? 'Manage and review orders that require action' : 'Manage and review orders that require action'}
           </p>
         </div>
         <div className="flex gap-3">
           <Button variant="outline">
             <RefreshCw className="w-4 h-4 mr-2" />
-            {isRTL ? 'تحديث' : 'Refresh'}
+            {isRTL ? 'Refresh' : 'Refresh'}
           </Button>
           <Button variant="outline">
             <Download className="w-4 h-4 mr-2" />
-            {isRTL ? 'تصدير' : 'Export'}
+            {isRTL ? 'Export' : 'Export'}
           </Button>
         </div>
       </div>
@@ -324,7 +324,7 @@ const PendingOrdersPage: React.FC = () => {
                 <Clock className="w-6 h-6 text-blue-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'إجمالي الطلبات المعلقة' : 'Total Pending'}</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'Total Pending' : 'Total Pending'}</p>
                 <p className="text-2xl font-bold">{metrics.total}</p>
               </div>
             </div>
@@ -338,7 +338,7 @@ const PendingOrdersPage: React.FC = () => {
                 <AlertTriangle className="w-6 h-6 text-red-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'تتطلب إجراء' : 'Requires Action'}</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'Requires Action' : 'Requires Action'}</p>
                 <p className="text-2xl font-bold text-red-600">{metrics.requiresAction}</p>
               </div>
             </div>
@@ -352,7 +352,7 @@ const PendingOrdersPage: React.FC = () => {
                 <Package className="w-6 h-6 text-orange-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'أولوية عالية' : 'High Priority'}</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'High Priority' : 'High Priority'}</p>
                 <p className="text-2xl font-bold text-orange-600">{metrics.highPriority}</p>
               </div>
             </div>
@@ -366,7 +366,7 @@ const PendingOrdersPage: React.FC = () => {
                 <DollarSign className="w-6 h-6 text-green-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'متوسط القيمة' : 'Avg Value'}</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'Avg Value' : 'Avg Value'}</p>
                 <p className="text-2xl font-bold">{formatCurrency(metrics.avgValue, 'SAR')}</p>
               </div>
             </div>
@@ -383,7 +383,7 @@ const PendingOrdersPage: React.FC = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input 
                   className="pl-10"
-                  placeholder={isRTL ? 'البحث في الطلبات...' : 'Search orders...'}
+                  placeholder={isRTL ? 'Search orders...' : 'Search orders...'}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -391,10 +391,10 @@ const PendingOrdersPage: React.FC = () => {
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-48">
-                <SelectValue placeholder={isRTL ? 'الحالة' : 'Status'} />
+                <SelectValue placeholder={isRTL ? 'Status' : 'Status'} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">{isRTL ? 'جميع الحالات' : 'All Status'}</SelectItem>
+                <SelectItem value="all">{isRTL ? 'All Status' : 'All Status'}</SelectItem>
                 <SelectItem value="pending_payment">{isRTL ? 'انتظار الدفع' : 'Pending Payment'}</SelectItem>
                 <SelectItem value="payment_verified">{isRTL ? 'تم التحقق من الدفع' : 'Payment Verified'}</SelectItem>
                 <SelectItem value="pending_seller_approval">{isRTL ? 'انتظار موافقة البائع' : 'Pending Seller Approval'}</SelectItem>
@@ -403,10 +403,10 @@ const PendingOrdersPage: React.FC = () => {
             </Select>
             <Select value={priorityFilter} onValueChange={setPriorityFilter}>
               <SelectTrigger className="w-32">
-                <SelectValue placeholder={isRTL ? 'الأولوية' : 'Priority'} />
+                <SelectValue placeholder={isRTL ? 'Priority' : 'Priority'} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">{isRTL ? 'جميع الأولويات' : 'All Priority'}</SelectItem>
+                <SelectItem value="all">{isRTL ? 'All Priority' : 'All Priority'}</SelectItem>
                 <SelectItem value="urgent">{isRTL ? 'عاجل' : 'Urgent'}</SelectItem>
                 <SelectItem value="high">{isRTL ? 'عالية' : 'High'}</SelectItem>
                 <SelectItem value="medium">{isRTL ? 'متوسطة' : 'Medium'}</SelectItem>
@@ -423,14 +423,14 @@ const PendingOrdersPage: React.FC = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>{isRTL ? 'رقم الطلب' : 'Order #'}</TableHead>
-                <TableHead>{isRTL ? 'العميل' : 'Customer'}</TableHead>
-                <TableHead>{isRTL ? 'البائع' : 'Seller'}</TableHead>
-                <TableHead>{isRTL ? 'المبلغ' : 'Amount'}</TableHead>
-                <TableHead>{isRTL ? 'الحالة' : 'Status'}</TableHead>
-                <TableHead>{isRTL ? 'الأولوية' : 'Priority'}</TableHead>
-                <TableHead>{isRTL ? 'معلق منذ' : 'Pending Since'}</TableHead>
-                <TableHead>{isRTL ? 'الإجراءات' : 'Actions'}</TableHead>
+                <TableHead>{isRTL ? 'Order #' : 'Order #'}</TableHead>
+                <TableHead>{isRTL ? 'Customer' : 'Customer'}</TableHead>
+                <TableHead>{isRTL ? 'Seller' : 'Seller'}</TableHead>
+                <TableHead>{isRTL ? 'Amount' : 'Amount'}</TableHead>
+                <TableHead>{isRTL ? 'Status' : 'Status'}</TableHead>
+                <TableHead>{isRTL ? 'Priority' : 'Priority'}</TableHead>
+                <TableHead>{isRTL ? 'Pending Since' : 'Pending Since'}</TableHead>
+                <TableHead>{isRTL ? 'Actions' : 'Actions'}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -476,7 +476,7 @@ const PendingOrdersPage: React.FC = () => {
                         onClick={() => setSelectedOrder(order)}
                       >
                         <Eye className="w-4 h-4 mr-1" />
-                        {isRTL ? 'عرض' : 'View'}
+                        {isRTL ? 'View' : 'View'}
                       </Button>
                       {order.status === 'pending_payment' && (
                         <Button 
@@ -485,7 +485,7 @@ const PendingOrdersPage: React.FC = () => {
                           onClick={() => handleApproveOrder(order.id)}
                         >
                           <CheckCircle className="w-4 h-4 mr-1" />
-                          {isRTL ? 'تأكيد' : 'Approve'}
+                          {isRTL ? 'Approve' : 'Approve'}
                         </Button>
                       )}
                       <DropdownMenu>
@@ -497,15 +497,15 @@ const PendingOrdersPage: React.FC = () => {
                         <DropdownMenuContent>
                           <DropdownMenuItem>
                             <Phone className="w-4 h-4 mr-2" />
-                            {isRTL ? 'اتصال بالعميل' : 'Call Customer'}
+                            {isRTL ? 'Call Customer' : 'Call Customer'}
                           </DropdownMenuItem>
                           <DropdownMenuItem>
                             <Mail className="w-4 h-4 mr-2" />
-                            {isRTL ? 'إرسال بريد' : 'Send Email'}
+                            {isRTL ? 'Send Email' : 'Send Email'}
                           </DropdownMenuItem>
                           <DropdownMenuItem className="text-red-600">
                             <XCircle className="w-4 h-4 mr-2" />
-                            {isRTL ? 'رفض الطلب' : 'Reject Order'}
+                            {isRTL ? 'Reject Order' : 'Reject Order'}
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -530,7 +530,7 @@ const PendingOrdersPage: React.FC = () => {
             <ChevronLeft className="w-4 h-4" />
           </Button>
           <span className="text-sm text-gray-600">
-            {isRTL ? `صفحة ${currentPage} من ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
+            {isRTL ? `Page ${currentPage} of ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
           </span>
           <Button 
             variant="outline" 
@@ -552,7 +552,7 @@ const PendingOrdersPage: React.FC = () => {
                 {selectedOrder.requiresAction && (
                   <AlertTriangle className="w-5 h-5 text-red-500" />
                 )}
-                {isRTL ? `تفاصيل الطلب ${selectedOrder.orderNumber}` : `Order Details - ${selectedOrder.orderNumber}`}
+                {isRTL ? `Order Details - ${selectedOrder.orderNumber}` : `Order Details - ${selectedOrder.orderNumber}`}
               </DialogTitle>
             </DialogHeader>
             
@@ -563,7 +563,7 @@ const PendingOrdersPage: React.FC = () => {
                 {getPriorityBadge(selectedOrder.priority)}
                 {selectedOrder.requiresAction && (
                   <Badge className="bg-red-100 text-red-800">
-                    {isRTL ? 'يتطلب إجراء' : 'Requires Action'}
+                    {isRTL ? 'Requires Action' : 'Requires Action'}
                   </Badge>
                 )}
               </div>
@@ -574,7 +574,7 @@ const PendingOrdersPage: React.FC = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <User className="w-5 h-5" />
-                      {isRTL ? 'معلومات العميل' : 'Customer Information'}
+                      {isRTL ? 'Customer Information' : 'Customer Information'}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -590,7 +590,7 @@ const PendingOrdersPage: React.FC = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Package className="w-5 h-5" />
-                      {isRTL ? 'معلومات البائع' : 'Seller Information'}
+                      {isRTL ? 'Seller Information' : 'Seller Information'}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -605,16 +605,16 @@ const PendingOrdersPage: React.FC = () => {
               {/* Order Items */}
               <Card>
                 <CardHeader>
-                  <CardTitle>{isRTL ? 'عناصر الطلب' : 'Order Items'}</CardTitle>
+                  <CardTitle>{isRTL ? 'Order Items' : 'Order Items'}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>{isRTL ? 'المنتج' : 'Product'}</TableHead>
-                        <TableHead>{isRTL ? 'الكمية' : 'Quantity'}</TableHead>
-                        <TableHead>{isRTL ? 'السعر' : 'Price'}</TableHead>
-                        <TableHead>{isRTL ? 'الإجمالي' : 'Total'}</TableHead>
+                        <TableHead>{isRTL ? 'Product' : 'Product'}</TableHead>
+                        <TableHead>{isRTL ? 'Quantity' : 'Quantity'}</TableHead>
+                        <TableHead>{isRTL ? 'Price' : 'Price'}</TableHead>
+                        <TableHead>{isRTL ? 'Total' : 'Total'}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -637,19 +637,19 @@ const PendingOrdersPage: React.FC = () => {
                   {/* Order Summary */}
                   <div className="mt-6 border-t pt-4 space-y-2">
                     <div className="flex justify-between">
-                      <span>{isRTL ? 'المجموع الفرعي:' : 'Subtotal:'}</span>
+                      <span>{isRTL ? 'Subtotal:' : 'Subtotal:'}</span>
                       <span>{formatCurrency(selectedOrder.subtotal, selectedOrder.currency)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>{isRTL ? 'الضريبة:' : 'Tax:'}</span>
+                      <span>{isRTL ? 'Tax:' : 'Tax:'}</span>
                       <span>{formatCurrency(selectedOrder.tax, selectedOrder.currency)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>{isRTL ? 'الشحن:' : 'Shipping:'}</span>
+                      <span>{isRTL ? 'Shipping:' : 'Shipping:'}</span>
                       <span>{formatCurrency(selectedOrder.shippingCost, selectedOrder.currency)}</span>
                     </div>
                     <div className="flex justify-between font-bold text-lg border-t pt-2">
-                      <span>{isRTL ? 'الإجمالي:' : 'Total:'}</span>
+                      <span>{isRTL ? 'Total:' : 'Total:'}</span>
                       <span>{formatCurrency(selectedOrder.total, selectedOrder.currency)}</span>
                     </div>
                   </div>
@@ -664,20 +664,20 @@ const PendingOrdersPage: React.FC = () => {
                     onClick={() => handleApproveOrder(selectedOrder.id)}
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
-                    {isRTL ? 'تأكيد الدفع' : 'Confirm Payment'}
+                    {isRTL ? 'Confirm Payment' : 'Confirm Payment'}
                   </Button>
                 )}
                 <Button variant="outline">
                   <Phone className="w-4 h-4 mr-2" />
-                  {isRTL ? 'اتصال بالعميل' : 'Call Customer'}
+                  {isRTL ? 'Call Customer' : 'Call Customer'}
                 </Button>
                 <Button variant="outline">
                   <Mail className="w-4 h-4 mr-2" />
-                  {isRTL ? 'إرسال بريد' : 'Send Email'}
+                  {isRTL ? 'Send Email' : 'Send Email'}
                 </Button>
                 <Button variant="outline" className="text-red-600">
                   <XCircle className="w-4 h-4 mr-2" />
-                  {isRTL ? 'رفض الطلب' : 'Reject Order'}
+                  {isRTL ? 'Reject Order' : 'Reject Order'}
                 </Button>
               </div>
             </div>

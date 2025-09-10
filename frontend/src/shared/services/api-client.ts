@@ -41,9 +41,11 @@ class ApiClient {
     // Request interceptor
     this.instance.interceptors.request.use(
       (config) => {
-        const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN)
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`
+        if (typeof window !== 'undefined') {
+          const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN)
+          if (token) {
+            config.headers.Authorization = `Bearer ${token}`
+          }
         }
 
         // Add request timestamp for logging

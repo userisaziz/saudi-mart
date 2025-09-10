@@ -80,6 +80,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const initializeAuth = async () => {
     try {
+      if (typeof window === 'undefined') {
+        dispatch({ type: 'SET_LOADING', payload: false })
+        return
+      }
+
       const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN)
       const refreshToken = localStorage.getItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN)
       const userData = localStorage.getItem(LOCAL_STORAGE_KEYS.USER)
@@ -127,9 +132,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       
       // Store auth data
-      localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, dummyResponse.token)
-      localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, dummyResponse.refreshToken)
-      localStorage.setItem(LOCAL_STORAGE_KEYS.USER, JSON.stringify(dummyResponse.user))
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, dummyResponse.token)
+        localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, dummyResponse.refreshToken)
+        localStorage.setItem(LOCAL_STORAGE_KEYS.USER, JSON.stringify(dummyResponse.user))
+      }
       
       dispatch({
         type: 'SET_AUTH',

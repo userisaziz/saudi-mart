@@ -38,12 +38,32 @@ export interface Notification {
   duration?: number
 }
 
+// Helper function to safely access localStorage
+const getStorageItem = (key: string, defaultValue: string): string => {
+  try {
+    if (typeof window === 'undefined') return defaultValue
+    return localStorage.getItem(key) || defaultValue
+  } catch {
+    return defaultValue
+  }
+}
+
+const setStorageItem = (key: string, value: string): void => {
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, value)
+    }
+  } catch {
+    // Fail silently
+  }
+}
+
 export const useUIStore = create<UIState>()(
   subscribeWithSelector((set, get) => ({
     // Sidebar state
-    sidebarCollapsed: JSON.parse(localStorage.getItem('sidebar-collapsed') || 'false'),
+    sidebarCollapsed: JSON.parse(getStorageItem('sidebar-collapsed', 'false')),
     setSidebarCollapsed: (collapsed) => {
-      localStorage.setItem('sidebar-collapsed', JSON.stringify(collapsed))
+      setStorageItem('sidebar-collapsed', JSON.stringify(collapsed))
       set({ sidebarCollapsed: collapsed })
     },
     toggleSidebar: () => {
@@ -52,9 +72,9 @@ export const useUIStore = create<UIState>()(
     },
 
     // Theme state
-    theme: (localStorage.getItem('theme') as 'light' | 'dark' | 'system') || 'system',
+    theme: (getStorageItem('theme', 'system') as 'light' | 'dark' | 'system'),
     setTheme: (theme) => {
-      localStorage.setItem('theme', theme)
+      setStorageItem('theme', theme)
       set({ theme })
     },
 
