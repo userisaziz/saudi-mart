@@ -50,11 +50,11 @@ const mockProducts: Product[] = [
   {
     id: '1',
     name: 'Saudi Arabian Dates Premium',
-    nameAr: 'تمور سعودية فاخرة',
+    nameAr: 'Saudi Arabian Dates Premium',
     seller: 'Ahmed Al-Rashid',
-    sellerAr: 'أحمد الراشد',
+    sellerAr: 'Ahmed Al-Rashid',
     category: 'Food & Beverages',
-    categoryAr: 'المواد الغذائية والمشروبات',
+    categoryAr: 'Food & Beverages',
     price: 45.50,
     status: 'Pending',
     saso: true,
@@ -63,16 +63,16 @@ const mockProducts: Product[] = [
     priority: 'High',
     images: ['/images/dates1.jpg'],
     description: 'Premium quality Saudi Arabian dates from Al-Ahsa region',
-    descriptionAr: 'تمور سعودية فاخرة من منطقة الأحساء'
+    descriptionAr: 'Premium quality Saudi Arabian dates from Al-Ahsa region'
   },
   {
     id: '2',
     name: 'Traditional Saudi Coffee',
-    nameAr: 'قهوة سعودية تقليدية',
+    nameAr: 'Traditional Saudi Coffee',
     seller: 'Fatima Al-Zahra',
-    sellerAr: 'فاطمة الزهراء',
+    sellerAr: 'Fatima Al-Zahra',
     category: 'Food & Beverages',
-    categoryAr: 'المواد الغذائية والمشروبات',
+    categoryAr: 'Food & Beverages',
     price: 28.75,
     status: 'Approved',
     saso: true,
@@ -82,16 +82,16 @@ const mockProducts: Product[] = [
     priority: 'Medium',
     images: ['/images/coffee1.jpg'],
     description: 'Authentic Saudi coffee blend with cardamom',
-    descriptionAr: 'خليط قهوة سعودية أصيلة مع الهيل'
+    descriptionAr: 'Authentic Saudi coffee blend with cardamom'
   },
   {
     id: '3',
     name: 'Saudi Thobe - White',
-    nameAr: 'ثوب سعودي - أبيض',
+    nameAr: 'Saudi Thobe - White',
     seller: 'Mohammed Al-Sudairi',
-    sellerAr: 'محمد السديري',
+    sellerAr: 'Mohammed Al-Sudairi',
     category: 'Clothing',
-    categoryAr: 'الملابس',
+    categoryAr: 'Clothing',
     price: 95.00,
     status: 'Under Review',
     saso: false,
@@ -100,7 +100,7 @@ const mockProducts: Product[] = [
     priority: 'Medium',
     images: ['/images/thobe1.jpg'],
     description: 'Traditional Saudi white thobe for men',
-    descriptionAr: 'ثوب سعودي تقليدي أبيض للرجال'
+    descriptionAr: 'Traditional Saudi white thobe for men'
   }
 ]
 

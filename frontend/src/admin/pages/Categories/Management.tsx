@@ -107,9 +107,9 @@ const mockCategories: Category[] = [
   {
     id: '1',
     name: 'Electronics & Technology',
-    nameAr: 'الإلكترونيات والتكنولوجيا',
+    nameAr: 'Electronics and Technology',
     description: 'Consumer electronics, computers, and technology products',
-    descriptionAr: 'الإلكترونيات الاستهلاكية وأجهزة الكمبيوتر والمنتجات التكنولوجية',
+    descriptionAr: 'Consumer electronics, computers, and technology products',
     isActive: true,
     productsCount: 1250,
     sellersCount: 89,
@@ -126,7 +126,7 @@ const mockCategories: Category[] = [
       {
         id: '1-1',
         name: 'Smartphones',
-        nameAr: 'الهواتف الذكية',
+        nameAr: 'Smartphones',
         parentId: '1',
         isActive: true,
         productsCount: 340,
@@ -143,7 +143,7 @@ const mockCategories: Category[] = [
       {
         id: '1-2',
         name: 'Laptops & Computers',
-        nameAr: 'أجهزة الكمبيوتر المحمولة والمكتبية',
+        nameAr: 'Laptops & Desktop Computers',
         parentId: '1',
         isActive: true,
         productsCount: 280,
@@ -162,9 +162,9 @@ const mockCategories: Category[] = [
   {
     id: '2',
     name: 'Fashion & Apparel',
-    nameAr: 'الأزياء والملابس',
+    nameAr: 'Fashion & Apparel',
     description: 'Clothing, accessories, and fashion items',
-    descriptionAr: 'الملابس والإكسسوارات وعناصر الأزياء',
+    descriptionAr: 'Clothing, accessories, and fashion items',
     isActive: true,
     productsCount: 890,
     sellersCount: 156,
@@ -181,7 +181,7 @@ const mockCategories: Category[] = [
       {
         id: '2-1',
         name: "Men's Clothing",
-        nameAr: 'ملابس رجالية',
+        nameAr: "Men's Clothing",
         parentId: '2',
         isActive: true,
         productsCount: 420,
@@ -200,9 +200,9 @@ const mockCategories: Category[] = [
   {
     id: '3',
     name: 'Home & Garden',
-    nameAr: 'المنزل والحديقة',
+    nameAr: 'Home & Garden',
     description: 'Home improvement, furniture, and garden supplies',
-    descriptionAr: 'تحسين المنزل والأثاث ومستلزمات الحدائق',
+    descriptionAr: 'Home improvement, furniture, and garden supplies',
     isActive: true,
     productsCount: 650,
     sellersCount: 112,
@@ -219,9 +219,9 @@ const mockCategories: Category[] = [
   {
     id: '4',
     name: 'Automotive',
-    nameAr: 'السيارات',
+    nameAr: 'Automotive',
     description: 'Car parts, accessories, and automotive products',
-    descriptionAr: 'قطع غيار السيارات والإكسسوارات والمنتجات السيارات',
+    descriptionAr: 'Car parts, accessories, and automotive products',
     isActive: false,
     productsCount: 45,
     sellersCount: 12,
@@ -330,7 +330,7 @@ export default function CategoryManagement() {
                 {category.featured && (
                   <Badge className="bg-purple-100 text-purple-800 border-purple-200">
                     <Tag className="h-3 w-3 mr-1" />
-                    {isRTL ? 'مميز' : 'Featured'}
+                    {isRTL ? 'Featured' : 'Featured'}
                   </Badge>
                 )}
               </div>
@@ -348,7 +348,7 @@ export default function CategoryManagement() {
                   <Package className="h-4 w-4 text-gray-500" />
                   <span className="font-medium">{category.productsCount.toLocaleString()}</span>
                 </div>
-                <p className="text-xs text-gray-500">{isRTL ? 'المنتجات' : 'Products'}</p>
+                <p className="text-xs text-gray-500">{isRTL ? 'Products' : 'Products'}</p>
               </div>
               
               <div className="text-center">
@@ -356,7 +356,7 @@ export default function CategoryManagement() {
                   <Users className="h-4 w-4 text-gray-500" />
                   <span className="font-medium">{category.sellersCount}</span>
                 </div>
-                <p className="text-xs text-gray-500">{isRTL ? 'البائعون' : 'Sellers'}</p>
+                <p className="text-xs text-gray-500">{isRTL ? 'Sellers' : 'Sellers'}</p>
               </div>
               
               <div className="text-center">
@@ -364,7 +364,7 @@ export default function CategoryManagement() {
                   <DollarSign className="h-4 w-4 text-gray-500" />
                   <span className="font-medium">${(category.revenue / 1000).toFixed(0)}K</span>
                 </div>
-                <p className="text-xs text-gray-500">{isRTL ? 'الإيرادات' : 'Revenue'}</p>
+                <p className="text-xs text-gray-500">{isRTL ? 'Revenue' : 'Revenue'}</p>
               </div>
               
               <div className="text-center">
@@ -378,7 +378,7 @@ export default function CategoryManagement() {
                   )}
                   <span className="font-medium">{Math.abs(category.growth)}%</span>
                 </div>
-                <p className="text-xs text-gray-500">{isRTL ? 'النمو' : 'Growth'}</p>
+                <p className="text-xs text-gray-500">{isRTL ? 'Growth' : 'Growth'}</p>
               </div>
             </div>
 
@@ -390,27 +390,27 @@ export default function CategoryManagement() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{isRTL ? 'الإجراءات' : 'Actions'}</DropdownMenuLabel>
+                <DropdownMenuLabel>{isRTL ? 'Actions' : 'Actions'}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => {
                   setSelectedCategory(category)
                   setIsEditModalOpen(true)
                 }}>
                   <Edit className="h-4 w-4 mr-2" />
-                  {isRTL ? 'تعديل' : 'Edit'}
+                  {isRTL ? 'Edit' : 'Edit'}
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <BarChart3 className="h-4 w-4 mr-2" />
-                  {isRTL ? 'عرض الإحصائيات' : 'View Analytics'}
+                  {isRTL ? 'View Analytics' : 'View Analytics'}
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Eye className="h-4 w-4 mr-2" />
-                  {isRTL ? 'عرض المنتجات' : 'View Products'}
+                  {isRTL ? 'View Products' : 'View Products'}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="text-red-600">
                   <Trash2 className="h-4 w-4 mr-2" />
-                  {isRTL ? 'حذف' : 'Delete'}
+                  {isRTL ? 'Delete' : 'Delete'}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -435,25 +435,25 @@ export default function CategoryManagement() {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
-            {isRTL ? 'إدارة الفئات' : 'Category Management'}
+            {isRTL ? 'Category Management' : 'Category Management'}
           </h1>
           <p className="text-gray-600 mt-1">
-            {isRTL ? 'إدارة وتنظيم فئات المنتجات في المتجر' : 'Manage and organize product categories in your marketplace'}
+            {isRTL ? 'Manage and organize product categories in your marketplace' : 'Manage and organize product categories in your marketplace'}
           </p>
         </div>
         
         <div className="flex items-center space-x-3">
           <Button variant="outline" className="gap-2">
             <Download className="h-4 w-4" />
-            {isRTL ? 'تصدير' : 'Export'}
+            {isRTL ? 'Export' : 'Export'}
           </Button>
           <Button variant="outline" className="gap-2">
             <Upload className="h-4 w-4" />
-            {isRTL ? 'استيراد' : 'Import'}
+            {isRTL ? 'Import' : 'Import'}
           </Button>
           <Button onClick={() => setIsCreateModalOpen(true)} className="gap-2">
             <Plus className="h-4 w-4" />
-            {isRTL ? 'إضافة فئة' : 'Add Category'}
+            {isRTL ? 'Add Category' : 'Add Category'}
           </Button>
         </div>
       </div>
@@ -464,14 +464,14 @@ export default function CategoryManagement() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
               <TreePine className="h-4 w-4" />
-              {isRTL ? 'إجمالي الفئات' : 'Total Categories'}
+              {isRTL ? 'Total Categories' : 'Total Categories'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockStats.totalCategories}</div>
             <Progress value={(mockStats.activeCategories / mockStats.totalCategories) * 100} className="mt-2" />
             <p className="text-xs text-gray-500 mt-1">
-              {mockStats.activeCategories} {isRTL ? 'نشط' : 'active'}
+              {mockStats.activeCategories} {isRTL ? 'active' : 'active'}
             </p>
           </CardContent>
         </Card>
@@ -480,14 +480,14 @@ export default function CategoryManagement() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
               <CheckCircle className="h-4 w-4" />
-              {isRTL ? 'الفئات النشطة' : 'Active Categories'}
+              {isRTL ? 'Active Categories' : 'Active Categories'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">{mockStats.activeCategories}</div>
             <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
               <TrendingUp className="h-3 w-3" />
-              +5.2% {isRTL ? 'من الشهر الماضي' : 'from last month'}
+              +5.2% {isRTL ? 'from last month' : 'from last month'}
             </p>
           </CardContent>
         </Card>
@@ -496,13 +496,13 @@ export default function CategoryManagement() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
               <AlertCircle className="h-4 w-4" />
-              {isRTL ? 'طلبات الموافقة' : 'Pending Requests'}
+              {isRTL ? 'Pending Requests' : 'Pending Requests'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-yellow-600">{mockStats.pendingRequests}</div>
             <p className="text-xs text-yellow-600 mt-1">
-              {isRTL ? 'تحتاج مراجعة' : 'Need review'}
+              {isRTL ? 'Need review' : 'Need review'}
             </p>
           </CardContent>
         </Card>
@@ -511,14 +511,14 @@ export default function CategoryManagement() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
               <DollarSign className="h-4 w-4" />
-              {isRTL ? 'إجمالي الإيرادات' : 'Total Revenue'}
+              {isRTL ? 'Total Revenue' : 'Total Revenue'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${(mockStats.totalRevenue / 1000000).toFixed(1)}M</div>
             <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
               <TrendingUp className="h-3 w-3" />
-              +{mockStats.growthRate}% {isRTL ? 'نمو' : 'growth'}
+              +{mockStats.growthRate}% {isRTL ? 'growth' : 'growth'}
             </p>
           </CardContent>
         </Card>
@@ -527,13 +527,13 @@ export default function CategoryManagement() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
               <PieChart className="h-4 w-4" />
-              {isRTL ? 'أداء الفئات' : 'Performance'}
+              {isRTL ? 'Performance' : 'Performance'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-600">87%</div>
             <p className="text-xs text-gray-500 mt-1">
-              {isRTL ? 'متوسط الشعبية' : 'Avg popularity'}
+              {isRTL ? 'Avg popularity' : 'Avg popularity'}
             </p>
           </CardContent>
         </Card>
@@ -548,7 +548,7 @@ export default function CategoryManagement() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type="text"
-                  placeholder={isRTL ? 'البحث في الفئات...' : 'Search categories...'}
+                  placeholder={isRTL ? 'Search categories...' : 'Search categories...'}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -559,14 +559,14 @@ export default function CategoryManagement() {
             <div className="flex items-center space-x-3">
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="w-40">
-                  <SelectValue placeholder={isRTL ? 'تصفية بالحالة' : 'Filter by status'} />
+                  <SelectValue placeholder={isRTL ? 'Filter by status' : 'Filter by status'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">{isRTL ? 'جميع الحالات' : 'All Status'}</SelectItem>
-                  <SelectItem value="active">{isRTL ? 'نشط' : 'Active'}</SelectItem>
-                  <SelectItem value="inactive">{isRTL ? 'غير نشط' : 'Inactive'}</SelectItem>
-                  <SelectItem value="pending">{isRTL ? 'في الانتظار' : 'Pending'}</SelectItem>
-                  <SelectItem value="archived">{isRTL ? 'مؤرشف' : 'Archived'}</SelectItem>
+                  <SelectItem value="all">{isRTL ? 'All Status' : 'All Status'}</SelectItem>
+                  <SelectItem value="active">{isRTL ? 'Active' : 'Active'}</SelectItem>
+                  <SelectItem value="inactive">{isRTL ? 'Inactive' : 'Inactive'}</SelectItem>
+                  <SelectItem value="pending">{isRTL ? 'Pending' : 'Pending'}</SelectItem>
+                  <SelectItem value="archived">{isRTL ? 'Archived' : 'Archived'}</SelectItem>
                 </SelectContent>
               </Select>
               
@@ -618,48 +618,48 @@ export default function CategoryManagement() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Plus className="h-5 w-5" />
-              {isRTL ? 'إضافة فئة جديدة' : 'Add New Category'}
+              {isRTL ? 'Add New Category' : 'Add New Category'}
             </DialogTitle>
           </DialogHeader>
           
           <Tabs defaultValue="basic" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="basic">{isRTL ? 'معلومات أساسية' : 'Basic Info'}</TabsTrigger>
-              <TabsTrigger value="settings">{isRTL ? 'الإعدادات' : 'Settings'}</TabsTrigger>
-              <TabsTrigger value="seo">{isRTL ? 'تحسين محركات البحث' : 'SEO'}</TabsTrigger>
+              <TabsTrigger value="basic">{isRTL ? 'Basic Info' : 'Basic Info'}</TabsTrigger>
+              <TabsTrigger value="settings">{isRTL ? 'Settings' : 'Settings'}</TabsTrigger>
+              <TabsTrigger value="seo">{isRTL ? 'SEO' : 'SEO'}</TabsTrigger>
             </TabsList>
             
             <TabsContent value="basic" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">{isRTL ? 'الاسم (الإنجليزية)' : 'Name (English)'}</label>
+                  <label className="text-sm font-medium">{isRTL ? 'Name (English)' : 'Name (English)'}</label>
                   <Input placeholder="Enter category name" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">{isRTL ? 'الاسم (العربية)' : 'Name (Arabic)'}</label>
-                  <Input placeholder="أدخل اسم الفئة" dir="rtl" />
+                  <label className="text-sm font-medium">{isRTL ? 'Name (Arabic)' : 'Name (Arabic)'}</label>
+                  <Input placeholder="Enter category name in Arabic" dir="rtl" />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">{isRTL ? 'الوصف (الإنجليزية)' : 'Description (English)'}</label>
+                  <label className="text-sm font-medium">{isRTL ? 'Description (English)' : 'Description (English)'}</label>
                   <Textarea placeholder="Enter category description" rows={3} />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">{isRTL ? 'الوصف (العربية)' : 'Description (Arabic)'}</label>
-                  <Textarea placeholder="أدخل وصف الفئة" dir="rtl" rows={3} />
+                  <label className="text-sm font-medium">{isRTL ? 'Description (Arabic)' : 'Description (Arabic)'}</label>
+                  <Textarea placeholder="Enter category description in Arabic" dir="rtl" rows={3} />
                 </div>
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium">{isRTL ? 'الفئة الرئيسية' : 'Parent Category'}</label>
+                <label className="text-sm font-medium">{isRTL ? 'Parent Category' : 'Parent Category'}</label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder={isRTL ? 'اختر الفئة الرئيسية' : 'Select parent category'} />
+                    <SelectValue placeholder={isRTL ? 'Select parent category' : 'Select parent category'} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">{isRTL ? 'بدون فئة رئيسية' : 'No parent category'}</SelectItem>
+                    <SelectItem value="none">{isRTL ? 'No parent category' : 'No parent category'}</SelectItem>
                     {mockCategories.map(category => (
                       <SelectItem key={category.id} value={category.id}>
                         {isRTL ? category.nameAr : category.name}
@@ -673,18 +673,18 @@ export default function CategoryManagement() {
             <TabsContent value="settings" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">{isRTL ? 'نسبة العمولة (%)' : 'Commission Rate (%)'}</label>
+                  <label className="text-sm font-medium">{isRTL ? 'Commission Rate (%)' : 'Commission Rate (%)'}</label>
                   <Input type="number" placeholder="0.00" step="0.01" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">{isRTL ? 'الحالة' : 'Status'}</label>
+                  <label className="text-sm font-medium">{isRTL ? 'Status' : 'Status'}</label>
                   <Select defaultValue="active">
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="active">{isRTL ? 'نشط' : 'Active'}</SelectItem>
-                      <SelectItem value="inactive">{isRTL ? 'غير نشط' : 'Inactive'}</SelectItem>
+                      <SelectItem value="active">{isRTL ? 'Active' : 'Active'}</SelectItem>
+                      <SelectItem value="inactive">{isRTL ? 'Inactive' : 'Inactive'}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -693,21 +693,21 @@ export default function CategoryManagement() {
               <div className="flex items-center space-x-2">
                 <input type="checkbox" id="featured" className="rounded" />
                 <label htmlFor="featured" className="text-sm font-medium">
-                  {isRTL ? 'فئة مميزة' : 'Featured category'}
+                  {isRTL ? 'Featured category' : 'Featured category'}
                 </label>
               </div>
             </TabsContent>
             
             <TabsContent value="seo" className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">{isRTL ? 'الكلمات المفتاحية' : 'SEO Keywords'}</label>
-                <Input placeholder={isRTL ? 'كلمة1, كلمة2, كلمة3' : 'keyword1, keyword2, keyword3'} />
+                <label className="text-sm font-medium">{isRTL ? 'SEO Keywords' : 'SEO Keywords'}</label>
+                <Input placeholder={isRTL ? 'keyword1, keyword2, keyword3' : 'keyword1, keyword2, keyword3'} />
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium">{isRTL ? 'وصف محركات البحث' : 'Meta Description'}</label>
+                <label className="text-sm font-medium">{isRTL ? 'Meta Description' : 'Meta Description'}</label>
                 <Textarea 
-                  placeholder={isRTL ? 'وصف مختصر للفئة لمحركات البحث' : 'Brief description for search engines'} 
+                  placeholder={isRTL ? 'Brief description for search engines' : 'Brief description for search engines'} 
                   rows={3} 
                 />
               </div>
@@ -716,10 +716,10 @@ export default function CategoryManagement() {
           
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsCreateModalOpen(false)}>
-              {isRTL ? 'إلغاء' : 'Cancel'}
+              {isRTL ? 'Cancel' : 'Cancel'}
             </Button>
             <Button onClick={() => setIsCreateModalOpen(false)}>
-              {isRTL ? 'إنشاء الفئة' : 'Create Category'}
+              {isRTL ? 'Create Category' : 'Create Category'}
             </Button>
           </DialogFooter>
         </DialogContent>

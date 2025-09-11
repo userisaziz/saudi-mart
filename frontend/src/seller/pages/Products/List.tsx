@@ -347,6 +347,65 @@ const ProductsList: React.FC = () => {
 
   const hasActiveFilters = Object.values(localFilters).some(value => value !== 'all') || searchQuery.trim();
   
+  // Product actions
+  const handleViewProduct = (productId: string) => {
+    // Navigate to product details page
+    window.open(`/seller/products/view/${productId}`, '_blank');
+  };
+
+  const handleEditProduct = (productId: string) => {
+    // Navigate to product edit page
+    window.location.href = `/seller/products/edit/${productId}`;
+  };
+
+  const handleProductMenu = (productId: string) => {
+    // For now, just show an alert with available actions
+    // In a real app, this would show a dropdown menu
+    const product = storeProducts.find(p => p.id === productId);
+    if (product) {
+      const actions = [
+        'View Details',
+        'Edit Product',
+        'Duplicate Product',
+        'Update Stock',
+        'Archive Product',
+        'Delete Product'
+      ];
+      
+      const action = prompt(`Actions for "${product.name}":\n${actions.map((a, i) => `${i + 1}. ${a}`).join('\n')}\n\nEnter action number:`);
+      
+      if (action) {
+        const actionIndex = parseInt(action) - 1;
+        switch (actionIndex) {
+          case 0:
+            handleViewProduct(productId);
+            break;
+          case 1:
+            handleEditProduct(productId);
+            break;
+          case 2:
+            alert('Duplicate product functionality would be implemented here');
+            break;
+          case 3:
+            const newStock = prompt('Enter new stock quantity:', product.stock.toString());
+            if (newStock && !isNaN(parseInt(newStock))) {
+              updateProduct(productId, { stock: parseInt(newStock) });
+            }
+            break;
+          case 4:
+            updateProduct(productId, { status: 'inactive' });
+            break;
+          case 5:
+            if (confirm(`Are you sure you want to delete "${product.name}"?`)) {
+              // In a real app, this would call a delete API
+              alert('Delete functionality would be implemented here');
+            }
+            break;
+        }
+      }
+    }
+  };
+  
   // Bulk operations
   const handleBulkAction = (action: 'status' | 'stock' | 'delete') => {
     setBulkAction(action);
@@ -405,9 +464,12 @@ const ProductsList: React.FC = () => {
             {viewMode === 'grid' ? <ListBulletIcon className="w-5 h-5" /> : <Squares2X2Icon className="w-5 h-5" />}
           </button>
           
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button 
+            onClick={() => window.location.href = '/seller/products/add'}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
             <PlusIcon className="w-4 h-4" />
-{t('products.addProduct')}
+            {t('products.addProduct')}
           </button>
         </div>
       </div>
@@ -720,13 +782,25 @@ const ProductsList: React.FC = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <button className="text-blue-600 hover:text-blue-800 transition-colors">
+                          <button 
+                            onClick={() => handleViewProduct(product.id)}
+                            className="text-blue-600 hover:text-blue-800 transition-colors"
+                            title="View Product"
+                          >
                             <EyeIcon className="w-4 h-4" />
                           </button>
-                          <button className="text-green-600 hover:text-green-800 transition-colors">
+                          <button 
+                            onClick={() => handleEditProduct(product.id)}
+                            className="text-green-600 hover:text-green-800 transition-colors"
+                            title="Edit Product"
+                          >
                             <PencilIcon className="w-4 h-4" />
                           </button>
-                          <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                          <button 
+                            onClick={() => handleProductMenu(product.id)}
+                            className="text-gray-400 hover:text-gray-600 transition-colors"
+                            title="More Actions"
+                          >
                             <EllipsisVerticalIcon className="w-4 h-4" />
                           </button>
                         </div>
@@ -750,7 +824,11 @@ const ProductsList: React.FC = () => {
                       onChange={() => handleSelectProduct(product.id)}
                       className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                    <button 
+                      onClick={() => handleProductMenu(product.id)}
+                      className="text-gray-400 hover:text-gray-600 transition-colors"
+                      title="More Actions"
+                    >
                       <EllipsisVerticalIcon className="w-4 h-4" />
                     </button>
                   </div>
@@ -778,10 +856,18 @@ const ProductsList: React.FC = () => {
                     <div className="flex items-center justify-between pt-2">
                       <span className="text-xs text-gray-500">{product.sales} {t('products.sold')}</span>
                       <div className="flex items-center gap-1">
-                        <button className="text-blue-600 hover:text-blue-800 transition-colors">
+                        <button 
+                          onClick={() => handleViewProduct(product.id)}
+                          className="text-blue-600 hover:text-blue-800 transition-colors"
+                          title="View Product"
+                        >
                           <EyeIcon className="w-4 h-4" />
                         </button>
-                        <button className="text-green-600 hover:text-green-800 transition-colors">
+                        <button 
+                          onClick={() => handleEditProduct(product.id)}
+                          className="text-green-600 hover:text-green-800 transition-colors"
+                          title="Edit Product"
+                        >
                           <PencilIcon className="w-4 h-4" />
                         </button>
                       </div>

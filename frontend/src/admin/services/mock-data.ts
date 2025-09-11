@@ -22,27 +22,27 @@ import {
 // Generate realistic Saudi names
 const saudiNames = {
   male: {
-    ar: ['محمد', 'أحمد', 'عبدالله', 'عبدالرحمن', 'سعد', 'فهد', 'خالد', 'عبدالعزيز', 'سلطان', 'نواف'],
+    ar: ['Mohammed', 'Ahmed', 'Abdullah', 'Abdulrahman', 'Saad', 'Fahd', 'Khalid', 'Abdulaziz', 'Sultan', 'Nawaf'],
     en: ['Mohammed', 'Ahmed', 'Abdullah', 'Abdulrahman', 'Saad', 'Fahd', 'Khalid', 'Abdulaziz', 'Sultan', 'Nawaf']
   },
   female: {
-    ar: ['فاطمة', 'عائشة', 'مريم', 'خديجة', 'نورا', 'سارة', 'أمل', 'هند', 'ريم', 'لمى'],
+    ar: ['Fatima', 'Aisha', 'Maryam', 'Khadija', 'Nora', 'Sara', 'Amal', 'Hind', 'Reem', 'Lama'],
     en: ['Fatima', 'Aisha', 'Maryam', 'Khadija', 'Nora', 'Sara', 'Amal', 'Hind', 'Reem', 'Lama']
   }
 }
 
 const saudiCities = {
-  ar: ['الرياض', 'جدة', 'الدمام', 'مكة المكرمة', 'المدينة المنورة', 'الطائف', 'تبوك', 'بريدة', 'خميس مشيط', 'حائل'],
+  ar: ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah', 'Taif', 'Tabuk', 'Buraidah', 'Khamis Mushait', 'Hail'],
   en: ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah', 'Taif', 'Tabuk', 'Buraidah', 'Khamis Mushait', 'Hail']
 }
 
 const businessNames = {
-  ar: ['شركة التقنية المتقدمة', 'مؤسسة التجارة الرقمية', 'شركة الحلول الذكية', 'مجموعة الابتكار', 'شركة المستقبل التجاري'],
+  ar: ['Advanced Technology Co.', 'Digital Commerce Est.', 'Smart Solutions Ltd.', 'Innovation Group', 'Future Commerce Co.'],
   en: ['Advanced Technology Co.', 'Digital Commerce Est.', 'Smart Solutions Ltd.', 'Innovation Group', 'Future Commerce Co.']
 }
 
 const productNames = {
-  ar: ['أجهزة ذكية', 'معدات صناعية', 'منتجات تقنية', 'أدوات طبية', 'مواد بناء', 'أجهزة كهربائية', 'معدات مكتبية'],
+  ar: ['Smart Devices', 'Industrial Equipment', 'Tech Products', 'Medical Tools', 'Construction Materials', 'Electrical Appliances', 'Office Equipment'],
   en: ['Smart Devices', 'Industrial Equipment', 'Tech Products', 'Medical Tools', 'Construction Materials', 'Electrical Appliances', 'Office Equipment']
 }
 
@@ -125,11 +125,11 @@ class AdminMockDataService {
           type: 'home',
           buildingNumber: `${randomNumber(1, 9999)}`,
           streetName: {
-            ar: `شارع ${randomNumber(1, 100)}`,
+            ar: `Street ${randomNumber(1, 100)}`,
             en: `Street ${randomNumber(1, 100)}`
           },
           district: {
-            ar: `حي ${randomNumber(1, 50)}`,
+            ar: `District ${randomNumber(1, 50)}`,
             en: `District ${randomNumber(1, 50)}`
           },
           city: {
@@ -162,23 +162,23 @@ class AdminMockDataService {
 
   private generateCategories() {
     const rootCategories = [
-      { ar: 'الإلكترونيات', en: 'Electronics' },
-      { ar: 'المعدات الصناعية', en: 'Industrial Equipment' },
-      { ar: 'السيارات', en: 'Automotive' },
-      { ar: 'المنسوجات', en: 'Textiles' },
-      { ar: 'الأغذية', en: 'Food & Beverages' },
-      { ar: 'الرعاية الصحية', en: 'Healthcare' },
-      { ar: 'البناء', en: 'Construction' },
-      { ar: 'الطاقة', en: 'Energy' }
+      { ar: 'Electronics', en: 'Electronics' },
+      { ar: 'Industrial Equipment', en: 'Industrial Equipment' },
+      { ar: 'Automotive', en: 'Automotive' },
+      { ar: 'Textiles', en: 'Textiles' },
+      { ar: 'Food & Beverages', en: 'Food & Beverages' },
+      { ar: 'Healthcare', en: 'Healthcare' },
+      { ar: 'Construction', en: 'Construction' },
+      { ar: 'Energy', en: 'Energy' }
     ]
 
     const subCategories = [
-      { ar: 'هواتف ذكية', en: 'Smartphones' },
-      { ar: 'أجهزة كمبيوتر', en: 'Computers' },
-      { ar: 'معدات التصنيع', en: 'Manufacturing Equipment' },
-      { ar: 'أدوات كهربائية', en: 'Power Tools' },
-      { ar: 'قطع غيار', en: 'Spare Parts' },
-      { ar: 'اكسسوارات', en: 'Accessories' }
+      { ar: 'Smartphones', en: 'Smartphones' },
+      { ar: 'Computers', en: 'Computers' },
+      { ar: 'Manufacturing Equipment', en: 'Manufacturing Equipment' },
+      { ar: 'Power Tools', en: 'Power Tools' },
+      { ar: 'Spare Parts', en: 'Spare Parts' },
+      { ar: 'Accessories', en: 'Accessories' }
     ]
 
     // Create root categories
@@ -187,7 +187,7 @@ class AdminMockDataService {
         id: `cat_${index + 1}`,
         nameAr: cat.ar,
         nameEn: cat.en,
-        descriptionAr: `وصف ${cat.ar}`,
+        descriptionAr: `Description for ${cat.ar}`,
         descriptionEn: `Description for ${cat.en}`,
         parentId: undefined,
         level: 0,
@@ -200,9 +200,9 @@ class AdminMockDataService {
         seoData: {
           slugAr: cat.ar.replace(/\s+/g, '-'),
           slugEn: cat.en.toLowerCase().replace(/\s+/g, '-'),
-          metaTitleAr: `${cat.ar} - متجر B2B`,
+          metaTitleAr: `${cat.ar} - B2B Store`,
           metaTitleEn: `${cat.en} - B2B Store`,
-          metaDescriptionAr: `تسوق ${cat.ar} بأفضل الأسعار`,
+          metaDescriptionAr: `Shop ${cat.ar} at the best prices`,
           metaDescriptionEn: `Shop ${cat.en} at best prices`
         },
         analytics: {
@@ -222,7 +222,7 @@ class AdminMockDataService {
         id: `subcat_${index + 1}`,
         nameAr: subCat.ar,
         nameEn: subCat.en,
-        descriptionAr: `وصف ${subCat.ar}`,
+        descriptionAr: `Description for ${subCat.ar}`,
         descriptionEn: `Description for ${subCat.en}`,
         parentId: parentCategory.id,
         level: 1,

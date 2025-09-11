@@ -23,10 +23,26 @@ import {
   ChevronRightIcon,
 } from '@heroicons/react/24/outline';
 
+interface ProductAttribute {
+  id: string;
+  name: string;
+  nameAr: string;
+  value: string;
+  valueAr: string;
+  type: 'text' | 'number' | 'select' | 'multiselect';
+  options?: string[];
+  required: boolean;
+  category: 'basic' | 'technical' | 'commercial' | 'compliance';
+}
+
 interface ProductFormData {
   name: string;
   nameAr: string;
   sku: string;
+  modelNumber: string;
+  baseNumber: string;
+  serialNumber: string;
+  partNumber: string;
   categoryId: string;
   categoryPath: string[];
   description: string;
@@ -39,6 +55,7 @@ interface ProductFormData {
   tags: string[];
   images: File[];
   specifications: Array<{ key: string; value: string; keyAr: string; valueAr: string }>;
+  attributes: ProductAttribute[];
   variants: Array<{ name: string; nameAr: string; price: number; stock: number; sku: string }>;
   dimensions: {
     length: number;
@@ -57,6 +74,10 @@ const initialFormData: ProductFormData = {
   name: '',
   nameAr: '',
   sku: '',
+  modelNumber: '',
+  baseNumber: '',
+  serialNumber: '',
+  partNumber: '',
   categoryId: '',
   categoryPath: [],
   description: '',
@@ -69,6 +90,7 @@ const initialFormData: ProductFormData = {
   tags: [],
   images: [],
   specifications: [],
+  attributes: [],
   variants: [],
   dimensions: {
     length: 0,
@@ -242,6 +264,94 @@ const ProductAddEdit: React.FC = () => {
     setIsDirty(true);
   };
 
+  const addAttribute = () => {
+    setFormData(prev => ({
+      ...prev,
+      attributes: [...prev.attributes, {
+        id: `attr_${Date.now()}`,
+        name: '',
+        nameAr: '',
+        value: '',
+        valueAr: '',
+        type: 'text',
+        required: false,
+        category: 'basic'
+      }]
+    }));
+    setIsDirty(true);
+  };
+
+  const updateAttribute = (index: number, field: keyof ProductAttribute, value: any) => {
+    setFormData(prev => ({
+      ...prev,
+      attributes: prev.attributes.map((attr, i) =>
+        i === index ? { ...attr, [field]: value } : attr
+      )
+    }));
+    setIsDirty(true);
+  };
+
+  const removeAttribute = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      attributes: prev.attributes.filter((_, i) => i !== index)
+    }));
+    setIsDirty(true);
+  };
+
+  const addPresetAttributes = () => {
+    const presetAttrs: ProductAttribute[] = [
+      {
+        id: 'model_number',
+        name: 'Model Number',
+        nameAr: 'رقم الموديل',
+        value: formData.modelNumber,
+        valueAr: '',
+        type: 'text',
+        required: true,
+        category: 'basic'
+      },
+      {
+        id: 'base_number',
+        name: 'Base Number',
+        nameAr: 'الرقم الأساسي',
+        value: formData.baseNumber,
+        valueAr: '',
+        type: 'text',
+        required: false,
+        category: 'basic'
+      },
+      {
+        id: 'serial_number',
+        name: 'Serial Number',
+        nameAr: 'الرقم التسلسلي',
+        value: formData.serialNumber,
+        valueAr: '',
+        type: 'text',
+        required: false,
+        category: 'technical'
+      },
+      {
+        id: 'part_number',
+        name: 'Part Number',
+        nameAr: 'رقم القطعة',
+        value: formData.partNumber,
+        valueAr: '',
+        type: 'text',
+        required: false,
+        category: 'technical'
+      }
+    ];
+
+    setFormData(prev => ({
+      ...prev,
+      attributes: [...prev.attributes, ...presetAttrs.filter(preset => 
+        !prev.attributes.some(attr => attr.id === preset.id)
+      )]
+    }));
+    setIsDirty(true);
+  };
+
   const handleSubmit = async () => {
     if (!validateStep(4)) return;
     
@@ -394,6 +504,62 @@ const ProductAddEdit: React.FC = () => {
                   <p className="mt-1 text-xs text-gray-500">
                     {t('addProduct.autoSku')}
                   </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Model Number
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.modelNumber}
+                    onChange={(e) => handleInputChange('modelNumber', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="HP-2000-V2"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">Manufacturer's model identifier</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Base Number
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.baseNumber}
+                    onChange={(e) => handleInputChange('baseNumber', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="BN-001234"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">Base configuration number</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Serial Number
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.serialNumber}
+                    onChange={(e) => handleInputChange('serialNumber', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="SN-HP2000-2024-001"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">Unique serial identifier</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Part Number
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.partNumber}
+                    onChange={(e) => handleInputChange('partNumber', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="PN-HP2000-PUMP"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">Internal part reference number</p>
                 </div>
 
                 <div>
@@ -624,6 +790,134 @@ const ProductAddEdit: React.FC = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* Custom Attributes */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Custom Product Attributes
+                  </label>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={addPresetAttributes}
+                      className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors flex items-center gap-1"
+                    >
+                      <PlusIcon className="w-4 h-4" />
+                      Add Preset Attributes
+                    </button>
+                    <button
+                      onClick={addAttribute}
+                      className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors flex items-center gap-1"
+                    >
+                      <PlusIcon className="w-4 h-4" />
+                      Add Custom Attribute
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  {formData.attributes.map((attr, index) => (
+                    <div key={attr.id} className="p-4 border border-gray-200 rounded-lg">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+                        <div>
+                          <label className="block text-xs text-gray-600 mb-1">Attribute Name (EN)</label>
+                          <input
+                            type="text"
+                            placeholder="e.g., Model Number"
+                            value={attr.name}
+                            onChange={(e) => updateAttribute(index, 'name', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-600 mb-1">Attribute Name (AR)</label>
+                          <input
+                            type="text"
+                            placeholder="مثال: رقم الموديل"
+                            value={attr.nameAr}
+                            onChange={(e) => updateAttribute(index, 'nameAr', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            dir="rtl"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-600 mb-1">Value (EN)</label>
+                          <input
+                            type="text"
+                            placeholder="e.g., HP-2000-V2"
+                            value={attr.value}
+                            onChange={(e) => updateAttribute(index, 'value', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-600 mb-1">Value (AR)</label>
+                          <input
+                            type="text"
+                            placeholder="قيمة الخاصية"
+                            value={attr.valueAr}
+                            onChange={(e) => updateAttribute(index, 'valueAr', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            dir="rtl"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+                        <div>
+                          <label className="block text-xs text-gray-600 mb-1">Type</label>
+                          <select
+                            value={attr.type}
+                            onChange={(e) => updateAttribute(index, 'type', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          >
+                            <option value="text">Text</option>
+                            <option value="number">Number</option>
+                            <option value="select">Select</option>
+                            <option value="multiselect">Multi-select</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-600 mb-1">Category</label>
+                          <select
+                            value={attr.category}
+                            onChange={(e) => updateAttribute(index, 'category', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          >
+                            <option value="basic">Basic</option>
+                            <option value="technical">Technical</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="compliance">Compliance</option>
+                          </select>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <label className="flex items-center gap-2 text-sm">
+                            <input
+                              type="checkbox"
+                              checked={attr.required}
+                              onChange={(e) => updateAttribute(index, 'required', e.target.checked)}
+                              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                            />
+                            Required
+                          </label>
+                          <button
+                            onClick={() => removeAttribute(index)}
+                            className="p-2 text-red-600 hover:text-red-800 transition-colors"
+                          >
+                            <TrashIcon className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {formData.attributes.length === 0 && (
+                    <div className="text-center py-8 text-gray-500 border-2 border-dashed border-gray-200 rounded-lg">
+                      <p>No custom attributes added yet.</p>
+                      <p className="text-sm">Use the buttons above to add product-specific attributes like model numbers, part numbers, etc.</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

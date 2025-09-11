@@ -246,13 +246,6 @@ export const mockCompanyInfo: CompanyInfo = {
 };
 
 export const mockAnalyticsData = {
-  conversionFunnel: [
-    { name: 'Visitors', value: 10000 },
-    { name: 'Leads', value: 500 },
-    { name: 'Qualified', value: 200 },
-    { name: 'Proposals', value: 50 },
-    { name: 'Customers', value: 15 },
-  ],
   topProducts: [
     { name: 'Industrial Steel Pipes', value: 45000 },
     { name: 'LED Panels', value: 32000 },

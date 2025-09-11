@@ -10,9 +10,9 @@ import {
 const mockProducts: SaudiProduct[] = [
   {
     id: '1',
-    nameAr: 'هاتف آيفون 15 برو',
+    nameAr: 'iPhone 15 Pro',
     nameEn: 'iPhone 15 Pro',
-    descriptionAr: 'أحدث هاتف آيفون بتقنية متقدمة وكاميرا احترافية',
+    descriptionAr: 'Latest iPhone with advanced technology and professional camera',
     descriptionEn: 'Latest iPhone with advanced technology and professional camera',
     price: {
       amount: 4999,
@@ -21,7 +21,7 @@ const mockProducts: SaudiProduct[] = [
     },
     category: {
       id: 'cat1',
-      nameAr: 'الهواتف الذكية',
+      nameAr: 'Smartphones',
       nameEn: 'Smartphones',
       parentId: 'electronics',
       level: 2,

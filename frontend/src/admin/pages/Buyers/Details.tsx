@@ -71,7 +71,7 @@ const mockOrders: BuyerOrder[] = [
   {
     id: '1',
     orderNumber: 'ORD-2024-001',
-    sellerName: 'Al-Farisi Trading Co.',
+    sellerName: 'Al-Farisi Trading Company',
     totalAmount: 1250.00,
     status: 'delivered',
     orderDate: '2024-02-20T10:30:00Z',
@@ -80,7 +80,7 @@ const mockOrders: BuyerOrder[] = [
   {
     id: '2',
     orderNumber: 'ORD-2024-002',
-    sellerName: 'Modern Electronics Ltd.',
+    sellerName: 'Modern Electronics Limited',
     totalAmount: 850.50,
     status: 'shipped',
     orderDate: '2024-02-18T14:15:00Z',
@@ -89,7 +89,7 @@ const mockOrders: BuyerOrder[] = [
   {
     id: '3',
     orderNumber: 'ORD-2024-003',
-    sellerName: 'Saudi Tech Solutions',
+    sellerName: 'Saudi Technology Solutions',
     totalAmount: 2100.75,
     status: 'confirmed',
     orderDate: '2024-02-15T09:20:00Z',
@@ -708,7 +708,7 @@ const BuyersDetails: React.FC = () => {
                   <div>
                     <p className="text-sm text-muted-foreground">Preferred Language</p>
                     <p className="font-medium">
-                      {buyer.preferences.language === 'ar' ? 'Arabic (العربية)' : 'English'}
+                      {buyer.preferences.language === 'ar' ? 'Arabic (English)' : 'English'}
                     </p>
                   </div>
                   <div>

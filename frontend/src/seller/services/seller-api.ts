@@ -422,17 +422,8 @@ class SellerApiService {
     return response.data.data;
   }
 
-  async sendWhatsApp(data: {
-    to: string;
-    message: string;
-    templateId?: string;
-    leadId?: string;
-  }): Promise<{ messageId: string }> {
-    const response = await this.api.post<ApiResponse<{ messageId: string }>>('/communication/whatsapp', data);
-    return response.data.data;
-  }
 
-  async getMessageTemplates(): Promise<Array<{ id: string; name: string; subject?: string; content: string; type: 'email' | 'whatsapp' }>> {
+  async getMessageTemplates(): Promise<Array<{ id: string; name: string; subject?: string; content: string; type: 'email' }>> {
     const response = await this.api.get<ApiResponse<any[]>>('/communication/templates');
     return response.data.data;
   }
@@ -441,7 +432,7 @@ class SellerApiService {
     name: string;
     subject?: string;
     content: string;
-    type: 'email' | 'whatsapp';
+    type: 'email';
   }): Promise<{ id: string }> {
     const response = await this.api.post<ApiResponse<{ id: string }>>('/communication/templates', data);
     return response.data.data;

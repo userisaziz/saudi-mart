@@ -93,14 +93,14 @@ const mockUserActivity: UserActivity[] = [
     id: '1',
     type: 'login',
     description: 'Logged in from Riyadh',
-    descriptionAr: 'تسجيل دخول من الرياض',
+    descriptionAr: 'Logged in from Riyadh',
     timestamp: '2024-02-23T08:30:00Z'
   },
   {
     id: '2',
     type: 'purchase',
     description: 'Placed order #ORD-2024-001234',
-    descriptionAr: 'قام بطلب شراء #ORD-2024-001234',
+    descriptionAr: 'Placed order #ORD-2024-001234',
     timestamp: '2024-02-22T14:15:00Z',
     metadata: { orderId: 'ORD-2024-001234', amount: 1250.00 }
   },
@@ -108,14 +108,14 @@ const mockUserActivity: UserActivity[] = [
     id: '3',
     type: 'profile_update',
     description: 'Updated business information',
-    descriptionAr: 'قام بتحديث معلومات الأعمال',
+    descriptionAr: 'Updated business information',
     timestamp: '2024-02-20T16:45:00Z'
   },
   {
     id: '4',
     type: 'verification',
     description: 'Business verification approved',
-    descriptionAr: 'تم قبول التحقق من الأعمال',
+    descriptionAr: 'Business verification approved',
     timestamp: '2024-02-15T10:20:00Z'
   }
 ]
@@ -176,10 +176,10 @@ export default function UserDetails() {
 
   const getStatusBadge = (status: UserStatus) => {
     const statusConfig = {
-      [UserStatus.ACTIVE]: { label: 'نشط', variant: 'default' as const, icon: CheckCircle },
-      [UserStatus.INACTIVE]: { label: 'غير نشط', variant: 'secondary' as const, icon: XCircle },
-      [UserStatus.SUSPENDED]: { label: 'موقوف', variant: 'destructive' as const, icon: Ban },
-      [UserStatus.PENDING]: { label: 'في الانتظار', variant: 'outline' as const, icon: Clock }
+      [UserStatus.ACTIVE]: { label: 'Active', variant: 'default' as const, icon: CheckCircle },
+      [UserStatus.INACTIVE]: { label: 'Inactive', variant: 'secondary' as const, icon: XCircle },
+      [UserStatus.SUSPENDED]: { label: 'Suspended', variant: 'destructive' as const, icon: Ban },
+      [UserStatus.PENDING]: { label: 'Pending', variant: 'outline' as const, icon: Clock }
     }
 
     const config = statusConfig[status]
@@ -194,12 +194,12 @@ export default function UserDetails() {
 
   const getVerificationBadge = (level: VerificationLevel) => {
     const verificationConfig = {
-      [VerificationLevel.UNVERIFIED]: { label: 'غير محقق', variant: 'destructive' as const },
-      [VerificationLevel.EMAIL_VERIFIED]: { label: 'البريد محقق', variant: 'secondary' as const },
-      [VerificationLevel.PHONE_VERIFIED]: { label: 'الهاتف محقق', variant: 'outline' as const },
-      [VerificationLevel.IDENTITY_VERIFIED]: { label: 'الهوية محققة', variant: 'default' as const },
-      [VerificationLevel.BUSINESS_VERIFIED]: { label: 'الأعمال محققة', variant: 'default' as const },
-      [VerificationLevel.FULLY_VERIFIED]: { label: 'محقق بالكامل', variant: 'default' as const }
+      [VerificationLevel.UNVERIFIED]: { label: 'Unverified', variant: 'destructive' as const },
+      [VerificationLevel.EMAIL_VERIFIED]: { label: 'Email Verified', variant: 'secondary' as const },
+      [VerificationLevel.PHONE_VERIFIED]: { label: 'Phone Verified', variant: 'outline' as const },
+      [VerificationLevel.IDENTITY_VERIFIED]: { label: 'Identity Verified', variant: 'default' as const },
+      [VerificationLevel.BUSINESS_VERIFIED]: { label: 'Business Verified', variant: 'default' as const },
+      [VerificationLevel.FULLY_VERIFIED]: { label: 'Fully Verified', variant: 'default' as const }
     }
 
     const config = verificationConfig[level]

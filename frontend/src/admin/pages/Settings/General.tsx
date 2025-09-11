@@ -66,76 +66,64 @@ import { KPICard } from '@/shared/components/ui/kpi-card'
 
 // Saudi-specific settings
 const SAUDI_TIMEZONES = [
-  { value: 'Asia/Riyadh', label: 'Saudi Arabia (UTC+3)', labelAr: 'السعودية (توقيت جرينتش +3)' }
+  { value: 'Asia/Riyadh', label: 'Saudi Arabia (UTC+3)' }
 ]
 
 const CURRENCIES = [
-  { value: 'SAR', label: 'Saudi Riyal (SAR)', labelAr: 'الريال السعودي', symbol: '﷼' },
-  { value: 'USD', label: 'US Dollar (USD)', labelAr: 'الدولار الأمريكي', symbol: '$' },
-  { value: 'EUR', label: 'Euro (EUR)', labelAr: 'اليورو', symbol: '€' }
+  { value: 'SAR', label: 'Saudi Riyal (SAR)', symbol: 'SAR' },
+  { value: 'USD', label: 'US Dollar (USD)', symbol: '$' },
+  { value: 'EUR', label: 'Euro (EUR)', symbol: '€' }
 ]
 
 const LANGUAGES = [
-  { value: 'ar', label: 'Arabic', labelAr: 'العربية', direction: 'rtl' },
-  { value: 'en', label: 'English', labelAr: 'الإنجليزية', direction: 'ltr' }
+  { value: 'ar', label: 'Arabic', direction: 'rtl' },
+  { value: 'en', label: 'English', direction: 'ltr' }
 ]
 
 const USER_ROLES = [
-  { value: 'admin', label: 'Administrator', labelAr: 'مدير النظام', permissions: ['all'] },
-  { value: 'moderator', label: 'Moderator', labelAr: 'مشرف', permissions: ['users', 'products', 'verify'] },
-  { value: 'support', label: 'Support Agent', labelAr: 'مندوب دعم', permissions: ['users', 'tickets'] },
-  { value: 'analyst', label: 'Data Analyst', labelAr: 'محلل بيانات', permissions: ['analytics', 'reports'] }
+  { value: 'admin', label: 'Administrator', permissions: ['all'] },
+  { value: 'moderator', label: 'Moderator', permissions: ['users', 'products', 'verify'] },
+  { value: 'support', label: 'Support Agent', permissions: ['users', 'tickets'] },
+  { value: 'analyst', label: 'Data Analyst', permissions: ['analytics', 'reports'] }
 ]
 
 const NOTIFICATION_TYPES = [
   { 
     key: 'system_alerts', 
     label: 'System Alerts', 
-    labelAr: 'تنبيهات النظام',
-    description: 'Critical system notifications',
-    descriptionAr: 'إشعارات النظام الحرجة'
+    description: 'Critical system notifications'
   },
   { 
     key: 'user_registrations', 
     label: 'User Registrations', 
-    labelAr: 'تسجيلات المستخدمين',
-    description: 'New user sign-ups',
-    descriptionAr: 'تسجيلات المستخدمين الجدد'
+    description: 'New user sign-ups'
   },
   { 
     key: 'verification_requests', 
     label: 'Verification Requests', 
-    labelAr: 'طلبات التحقق',
-    description: 'KYC and document verification',
-    descriptionAr: 'التحقق من الهوية والمستندات'
+    description: 'KYC and document verification'
   },
   { 
     key: 'payment_alerts', 
     label: 'Payment Alerts', 
-    labelAr: 'تنبيهات الدفع',
-    description: 'Payment and transaction notifications',
-    descriptionAr: 'إشعارات الدفع والمعاملات'
+    description: 'Payment and transaction notifications'
   },
   { 
     key: 'security_warnings', 
     label: 'Security Warnings', 
-    labelAr: 'تحذيرات الأمان',
-    description: 'Security breach attempts',
-    descriptionAr: 'محاولات اختراق الأمان'
+    description: 'Security breach attempts'
   },
   { 
     key: 'prayer_time_reminders', 
     label: 'Prayer Time Reminders', 
-    labelAr: 'تذكير أوقات الصلاة',
-    description: 'Prayer time considerations for notifications',
-    descriptionAr: 'مراعاة أوقات الصلاة في الإشعارات'
+    description: 'Prayer time considerations for notifications'
   }
 ]
 
 const THEME_OPTIONS = [
-  { value: 'light', label: 'Light', labelAr: 'فاتح', icon: Sun },
-  { value: 'dark', label: 'Dark', labelAr: 'داكن', icon: Moon },
-  { value: 'system', label: 'System', labelAr: 'النظام', icon: Monitor }
+  { value: 'light', label: 'Light', icon: Sun },
+  { value: 'dark', label: 'Dark', icon: Moon },
+  { value: 'system', label: 'System', icon: Monitor }
 ]
 
 interface SystemHealth {
@@ -219,13 +207,11 @@ const mockSystemHealth: SystemHealth = {
     {
       level: 'warning',
       message: 'High database connection count',
-      messageAr: 'عدد كبير من اتصالات قاعدة البيانات',
       timestamp: '2024-09-05T09:15:00Z'
     },
     {
       level: 'info',
       message: 'Cache cleared successfully',
-      messageAr: 'تم حذف التخزين المؤقت بنجاح',
       timestamp: '2024-09-05T08:20:00Z'
     }
   ]
@@ -233,9 +219,7 @@ const mockSystemHealth: SystemHealth = {
 
 const mockSettings: Settings = {
   siteName: 'Saudi E-Commerce Platform',
-  siteNameAr: 'منصة التجارة الإلكترونية السعودية',
   siteDescription: 'Leading e-commerce platform in Saudi Arabia',
-  siteDescriptionAr: 'منصة التجارة الإلكترونية الرائدة في المملكة العربية السعودية',
   adminEmail: 'admin@platform.sa',
   supportEmail: 'support@platform.sa',
   
@@ -298,7 +282,6 @@ const mockSettings: Settings = {
   
   maintenanceMode: false,
   maintenanceMessage: 'System is under maintenance. Please try again later.',
-  maintenanceMessageAr: 'النظام قيد الصيانة. يرجى المحاولة لاحقاً.'
 }
 
 const SystemHealthCard = ({ health }: { health: SystemHealth }) => {
@@ -548,7 +531,6 @@ export default function Settings() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <KPICard
               title="CPU Usage"
-              titleAr="استخدام المعالج"
               value={systemHealth.cpu}
               format="percentage"
               icon={Server}
@@ -556,7 +538,6 @@ export default function Settings() {
             />
             <KPICard
               title="Memory Usage"
-              titleAr="استخدام الذاكرة"
               value={systemHealth.memory}
               format="percentage"
               icon={Database}
@@ -564,7 +545,6 @@ export default function Settings() {
             />
             <KPICard
               title="Disk Usage"
-              titleAr="استخدام القرص"
               value={systemHealth.disk}
               format="percentage"
               icon={Server}
@@ -572,7 +552,6 @@ export default function Settings() {
             />
             <KPICard
               title="Database Load"
-              titleAr="حمل قاعدة البيانات"
               value={systemHealth.database}
               format="percentage"
               icon={Database}

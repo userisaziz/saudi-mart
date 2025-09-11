@@ -36,9 +36,7 @@ import {
 interface Report {
   id: string
   name: string
-  nameAr: string
   description: string
-  descriptionAr: string
   category: 'sales' | 'users' | 'products' | 'financial' | 'operations' | 'compliance'
   type: 'standard' | 'custom' | 'scheduled'
   format: 'pdf' | 'excel' | 'csv' | 'json'
@@ -59,9 +57,7 @@ interface Report {
 interface ReportTemplate {
   id: string
   name: string
-  nameAr: string
   description: string
-  descriptionAr: string
   category: Report['category']
   fields: string[]
   filters: string[]
@@ -73,9 +69,7 @@ const mockReports: Report[] = [
   {
     id: '1',
     name: 'Monthly Sales Report',
-    nameAr: 'تقرير المبيعات الشهري',
     description: 'Comprehensive monthly sales analysis',
-    descriptionAr: 'تحليل شامل للمبيعات الشهرية',
     category: 'sales',
     type: 'scheduled',
     format: 'pdf',
@@ -95,9 +89,7 @@ const mockReports: Report[] = [
   {
     id: '2',
     name: 'User Registration Analytics',
-    nameAr: 'تحليلات تسجيل المستخدمين',
     description: 'User growth and registration patterns',
-    descriptionAr: 'أنماط نمو وتسجيل المستخدمين',
     category: 'users',
     type: 'standard',
     format: 'excel',
@@ -111,9 +103,7 @@ const mockReports: Report[] = [
   {
     id: '3',
     name: 'Product Performance Report',
-    nameAr: 'تقرير أداء المنتجات',
     description: 'Top performing products and categories',
-    descriptionAr: 'المنتجات والفئات الأعلى أداءً',
     category: 'products',
     type: 'custom',
     format: 'pdf',
@@ -124,9 +114,7 @@ const mockReports: Report[] = [
   {
     id: '4',
     name: 'Financial Summary Q1',
-    nameAr: 'الملخص المالي للربع الأول',
     description: 'Quarterly financial performance overview',
-    descriptionAr: 'نظرة عامة على الأداء المالي ربع السنوي',
     category: 'financial',
     type: 'standard',
     format: 'excel',
@@ -143,9 +131,7 @@ const mockReports: Report[] = [
   {
     id: '5',
     name: 'SASO Compliance Report',
-    nameAr: 'تقرير الامتثال لساسو',
     description: 'Saudi standards compliance verification',
-    descriptionAr: 'تحقق الامتثال للمعايير السعودية',
     category: 'compliance',
     type: 'scheduled',
     format: 'pdf',

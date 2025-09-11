@@ -63,19 +63,19 @@ import {
 
 // Mock data for Saudi regions
 const saudiRegions = [
-  { name: 'Riyadh', nameAr: 'الرياض' },
-  { name: 'Makkah', nameAr: 'مكة المكرمة' },
-  { name: 'Eastern Province', nameAr: 'المنطقة الشرقية' },
-  { name: 'Asir', nameAr: 'عسير' },
-  { name: 'Tabuk', nameAr: 'تبوك' },
-  { name: 'Qassim', nameAr: 'القصيم' },
-  { name: 'Hail', nameAr: 'حائل' },
-  { name: 'Madinah', nameAr: 'المدينة المنورة' },
-  { name: 'Al Baha', nameAr: 'الباحة' },
-  { name: 'Northern Border', nameAr: 'الحدود الشمالية' },
-  { name: 'Jazan', nameAr: 'جازان' },
-  { name: 'Najran', nameAr: 'نجران' },
-  { name: 'Al Jawf', nameAr: 'الجوف' }
+  { name: 'Riyadh' },
+  { name: 'Makkah' },
+  { name: 'Eastern Province' },
+  { name: 'Asir' },
+  { name: 'Tabuk' },
+  { name: 'Qassim' },
+  { name: 'Hail' },
+  { name: 'Madinah' },
+  { name: 'Al Baha' },
+  { name: 'Northern Border' },
+  { name: 'Jazan' },
+  { name: 'Najran' },
+  { name: 'Al Jawf' }
 ]
 
 const revenueData = [

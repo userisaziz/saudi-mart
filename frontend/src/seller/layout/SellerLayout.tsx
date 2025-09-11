@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/shared/contexts/LanguageContext';
 import {
   HomeIcon,
@@ -17,6 +17,8 @@ import {
   ArrowRightOnRectangleIcon,
   LanguageIcon,
   ChevronDownIcon,
+  ClipboardDocumentListIcon,
+  StarIcon,
 } from '@heroicons/react/24/outline';
 
 interface SellerLayoutProps {
@@ -49,6 +51,19 @@ const navigation: NavItem[] = [
     ],
   },
   {
+    name: 'RFQ Management',
+    href: '/seller/rfq',
+    icon: ClipboardDocumentListIcon,
+    subItems: [
+      { name: 'RFQ Dashboard', href: '/seller/rfq' },
+      { name: 'Create RFQ', href: '/seller/rfq?tab=create' },
+      { name: 'Suppliers', href: '/seller/rfq?tab=suppliers' },
+      { name: 'Quotes', href: '/seller/rfq?tab=quotes' },
+      { name: 'Templates', href: '/seller/rfq?tab=templates' },
+      { name: 'Analytics', href: '/seller/rfq?tab=analytics' },
+    ],
+  },
+  {
     name: 'Orders',
     href: '/seller/orders',
     icon: DocumentTextIcon,
@@ -66,10 +81,7 @@ const navigation: NavItem[] = [
       { name: 'Leads Inbox', href: '/seller/leads/inbox' },
       { name: 'Messages Hub', href: '/seller/communication/hub' },
       { name: 'Follow-up', href: '/seller/leads/follow-up' },
-      { name: 'Lead Funnel', href: '/seller/leads/funnel' },
-      { name: 'Lead Scoring', href: '/seller/leads/scoring' },
       { name: 'Email Templates', href: '/seller/communication/templates' },
-      { name: 'WhatsApp', href: '/seller/communication/whatsapp' },
     ],
   },
   {
@@ -106,6 +118,11 @@ const navigation: NavItem[] = [
     ],
   },
   {
+    name: 'Reviews & Ratings',
+    href: '/seller/reviews',
+    icon: StarIcon,
+  },
+  {
     name: 'Settings',
     href: '/seller/settings',
     icon: Cog6ToothIcon,
@@ -118,6 +135,7 @@ export const SellerLayout: React.FC<SellerLayoutProps> = ({ currentPage }) => {
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const { language, setLanguage, t, isRTL } = useLanguage();
   const languageDropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   const toggleExpanded = (itemName: string) => {
     setExpandedItems(prev =>
@@ -144,24 +162,43 @@ export const SellerLayout: React.FC<SellerLayoutProps> = ({ currentPage }) => {
     };
   }, [languageDropdownOpen]);
 
+  // Auto-expand menu if current page is in submenu
+  useEffect(() => {
+    navigation.forEach(item => {
+      if (item.subItems) {
+        const hasActiveSubItem = item.subItems.some(subItem => 
+          location.pathname === subItem.href || 
+          (item.name === 'RFQ Management' && location.pathname.startsWith('/seller/rfq'))
+        );
+        if (hasActiveSubItem && !expandedItems.includes(item.name)) {
+          setExpandedItems(prev => [...prev, item.name]);
+        }
+      }
+    });
+  }, [location.pathname]);
+
   const NavItem: React.FC<{ item: NavItem; isExpanded?: boolean }> = ({ item, isExpanded = false }) => {
     const hasSubItems = item.subItems && item.subItems.length > 0;
+    const isActive = location.pathname === item.href;
+    const hasActiveSubItem = hasSubItems && item.subItems!.some(subItem => 
+      location.pathname === subItem.href
+    );
     
     return (
       <div>
-        <button
-          onClick={hasSubItems ? () => toggleExpanded(item.name) : undefined}
-          className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-            currentPage === item.href
-              ? 'bg-blue-100 text-blue-700'
-              : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-          }`}
-        >
-          <div className="flex items-center space-x-3">
-            <item.icon className="w-5 h-5 flex-shrink-0" />
-            <span className="truncate">{item.name}</span>
-          </div>
-          {hasSubItems && (
+        {hasSubItems ? (
+          <button
+            onClick={() => toggleExpanded(item.name)}
+            className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+              isActive || hasActiveSubItem
+                ? 'bg-blue-100 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+            }`}
+          >
+            <div className="flex items-center space-x-3">
+              <item.icon className="w-5 h-5 flex-shrink-0" />
+              <span className="truncate">{item.name}</span>
+            </div>
             <svg
               className={`w-4 h-4 transition-transform ${
                 isExpanded ? 'transform rotate-90' : ''
@@ -175,24 +212,41 @@ export const SellerLayout: React.FC<SellerLayoutProps> = ({ currentPage }) => {
                 clipRule="evenodd"
               />
             </svg>
-          )}
-        </button>
+          </button>
+        ) : (
+          <Link
+            to={item.href}
+            className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+              isActive
+                ? 'bg-blue-100 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+            }`}
+          >
+            <div className="flex items-center space-x-3">
+              <item.icon className="w-5 h-5 flex-shrink-0" />
+              <span className="truncate">{item.name}</span>
+            </div>
+          </Link>
+        )}
         
         {hasSubItems && isExpanded && (
           <div className="ml-6 mt-1 space-y-1">
-            {item.subItems!.map((subItem) => (
-              <a
-                key={subItem.name}
-                href={subItem.href}
-                className={`block px-3 py-2 text-sm rounded-lg transition-colors truncate ${
-                  currentPage === subItem.href
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                }`}
-              >
-                {subItem.name}
-              </a>
-            ))}
+            {item.subItems!.map((subItem) => {
+              const isSubItemActive = location.pathname === subItem.href;
+              return (
+                <Link
+                  key={subItem.name}
+                  to={subItem.href}
+                  className={`block px-3 py-2 text-sm rounded-lg transition-colors truncate ${
+                    isSubItemActive
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  {subItem.name}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>

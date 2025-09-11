@@ -81,11 +81,11 @@ const mockAnalytics: OrderAnalytics = {
   pendingOrders: 89,
   cancelledOrders: 69,
   topProducts: [
-    { name: 'جهاز كمبيوتر محمول', sales: 45, revenue: 112500.00 },
-    { name: 'هاتف ذكي', sales: 78, revenue: 62400.00 },
-    { name: 'سماعات لاسلكية', sales: 156, revenue: 31200.00 },
-    { name: 'كاميرا رقمية', sales: 23, revenue: 28750.00 },
-    { name: 'جهاز لوحي', sales: 34, revenue: 20400.00 }
+    { name: 'Laptop Computer', sales: 45, revenue: 112500.00 },
+    { name: 'Smartphone', sales: 78, revenue: 62400.00 },
+    { name: 'Wireless Headphones', sales: 156, revenue: 31200.00 },
+    { name: 'Digital Camera', sales: 23, revenue: 28750.00 },
+    { name: 'Tablet', sales: 34, revenue: 20400.00 }
   ],
   topSellers: [
     { name: 'متجر التقنية', orders: 234, revenue: 45600.00 },

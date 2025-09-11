@@ -14,7 +14,13 @@ import {
   Calendar,
   Archive,
   ArchiveRestore,
-  Settings
+  Settings,
+  ChevronDown,
+  ChevronRight,
+  Star,
+  DollarSign,
+  ShoppingCart,
+  ExternalLink
 } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
@@ -72,13 +78,31 @@ interface Category {
   attributes: string[]
 }
 
+interface Product {
+  id: string
+  name: string
+  nameAr: string
+  sku: string
+  price: number
+  currency: string
+  stock: number
+  status: 'active' | 'inactive' | 'out_of_stock'
+  sellerName: string
+  sellerId: string
+  images: string[]
+  createdDate: string
+  rating: number
+  reviewCount: number
+  categoryId: string
+}
+
 const mockCategories: Category[] = [
   {
     id: '1',
     name: 'Electronics',
-    nameAr: 'الإلكترونيات',
+    nameAr: 'Electronics',
     description: 'Consumer and business electronics',
-    descriptionAr: 'الإلكترونيات الاستهلاكية والتجارية',
+    descriptionAr: 'Consumer and business electronics',
     slug: 'electronics',
     parentId: null,
     level: 0,
@@ -99,9 +123,9 @@ const mockCategories: Category[] = [
   {
     id: '2',
     name: 'Smart Home Devices',
-    nameAr: 'أجهزة المنزل الذكي',
+    nameAr: 'Smart Home Devices',
     description: 'Internet-connected devices for home automation',
-    descriptionAr: 'أجهزة متصلة بالإنترنت لأتمتة المنزل',
+    descriptionAr: 'Internet-connected devices for home automation',
     slug: 'smart-home-devices',
     parentId: '1',
     parentName: 'Electronics',
@@ -121,9 +145,9 @@ const mockCategories: Category[] = [
   {
     id: '3',
     name: 'Industrial Equipment',
-    nameAr: 'المعدات الصناعية',
+    nameAr: 'Industrial Equipment',
     description: 'Heavy machinery and industrial tools',
-    descriptionAr: 'الآلات الثقيلة والأدوات الصناعية',
+    descriptionAr: 'Heavy machinery and industrial tools',
     slug: 'industrial-equipment',
     parentId: null,
     level: 0,
@@ -142,9 +166,9 @@ const mockCategories: Category[] = [
   {
     id: '4',
     name: 'Construction Tools',
-    nameAr: 'أدوات البناء',
+    nameAr: 'Construction Tools',
     description: 'Professional construction and building tools',
-    descriptionAr: 'أدوات البناء والتشييد المهنية',
+    descriptionAr: 'Professional construction and building tools',
     slug: 'construction-tools',
     parentId: '3',
     parentName: 'Industrial Equipment',
@@ -164,9 +188,9 @@ const mockCategories: Category[] = [
   {
     id: '5',
     name: 'Medical Supplies',
-    nameAr: 'المستلزمات الطبية',
+    nameAr: 'Medical Supplies',
     description: 'Healthcare and medical equipment',
-    descriptionAr: 'معدات الرعاية الصحية والطبية',
+    descriptionAr: 'Healthcare and medical equipment',
     slug: 'medical-supplies',
     parentId: null,
     level: 0,
@@ -185,9 +209,9 @@ const mockCategories: Category[] = [
   {
     id: '6',
     name: 'Diagnostic Equipment',
-    nameAr: 'معدات التشخيص',
+    nameAr: 'Diagnostic Equipment',
     description: 'Medical diagnostic and monitoring devices',
-    descriptionAr: 'أجهزة التشخيص والمراقبة الطبية',
+    descriptionAr: 'Medical diagnostic and monitoring devices',
     slug: 'diagnostic-equipment',
     parentId: '5',
     parentName: 'Medical Supplies',
@@ -207,9 +231,9 @@ const mockCategories: Category[] = [
   {
     id: '7',
     name: 'Office Supplies',
-    nameAr: 'مستلزمات المكاتب',
+    nameAr: 'Office Supplies',
     description: 'Business and office equipment',
-    descriptionAr: 'معدات الأعمال والمكاتب',
+    descriptionAr: 'Business and office equipment',
     slug: 'office-supplies',
     parentId: null,
     level: 0,
@@ -228,9 +252,9 @@ const mockCategories: Category[] = [
   {
     id: '8',
     name: 'Automotive Parts',
-    nameAr: 'قطع غيار السيارات',
+    nameAr: 'Automotive Parts',
     description: 'Vehicle parts and automotive accessories',
-    descriptionAr: 'قطع غيار المركبات وإكسسوارات السيارات',
+    descriptionAr: 'Vehicle parts and automotive accessories',
     slug: 'automotive-parts',
     parentId: null,
     level: 0,
@@ -248,12 +272,160 @@ const mockCategories: Category[] = [
   }
 ]
 
+const mockProducts: Product[] = [
+  // Electronics category products
+  {
+    id: 'P001',
+    name: 'iPhone 15 Pro',
+    nameAr: 'iPhone 15 Pro',
+    sku: 'APL-IP15P-256',
+    price: 4999,
+    currency: 'SAR',
+    stock: 25,
+    status: 'active',
+    sellerName: 'TechStore KSA',
+    sellerId: 'S001',
+    images: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=200'],
+    createdDate: '2024-01-15T10:00:00Z',
+    rating: 4.8,
+    reviewCount: 124,
+    categoryId: '1'
+  },
+  {
+    id: 'P002',
+    name: 'Samsung Galaxy S24',
+    nameAr: 'Samsung Galaxy S24',
+    sku: 'SAM-GS24-128',
+    price: 3299,
+    currency: 'SAR',
+    stock: 15,
+    status: 'active',
+    sellerName: 'ElectroMax',
+    sellerId: 'S002',
+    images: ['https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=200'],
+    createdDate: '2024-01-18T14:30:00Z',
+    rating: 4.6,
+    reviewCount: 89,
+    categoryId: '1'
+  },
+  // Smart Home Devices
+  {
+    id: 'P003',
+    name: 'Smart Security Camera',
+    nameAr: 'Smart Security Camera',
+    sku: 'SMT-CAM-001',
+    price: 899,
+    currency: 'SAR',
+    stock: 40,
+    status: 'active',
+    sellerName: 'SmartHome Solutions',
+    sellerId: 'S003',
+    images: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200'],
+    createdDate: '2024-01-20T09:15:00Z',
+    rating: 4.4,
+    reviewCount: 56,
+    categoryId: '2'
+  },
+  // Industrial Equipment
+  {
+    id: 'P004',
+    name: 'Industrial Drill Press',
+    nameAr: 'Industrial Drill Press',
+    sku: 'IND-DRL-500',
+    price: 12500,
+    currency: 'SAR',
+    stock: 5,
+    status: 'active',
+    sellerName: 'Industrial Tools KSA',
+    sellerId: 'S004',
+    images: ['https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200'],
+    createdDate: '2024-01-12T11:20:00Z',
+    rating: 4.9,
+    reviewCount: 23,
+    categoryId: '3'
+  },
+  {
+    id: 'P005',
+    name: 'Hydraulic Pump',
+    nameAr: 'Hydraulic Pump',
+    sku: 'HYD-PMP-2000',
+    price: 8750,
+    currency: 'SAR',
+    stock: 8,
+    status: 'active',
+    sellerName: 'Heavy Machinery Co',
+    sellerId: 'S005',
+    images: ['https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=200'],
+    createdDate: '2024-01-14T16:45:00Z',
+    rating: 4.7,
+    reviewCount: 31,
+    categoryId: '3'
+  },
+  // Construction Tools
+  {
+    id: 'P006',
+    name: 'Professional Concrete Mixer',
+    nameAr: 'Professional Concrete Mixer',
+    sku: 'CON-MIX-350',
+    price: 4200,
+    currency: 'SAR',
+    stock: 12,
+    status: 'active',
+    sellerName: 'BuildPro Equipment',
+    sellerId: 'S006',
+    images: ['https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200'],
+    createdDate: '2024-01-16T13:30:00Z',
+    rating: 4.5,
+    reviewCount: 18,
+    categoryId: '4'
+  },
+  // Medical Supplies
+  {
+    id: 'P007',
+    name: 'Digital Blood Pressure Monitor',
+    nameAr: 'Digital Blood Pressure Monitor',
+    sku: 'MED-BP-001',
+    price: 650,
+    currency: 'SAR',
+    stock: 30,
+    status: 'active',
+    sellerName: 'MediCare Supplies',
+    sellerId: 'S007',
+    images: ['https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200'],
+    createdDate: '2024-01-19T10:15:00Z',
+    rating: 4.6,
+    reviewCount: 42,
+    categoryId: '5'
+  },
+  // Diagnostic Equipment
+  {
+    id: 'P008',
+    name: 'Ultrasound Scanner',
+    nameAr: 'Ultrasound Scanner',
+    sku: 'MED-US-PRO',
+    price: 45000,
+    currency: 'SAR',
+    stock: 2,
+    status: 'active',
+    sellerName: 'Advanced Medical Tech',
+    sellerId: 'S008',
+    images: ['https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=200'],
+    createdDate: '2024-01-17T14:20:00Z',
+    rating: 4.9,
+    reviewCount: 12,
+    categoryId: '6'
+  }
+]
+
 export default function CategoriesList() {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [levelFilter, setLevelFilter] = useState('all')
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null)
   const [categoryDetailsOpen, setCategoryDetailsOpen] = useState(false)
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [productDetailsOpen, setProductDetailsOpen] = useState(false)
 
   const filteredCategories = mockCategories.filter(category => {
     const matchesSearch = 
@@ -294,6 +466,43 @@ export default function CategoriesList() {
   const handleViewCategory = (category: Category) => {
     setSelectedCategory(category)
     setCategoryDetailsOpen(true)
+  }
+
+  const toggleCategoryExpansion = (categoryId: string) => {
+    const newExpanded = new Set(expandedCategories)
+    if (newExpanded.has(categoryId)) {
+      newExpanded.delete(categoryId)
+    } else {
+      newExpanded.add(categoryId)
+    }
+    setExpandedCategories(newExpanded)
+  }
+
+  const getProductsForCategory = (categoryId: string) => {
+    return mockProducts.filter(product => product.categoryId === categoryId)
+  }
+
+  const handleViewProduct = (product: Product) => {
+    setSelectedProduct(product)
+    setProductDetailsOpen(true)
+  }
+
+  const getProductStatusBadge = (status: Product['status']) => {
+    const statusConfig = {
+      active: { label: 'Active', variant: 'default' as const },
+      inactive: { label: 'Inactive', variant: 'secondary' as const },
+      out_of_stock: { label: 'Out of Stock', variant: 'destructive' as const }
+    }
+    
+    const config = statusConfig[status]
+    return <Badge variant={config.variant}>{config.label}</Badge>
+  }
+
+  const formatCurrency = (amount: number, currency: string) => {
+    return new Intl.NumberFormat('ar-SA', {
+      style: 'currency',
+      currency: currency,
+    }).format(amount)
   }
 
   const stats = {
@@ -420,29 +629,49 @@ export default function CategoriesList() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredCategories.map((category) => (
-                <TableRow key={category.id}>
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center">
-                        <FolderTree className="w-5 h-5 text-muted-foreground" />
-                      </div>
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium">{category.name}</span>
-                          {category.featured && (
-                            <Badge variant="outline" className="text-xs px-1 py-0">
-                              Featured
-                            </Badge>
-                          )}
+              {filteredCategories.map((category) => {
+                const categoryProducts = getProductsForCategory(category.id)
+                const isExpanded = expandedCategories.has(category.id)
+                
+                return (
+                  <React.Fragment key={category.id}>
+                    <TableRow className="hover:bg-muted/50">
+                      <TableCell>
+                        <div className="flex items-center gap-3">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="p-1 h-6 w-6"
+                            onClick={() => toggleCategoryExpansion(category.id)}
+                            disabled={categoryProducts.length === 0}
+                          >
+                            {categoryProducts.length > 0 ? (
+                              isExpanded ? (
+                                <ChevronDown className="w-4 h-4" />
+                              ) : (
+                                <ChevronRight className="w-4 h-4" />
+                              )
+                            ) : null}
+                          </Button>
+                          <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center">
+                            <FolderTree className="w-5 h-5 text-muted-foreground" />
+                          </div>
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-medium">{category.name}</span>
+                              {category.featured && (
+                                <Badge variant="outline" className="text-xs px-1 py-0">
+                                  Featured
+                                </Badge>
+                              )}
+                            </div>
+                            <div className="text-sm text-muted-foreground">{category.nameAr}</div>
+                            <div className="text-xs text-muted-foreground line-clamp-1">
+                              {category.description}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-sm text-muted-foreground">{category.nameAr}</div>
-                        <div className="text-xs text-muted-foreground line-clamp-1">
-                          {category.description}
-                        </div>
-                      </div>
-                    </div>
-                  </TableCell>
+                      </TableCell>
                   <TableCell>
                     {category.parentName ? (
                       <div className="flex items-center gap-2">
@@ -454,12 +683,17 @@ export default function CategoriesList() {
                     )}
                   </TableCell>
                   <TableCell>{getLevelBadge(category.level)}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Package className="w-4 h-4 text-muted-foreground" />
-                      <span className="font-medium">{category.productCount}</span>
-                    </div>
-                  </TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-2">
+                          <Package className="w-4 h-4 text-muted-foreground" />
+                          <span className="font-medium">{category.productCount}</span>
+                          {categoryProducts.length > 0 && (
+                            <span className="text-xs text-muted-foreground">
+                              ({categoryProducts.length} shown)
+                            </span>
+                          )}
+                        </div>
+                      </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-muted-foreground" />
@@ -530,9 +764,112 @@ export default function CategoriesList() {
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
-                  </TableCell>
-                </TableRow>
-              ))}
+                      </TableCell>
+                    </TableRow>
+                    
+                    {/* Expanded Products Section */}
+                    {isExpanded && categoryProducts.length > 0 && (
+                      <TableRow>
+                        <TableCell colSpan={8} className="p-0 bg-muted/20">
+                          <div className="p-4 space-y-3">
+                            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground mb-3">
+                              <Package className="w-4 h-4" />
+                              Products in {category.name} ({categoryProducts.length})
+                            </div>
+                            <div className="grid gap-3">
+                              {categoryProducts.map((product) => (
+                                <div
+                                  key={product.id}
+                                  className="flex items-center justify-between p-3 bg-background rounded-lg border hover:bg-muted/50 transition-colors"
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center overflow-hidden">
+                                      {product.images[0] ? (
+                                        <img
+                                          src={product.images[0]}
+                                          alt={product.name}
+                                          className="w-full h-full object-cover"
+                                        />
+                                      ) : (
+                                        <Package className="w-6 h-6 text-muted-foreground" />
+                                      )}
+                                    </div>
+                                    <div className="space-y-1">
+                                      <div className="flex items-center gap-2">
+                                        <span className="font-medium">{product.name}</span>
+                                        {getProductStatusBadge(product.status)}
+                                      </div>
+                                      <div className="text-sm text-muted-foreground">{product.nameAr}</div>
+                                      <div className="text-xs text-muted-foreground">
+                                        SKU: {product.sku} • by {product.sellerName}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="flex items-center gap-4">
+                                    <div className="text-right">
+                                      <div className="font-medium text-lg">
+                                        {formatCurrency(product.price, product.currency)}
+                                      </div>
+                                      <div className="text-sm text-muted-foreground">
+                                        Stock: {product.stock}
+                                      </div>
+                                      <div className="flex items-center gap-1 text-xs">
+                                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                        <span>{product.rating}</span>
+                                        <span className="text-muted-foreground">({product.reviewCount})</span>
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="flex items-center gap-2">
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => handleViewProduct(product)}
+                                        className="gap-1"
+                                      >
+                                        <Eye className="w-3 h-3" />
+                                        View
+                                      </Button>
+                                      
+                                      <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                          <Button variant="ghost" className="h-8 w-8 p-0">
+                                            <MoreHorizontal className="h-4 w-4" />
+                                          </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                          <DropdownMenuItem>
+                                            <Edit className="w-4 h-4 mr-2" />
+                                            Edit Product
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                            <ExternalLink className="w-4 h-4 mr-2" />
+                                            View on Store
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                            <ShoppingCart className="w-4 h-4 mr-2" />
+                                            View Orders
+                                          </DropdownMenuItem>
+                                          <DropdownMenuSeparator />
+                                          <DropdownMenuItem className="text-destructive">
+                                            <Trash2 className="w-4 h-4 mr-2" />
+                                            Delete Product
+                                          </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                      </DropdownMenu>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </React.Fragment>
+                )
+              })}
             </TableBody>
           </Table>
         </CardContent>
@@ -686,6 +1023,139 @@ export default function CategoriesList() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Product Details Dialog */}
+      <Dialog open={productDetailsOpen} onOpenChange={setProductDetailsOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Product Details</DialogTitle>
+            <DialogDescription>
+              {selectedProduct && `View and manage ${selectedProduct.name} product information`}
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedProduct && (
+            <div className="space-y-6">
+              {/* Product Header */}
+              <div className="flex items-start gap-4">
+                <div className="w-24 h-24 bg-muted rounded-lg flex items-center justify-center overflow-hidden">
+                  {selectedProduct.images[0] ? (
+                    <img
+                      src={selectedProduct.images[0]}
+                      alt={selectedProduct.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Package className="w-12 h-12 text-muted-foreground" />
+                  )}
+                </div>
+                <div className="space-y-2 flex-1">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-xl font-semibold">{selectedProduct.name}</h3>
+                    {getProductStatusBadge(selectedProduct.status)}
+                  </div>
+                  <p className="text-muted-foreground">{selectedProduct.nameAr}</p>
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    <span>SKU: {selectedProduct.sku}</span>
+                    <span>•</span>
+                    <span>by {selectedProduct.sellerName}</span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-2xl font-bold">
+                    {formatCurrency(selectedProduct.price, selectedProduct.currency)}
+                  </div>
+                  <div className="flex items-center gap-1 text-sm">
+                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <span>{selectedProduct.rating}</span>
+                    <span className="text-muted-foreground">({selectedProduct.reviewCount} reviews)</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Product Information Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <Package className="w-5 h-5" />
+                      Product Information
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Status:</span>
+                      {getProductStatusBadge(selectedProduct.status)}
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Stock:</span>
+                      <span className={`font-medium ${selectedProduct.stock < 10 ? 'text-destructive' : 'text-foreground'}`}>
+                        {selectedProduct.stock} units
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Price:</span>
+                      <span className="font-medium">{formatCurrency(selectedProduct.price, selectedProduct.currency)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Created:</span>
+                      <span className="text-sm">
+                        {new Date(selectedProduct.createdDate).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <Users className="w-5 h-5" />
+                      Seller Information
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Seller:</span>
+                      <span className="font-medium">{selectedProduct.sellerName}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Seller ID:</span>
+                      <span className="text-sm font-mono">{selectedProduct.sellerId}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Rating:</span>
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <span className="font-medium">{selectedProduct.rating}</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">Reviews:</span>
+                      <span className="font-medium">{selectedProduct.reviewCount}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-3 pt-4 border-t">
+                <Button variant="outline">
+                  <Edit className="w-4 h-4 mr-2" />
+                  Edit Product
+                </Button>
+                <Button variant="outline">
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  View on Store
+                </Button>
+                <Button>
+                  <ShoppingCart className="w-4 h-4 mr-2" />
+                  View Orders
+                </Button>
+              </div>
             </div>
           )}
         </DialogContent>

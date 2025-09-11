@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/shared/contexts/LanguageContext';
 import { DataTable } from '@/seller/components/ui/DataTable';
 import { MetricsCard } from '@/seller/components/ui/MetricsCard';
@@ -151,7 +152,13 @@ interface RFQTemplate {
 
 const RFQPage: React.FC = () => {
   const { language, t, isRTL } = useLanguage();
-  const [activeTab, setActiveTab] = useState<'rfqs' | 'create' | 'suppliers' | 'quotes' | 'templates' | 'analytics'>('rfqs');
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Get tab from URL parameters
+  const searchParams = new URLSearchParams(location.search);
+  const tabParam = searchParams.get('tab') as 'rfqs' | 'create' | 'suppliers' | 'quotes' | 'templates' | 'analytics' | null;
+  const [activeTab, setActiveTab] = useState<'rfqs' | 'create' | 'suppliers' | 'quotes' | 'templates' | 'analytics'>(tabParam || 'rfqs');
   const [rfqs, setRFQs] = useState<RFQ[]>([]);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [quotes, setQuotes] = useState<Quote[]>([]);
@@ -161,6 +168,26 @@ const RFQPage: React.FC = () => {
   const [showSupplierModal, setShowSupplierModal] = useState(false);
   const [selectedRFQForComparison, setSelectedRFQForComparison] = useState<string | null>(null);
   const fileUploadRef = useRef<HTMLInputElement>(null);
+
+  // Handle tab changes and update URL
+  const handleTabChange = (tab: 'rfqs' | 'create' | 'suppliers' | 'quotes' | 'templates' | 'analytics') => {
+    setActiveTab(tab);
+    const newSearchParams = new URLSearchParams(location.search);
+    if (tab === 'rfqs') {
+      newSearchParams.delete('tab');
+    } else {
+      newSearchParams.set('tab', tab);
+    }
+    const newUrl = `${location.pathname}${newSearchParams.toString() ? '?' + newSearchParams.toString() : ''}`;
+    navigate(newUrl, { replace: true });
+  };
+
+  // Update active tab when URL changes
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const tabParam = searchParams.get('tab') as 'rfqs' | 'create' | 'suppliers' | 'quotes' | 'templates' | 'analytics' | null;
+    setActiveTab(tabParam || 'rfqs');
+  }, [location.search]);
 
   // Mock data initialization
   useEffect(() => {
@@ -672,7 +699,7 @@ const RFQPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.key}
-                onClick={() => setActiveTab(tab.key as any)}
+                onClick={() => handleTabChange(tab.key as any)}
                 className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
                   activeTab === tab.key
                     ? 'border-blue-500 text-blue-600'

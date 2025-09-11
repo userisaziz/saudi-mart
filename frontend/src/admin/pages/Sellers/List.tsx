@@ -32,7 +32,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui
 import { SaudiUser, UserRole, UserStatus, VerificationLevel, SaudiRegion } from '@/admin/types/saudi-admin';
 import { UsersService } from '@/admin/services/users.service';
 import { formatDistanceToNow } from 'date-fns';
-import { ar } from 'date-fns/locale';
 import { useLanguage } from '@/shared/contexts/LanguageContext';
 
 export default function UsersList() {
@@ -181,50 +180,50 @@ export default function UsersList() {
       {/* Filters and Search */}
       <Card>
         <CardHeader>
-          <CardTitle>البحث والفلترة</CardTitle>
+          <CardTitle>Search and Filter</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
-                  placeholder="البحث بالاسم، البريد الإلكتروني، أو رقم الهاتف..."
+                  placeholder="Search by name, email, or phone number..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pr-10"
+                  className="pl-10"
                 />
               </div>
             </div>
             <div className="flex gap-2">
               <Select value={filters.role} onValueChange={(value) => setFilters(prev => ({ ...prev, role: value }))}>
                 <SelectTrigger className="w-40">
-                  <SelectValue placeholder="الدور" />
+                  <SelectValue placeholder="Role" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">جميع الأدوار</SelectItem>
-                  <SelectItem value={UserRole.ADMIN}>مدير</SelectItem>
-                  <SelectItem value={UserRole.SELLER}>بائع</SelectItem>
-                  <SelectItem value={UserRole.BUYER}>مشتري</SelectItem>
+                  <SelectItem value="all">All Roles</SelectItem>
+                  <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
+                  <SelectItem value={UserRole.SELLER}>Seller</SelectItem>
+                  <SelectItem value={UserRole.BUYER}>Buyer</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={filters.status} onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
                 <SelectTrigger className="w-40">
-                  <SelectValue placeholder="الحالة" />
+                  <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">جميع الحالات</SelectItem>
-                  <SelectItem value={UserStatus.ACTIVE}>نشط</SelectItem>
-                  <SelectItem value={UserStatus.INACTIVE}>غير نشط</SelectItem>
-                  <SelectItem value={UserStatus.SUSPENDED}>موقوف</SelectItem>
-                  <SelectItem value={UserStatus.PENDING}>في الانتظار</SelectItem>
+                  <SelectItem value="all">All Statuses</SelectItem>
+                  <SelectItem value={UserStatus.ACTIVE}>Active</SelectItem>
+                  <SelectItem value={UserStatus.INACTIVE}>Inactive</SelectItem>
+                  <SelectItem value={UserStatus.SUSPENDED}>Suspended</SelectItem>
+                  <SelectItem value={UserStatus.PENDING}>Pending</SelectItem>
                 </SelectContent>
               </Select>
 
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="h-4 w-4" />
-                تصدير
+Export
               </Button>
             </div>
           </div>
@@ -234,9 +233,9 @@ export default function UsersList() {
       {/* Users Table */}
       <Card>
         <CardHeader>
-          <CardTitle>قائمة المستخدمين</CardTitle>
+          <CardTitle>Users List</CardTitle>
           <CardDescription>
-            عرض {users.length} من إجمالي {totalUsers} مستخدم
+Showing {users.length} of {totalUsers} users
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -248,14 +247,14 @@ export default function UsersList() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-right">المستخدم</TableHead>
-                  <TableHead className="text-right">الدور</TableHead>
-                  <TableHead className="text-right">الحالة</TableHead>
-                  <TableHead className="text-right">التحقق</TableHead>
-                  <TableHead className="text-right">المنطقة</TableHead>
-                  <TableHead className="text-right">تاريخ التسجيل</TableHead>
-                  <TableHead className="text-right">آخر دخول</TableHead>
-                  <TableHead className="text-right">الإجراءات</TableHead>
+                  <TableHead>User</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Verification</TableHead>
+                  <TableHead>Region</TableHead>
+                  <TableHead>Registration Date</TableHead>
+                  <TableHead>Last Login</TableHead>
+                  <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -268,7 +267,7 @@ export default function UsersList() {
                           <AvatarFallback>{user.name.ar.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="font-medium">{user.name.ar}</div>
+                          <div className="font-medium">{user.name.en || user.name.ar}</div>
                           <div className="text-sm text-muted-foreground">{user.email}</div>
                           <div className="text-xs text-muted-foreground">{user.phone}</div>
                         </div>
@@ -280,22 +279,22 @@ export default function UsersList() {
                     <TableCell>
                       {user.addresses.length > 0 && (
                         <span className="text-sm">
-                          {user.addresses[0].city.ar}, {user.addresses[0].region}
+                          {user.addresses[0].city.en || user.addresses[0].city.ar}, {user.addresses[0].region}
                         </span>
                       )}
                     </TableCell>
                     <TableCell>
                       <span className="text-sm">
-                        {formatDistanceToNow(new Date(user.createdAt), { addSuffix: true, locale: ar })}
+                        {formatDistanceToNow(new Date(user.createdAt), { addSuffix: true })}
                       </span>
                     </TableCell>
                     <TableCell>
                       {user.lastLoginAt ? (
                         <span className="text-sm">
-                          {formatDistanceToNow(new Date(user.lastLoginAt), { addSuffix: true, locale: ar })}
+                          {formatDistanceToNow(new Date(user.lastLoginAt), { addSuffix: true })}
                         </span>
                       ) : (
-                        <span className="text-sm text-muted-foreground">لم يسجل دخول</span>
+                        <span className="text-sm text-muted-foreground">Never logged in</span>
                       )}
                     </TableCell>
                     <TableCell>
@@ -305,20 +304,20 @@ export default function UsersList() {
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="text-right">
-                          <DropdownMenuLabel>الإجراءات</DropdownMenuLabel>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem className="gap-2">
                             <Eye className="h-4 w-4" />
-                            عرض التفاصيل
+                            View Details
                           </DropdownMenuItem>
                           <DropdownMenuItem className="gap-2">
                             <Edit className="h-4 w-4" />
-                            تعديل
+                            Edit
                           </DropdownMenuItem>
                           <DropdownMenuItem className="gap-2">
                             <Shield className="h-4 w-4" />
-                            إدارة الأدوار
+                            Manage Roles
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem 
@@ -326,7 +325,7 @@ export default function UsersList() {
                             onClick={() => handleStatusToggle(user.id)}
                           >
                             <Ban className="h-4 w-4" />
-                            {user.status === UserStatus.ACTIVE ? 'إيقاف' : 'تفعيل'}
+                            {user.status === UserStatus.ACTIVE ? 'Suspend' : 'Activate'}
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -341,7 +340,7 @@ export default function UsersList() {
           {totalUsers > itemsPerPage && (
             <div className="flex items-center justify-between px-2 py-4">
               <div className="text-sm text-muted-foreground">
-                عرض {((currentPage - 1) * itemsPerPage) + 1} إلى {Math.min(currentPage * itemsPerPage, totalUsers)} من إجمالي {totalUsers} مستخدم
+                Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, totalUsers)} of {totalUsers} users
               </div>
               <div className="flex items-center space-x-2 space-x-reverse">
                 <Button
@@ -350,7 +349,7 @@ export default function UsersList() {
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
                 >
-                  السابق
+                  Previous
                 </Button>
                 <div className="flex items-center gap-1">
                   {Array.from({ length: Math.ceil(totalUsers / itemsPerPage) }, (_, i) => i + 1)
@@ -380,7 +379,7 @@ export default function UsersList() {
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(totalUsers / itemsPerPage)))}
                   disabled={currentPage === Math.ceil(totalUsers / itemsPerPage)}
                 >
-                  التالي
+                  Next
                 </Button>
               </div>
             </div>

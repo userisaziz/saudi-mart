@@ -19,11 +19,11 @@ interface PrayerTimeWidgetProps {
 }
 
 const PRAYER_NAMES = {
-  fajr: { en: 'Fajr', ar: 'الفجر' },
-  dhuhr: { en: 'Dhuhr', ar: 'الظهر' },
-  asr: { en: 'Asr', ar: 'العصر' },
-  maghrib: { en: 'Maghrib', ar: 'المغرب' },
-  isha: { en: 'Isha', ar: 'العشاء' }
+  fajr: { en: 'Fajr', ar: 'Fajr' },
+  dhuhr: { en: 'Dhuhr', ar: 'Dhuhr' },
+  asr: { en: 'Asr', ar: 'Asr' },
+  maghrib: { en: 'Maghrib', ar: 'Maghrib' },
+  isha: { en: 'Isha', ar: 'Isha' }
 };
 
 // Mock prayer times - In production, this would come from an Islamic prayer time API
@@ -35,31 +35,31 @@ const getMockPrayerTimes = (): PrayerTime[] => {
   return [
     {
       name: 'Fajr',
-      nameAr: 'الفجر',
+      nameAr: 'Fajr',
       time: '05:30',
       passed: currentHour > 5 || (currentHour === 5 && currentMinute > 30)
     },
     {
       name: 'Dhuhr',
-      nameAr: 'الظهر',
+      nameAr: 'Dhuhr',
       time: '12:15',
       passed: currentHour > 12 || (currentHour === 12 && currentMinute > 15)
     },
     {
       name: 'Asr',
-      nameAr: 'العصر',
+      nameAr: 'Asr',
       time: '15:45',
       passed: currentHour > 15 || (currentHour === 15 && currentMinute > 45)
     },
     {
       name: 'Maghrib',
-      nameAr: 'المغرب',
+      nameAr: 'Maghrib',
       time: '18:30',
       passed: currentHour > 18 || (currentHour === 18 && currentMinute > 30)
     },
     {
       name: 'Isha',
-      nameAr: 'العشاء',
+      nameAr: 'Isha',
       time: '20:00',
       passed: currentHour > 20 || (currentHour === 20 && currentMinute > 0)
     }

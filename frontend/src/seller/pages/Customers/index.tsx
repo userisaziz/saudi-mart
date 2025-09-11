@@ -58,7 +58,6 @@ interface Customer {
   communicationPreferences: {
     email: boolean;
     sms: boolean;
-    whatsapp: boolean;
     phone: boolean;
   };
   socialMedia?: {
@@ -102,7 +101,6 @@ const mockCustomers: Customer[] = [
     communicationPreferences: {
       email: true,
       sms: true,
-      whatsapp: true,
       phone: false,
     },
     creditLimit: 200000,
@@ -138,7 +136,6 @@ const mockCustomers: Customer[] = [
     communicationPreferences: {
       email: true,
       sms: false,
-      whatsapp: false,
       phone: true,
     },
     socialMedia: {
@@ -177,7 +174,6 @@ const mockCustomers: Customer[] = [
     communicationPreferences: {
       email: true,
       sms: true,
-      whatsapp: true,
       phone: true,
     },
     creditLimit: 150000,
@@ -213,7 +209,6 @@ const mockCustomers: Customer[] = [
     communicationPreferences: {
       email: true,
       sms: false,
-      whatsapp: false,
       phone: false,
     },
     industry: 'Office Solutions',
@@ -968,10 +963,6 @@ const CustomersIndex: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">SMS</span>
                         <span className={`w-2 h-2 rounded-full ${selectedCustomer.communicationPreferences.sms ? 'bg-green-500' : 'bg-gray-300'}`}></span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">WhatsApp</span>
-                        <span className={`w-2 h-2 rounded-full ${selectedCustomer.communicationPreferences.whatsapp ? 'bg-green-500' : 'bg-gray-300'}`}></span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Phone</span>

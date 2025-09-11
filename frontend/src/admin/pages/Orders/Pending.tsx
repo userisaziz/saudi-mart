@@ -245,11 +245,11 @@ const PendingOrdersPage: React.FC = () => {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending_payment: { color: 'bg-yellow-100 text-yellow-800', text: isRTL ? 'Pending Payment' : 'Pending Payment' },
-      payment_verified: { color: 'bg-blue-100 text-blue-800', text: isRTL ? 'Payment Verified' : 'Payment Verified' },
-      pending_seller_approval: { color: 'bg-orange-100 text-orange-800', text: isRTL ? 'Pending Seller Approval' : 'Pending Seller Approval' },
-      pending_stock_confirmation: { color: 'bg-purple-100 text-purple-800', text: isRTL ? 'Pending Stock Confirmation' : 'Pending Stock Confirmation' },
-      pending_documentation: { color: 'bg-red-100 text-red-800', text: isRTL ? 'Pending Documentation' : 'Pending Documentation' }
+      pending_payment: { color: 'bg-yellow-100 text-yellow-800', text: 'Pending Payment' },
+      payment_verified: { color: 'bg-blue-100 text-blue-800', text: 'Payment Verified' },
+      pending_seller_approval: { color: 'bg-orange-100 text-orange-800', text: 'Pending Seller Approval' },
+      pending_stock_confirmation: { color: 'bg-purple-100 text-purple-800', text: 'Pending Stock Confirmation' },
+      pending_documentation: { color: 'bg-red-100 text-red-800', text: 'Pending Documentation' }
     }
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending_payment
     return <Badge className={config.color}>{config.text}</Badge>
@@ -257,10 +257,10 @@ const PendingOrdersPage: React.FC = () => {
 
   const getPriorityBadge = (priority: string) => {
     const priorityConfig = {
-      low: { color: 'bg-green-100 text-green-800', text: isRTL ? 'Low' : 'Low' },
-      medium: { color: 'bg-blue-100 text-blue-800', text: isRTL ? 'Medium' : 'Medium' },
-      high: { color: 'bg-orange-100 text-orange-800', text: isRTL ? 'High' : 'High' },
-      urgent: { color: 'bg-red-100 text-red-800', text: isRTL ? 'Urgent' : 'Urgent' }
+      low: { color: 'bg-green-100 text-green-800', text: 'Low' },
+      medium: { color: 'bg-blue-100 text-blue-800', text: 'Medium' },
+      high: { color: 'bg-orange-100 text-orange-800', text: 'High' },
+      urgent: { color: 'bg-red-100 text-red-800', text: 'Urgent' }
     }
     const config = priorityConfig[priority as keyof typeof priorityConfig]
     return <Badge className={config.color}>{config.text}</Badge>
@@ -297,20 +297,20 @@ const PendingOrdersPage: React.FC = () => {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            {isRTL ? 'Pending Orders' : 'Pending Orders'}
+            'Pending Orders'
           </h1>
           <p className="text-gray-600">
-            {isRTL ? 'Manage and review orders that require action' : 'Manage and review orders that require action'}
+            'Manage and review orders that require action'
           </p>
         </div>
         <div className="flex gap-3">
           <Button variant="outline">
             <RefreshCw className="w-4 h-4 mr-2" />
-            {isRTL ? 'Refresh' : 'Refresh'}
+            'Refresh'
           </Button>
           <Button variant="outline">
             <Download className="w-4 h-4 mr-2" />
-            {isRTL ? 'Export' : 'Export'}
+            'Export'
           </Button>
         </div>
       </div>
@@ -324,7 +324,7 @@ const PendingOrdersPage: React.FC = () => {
                 <Clock className="w-6 h-6 text-blue-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'Total Pending' : 'Total Pending'}</p>
+                <p className="text-sm text-gray-600">Total Pending</p>
                 <p className="text-2xl font-bold">{metrics.total}</p>
               </div>
             </div>
@@ -338,7 +338,7 @@ const PendingOrdersPage: React.FC = () => {
                 <AlertTriangle className="w-6 h-6 text-red-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'Requires Action' : 'Requires Action'}</p>
+                <p className="text-sm text-gray-600">Requires Action</p>
                 <p className="text-2xl font-bold text-red-600">{metrics.requiresAction}</p>
               </div>
             </div>
@@ -352,7 +352,7 @@ const PendingOrdersPage: React.FC = () => {
                 <Package className="w-6 h-6 text-orange-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'High Priority' : 'High Priority'}</p>
+                <p className="text-sm text-gray-600">High Priority</p>
                 <p className="text-2xl font-bold text-orange-600">{metrics.highPriority}</p>
               </div>
             </div>
@@ -366,7 +366,7 @@ const PendingOrdersPage: React.FC = () => {
                 <DollarSign className="w-6 h-6 text-green-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{isRTL ? 'Avg Value' : 'Avg Value'}</p>
+                <p className="text-sm text-gray-600">Avg Value</p>
                 <p className="text-2xl font-bold">{formatCurrency(metrics.avgValue, 'SAR')}</p>
               </div>
             </div>
@@ -383,7 +383,7 @@ const PendingOrdersPage: React.FC = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input 
                   className="pl-10"
-                  placeholder={isRTL ? 'Search orders...' : 'Search orders...'}
+                  placeholder="Search orders..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -391,26 +391,26 @@ const PendingOrdersPage: React.FC = () => {
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-48">
-                <SelectValue placeholder={isRTL ? 'Status' : 'Status'} />
+                <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">{isRTL ? 'All Status' : 'All Status'}</SelectItem>
-                <SelectItem value="pending_payment">{isRTL ? 'انتظار الدفع' : 'Pending Payment'}</SelectItem>
-                <SelectItem value="payment_verified">{isRTL ? 'تم التحقق من الدفع' : 'Payment Verified'}</SelectItem>
-                <SelectItem value="pending_seller_approval">{isRTL ? 'انتظار موافقة البائع' : 'Pending Seller Approval'}</SelectItem>
-                <SelectItem value="pending_stock_confirmation">{isRTL ? 'انتظار تأكيد المخزون' : 'Pending Stock'}</SelectItem>
+                <SelectItem value="all">All Status</SelectItem>
+                <SelectItem value="pending_payment">Pending Payment</SelectItem>
+                <SelectItem value="payment_verified">Payment Verified</SelectItem>
+                <SelectItem value="pending_seller_approval">Pending Seller Approval</SelectItem>
+                <SelectItem value="pending_stock_confirmation">Pending Stock</SelectItem>
               </SelectContent>
             </Select>
             <Select value={priorityFilter} onValueChange={setPriorityFilter}>
               <SelectTrigger className="w-32">
-                <SelectValue placeholder={isRTL ? 'Priority' : 'Priority'} />
+                <SelectValue placeholder="Priority" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">{isRTL ? 'All Priority' : 'All Priority'}</SelectItem>
-                <SelectItem value="urgent">{isRTL ? 'عاجل' : 'Urgent'}</SelectItem>
-                <SelectItem value="high">{isRTL ? 'عالية' : 'High'}</SelectItem>
-                <SelectItem value="medium">{isRTL ? 'متوسطة' : 'Medium'}</SelectItem>
-                <SelectItem value="low">{isRTL ? 'منخفضة' : 'Low'}</SelectItem>
+                <SelectItem value="all">All Priority</SelectItem>
+                <SelectItem value="urgent">Urgent</SelectItem>
+                <SelectItem value="high">High</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="low">Low</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -423,14 +423,14 @@ const PendingOrdersPage: React.FC = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>{isRTL ? 'Order #' : 'Order #'}</TableHead>
-                <TableHead>{isRTL ? 'Customer' : 'Customer'}</TableHead>
-                <TableHead>{isRTL ? 'Seller' : 'Seller'}</TableHead>
-                <TableHead>{isRTL ? 'Amount' : 'Amount'}</TableHead>
-                <TableHead>{isRTL ? 'Status' : 'Status'}</TableHead>
-                <TableHead>{isRTL ? 'Priority' : 'Priority'}</TableHead>
-                <TableHead>{isRTL ? 'Pending Since' : 'Pending Since'}</TableHead>
-                <TableHead>{isRTL ? 'Actions' : 'Actions'}</TableHead>
+                <TableHead>Order #</TableHead>
+                <TableHead>Customer</TableHead>
+                <TableHead>Seller</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Priority</TableHead>
+                <TableHead>Pending Since</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -476,7 +476,7 @@ const PendingOrdersPage: React.FC = () => {
                         onClick={() => setSelectedOrder(order)}
                       >
                         <Eye className="w-4 h-4 mr-1" />
-                        {isRTL ? 'View' : 'View'}
+                        'View'
                       </Button>
                       {order.status === 'pending_payment' && (
                         <Button 
@@ -485,7 +485,7 @@ const PendingOrdersPage: React.FC = () => {
                           onClick={() => handleApproveOrder(order.id)}
                         >
                           <CheckCircle className="w-4 h-4 mr-1" />
-                          {isRTL ? 'Approve' : 'Approve'}
+                          'Approve'
                         </Button>
                       )}
                       <DropdownMenu>
@@ -497,15 +497,15 @@ const PendingOrdersPage: React.FC = () => {
                         <DropdownMenuContent>
                           <DropdownMenuItem>
                             <Phone className="w-4 h-4 mr-2" />
-                            {isRTL ? 'Call Customer' : 'Call Customer'}
+                            'Call Customer'
                           </DropdownMenuItem>
                           <DropdownMenuItem>
                             <Mail className="w-4 h-4 mr-2" />
-                            {isRTL ? 'Send Email' : 'Send Email'}
+                            'Send Email'
                           </DropdownMenuItem>
                           <DropdownMenuItem className="text-red-600">
                             <XCircle className="w-4 h-4 mr-2" />
-                            {isRTL ? 'Reject Order' : 'Reject Order'}
+                            'Reject Order'
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -530,7 +530,7 @@ const PendingOrdersPage: React.FC = () => {
             <ChevronLeft className="w-4 h-4" />
           </Button>
           <span className="text-sm text-gray-600">
-            {isRTL ? `Page ${currentPage} of ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
+            `Page ${currentPage} of ${totalPages}`
           </span>
           <Button 
             variant="outline" 
@@ -552,7 +552,7 @@ const PendingOrdersPage: React.FC = () => {
                 {selectedOrder.requiresAction && (
                   <AlertTriangle className="w-5 h-5 text-red-500" />
                 )}
-                {isRTL ? `Order Details - ${selectedOrder.orderNumber}` : `Order Details - ${selectedOrder.orderNumber}`}
+                `Order Details - ${selectedOrder.orderNumber}`
               </DialogTitle>
             </DialogHeader>
             
@@ -563,7 +563,7 @@ const PendingOrdersPage: React.FC = () => {
                 {getPriorityBadge(selectedOrder.priority)}
                 {selectedOrder.requiresAction && (
                   <Badge className="bg-red-100 text-red-800">
-                    {isRTL ? 'Requires Action' : 'Requires Action'}
+                    'Requires Action'
                   </Badge>
                 )}
               </div>
@@ -574,7 +574,7 @@ const PendingOrdersPage: React.FC = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <User className="w-5 h-5" />
-                      {isRTL ? 'Customer Information' : 'Customer Information'}
+                      'Customer Information'
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -590,7 +590,7 @@ const PendingOrdersPage: React.FC = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Package className="w-5 h-5" />
-                      {isRTL ? 'Seller Information' : 'Seller Information'}
+                      'Seller Information'
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -605,16 +605,16 @@ const PendingOrdersPage: React.FC = () => {
               {/* Order Items */}
               <Card>
                 <CardHeader>
-                  <CardTitle>{isRTL ? 'Order Items' : 'Order Items'}</CardTitle>
+                  <CardTitle>Order Items</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>{isRTL ? 'Product' : 'Product'}</TableHead>
-                        <TableHead>{isRTL ? 'Quantity' : 'Quantity'}</TableHead>
-                        <TableHead>{isRTL ? 'Price' : 'Price'}</TableHead>
-                        <TableHead>{isRTL ? 'Total' : 'Total'}</TableHead>
+                        <TableHead>Product</TableHead>
+                        <TableHead>Quantity</TableHead>
+                        <TableHead>Price</TableHead>
+                        <TableHead>Total</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -622,7 +622,7 @@ const PendingOrdersPage: React.FC = () => {
                         <TableRow key={item.id}>
                           <TableCell>
                             <div>
-                              <p className="font-medium">{isRTL ? item.productNameAr : item.productName}</p>
+                              <p className="font-medium">{item.productName}</p>
                               <p className="text-sm text-gray-600">{item.sku}</p>
                             </div>
                           </TableCell>
@@ -637,19 +637,19 @@ const PendingOrdersPage: React.FC = () => {
                   {/* Order Summary */}
                   <div className="mt-6 border-t pt-4 space-y-2">
                     <div className="flex justify-between">
-                      <span>{isRTL ? 'Subtotal:' : 'Subtotal:'}</span>
+                      <span>Subtotal:</span>
                       <span>{formatCurrency(selectedOrder.subtotal, selectedOrder.currency)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>{isRTL ? 'Tax:' : 'Tax:'}</span>
+                      <span>Tax:</span>
                       <span>{formatCurrency(selectedOrder.tax, selectedOrder.currency)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>{isRTL ? 'Shipping:' : 'Shipping:'}</span>
+                      <span>Shipping:</span>
                       <span>{formatCurrency(selectedOrder.shippingCost, selectedOrder.currency)}</span>
                     </div>
                     <div className="flex justify-between font-bold text-lg border-t pt-2">
-                      <span>{isRTL ? 'Total:' : 'Total:'}</span>
+                      <span>Total:</span>
                       <span>{formatCurrency(selectedOrder.total, selectedOrder.currency)}</span>
                     </div>
                   </div>
@@ -664,20 +664,20 @@ const PendingOrdersPage: React.FC = () => {
                     onClick={() => handleApproveOrder(selectedOrder.id)}
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
-                    {isRTL ? 'Confirm Payment' : 'Confirm Payment'}
+                    'Confirm Payment'
                   </Button>
                 )}
                 <Button variant="outline">
                   <Phone className="w-4 h-4 mr-2" />
-                  {isRTL ? 'Call Customer' : 'Call Customer'}
+                  'Call Customer'
                 </Button>
                 <Button variant="outline">
                   <Mail className="w-4 h-4 mr-2" />
-                  {isRTL ? 'Send Email' : 'Send Email'}
+                  'Send Email'
                 </Button>
                 <Button variant="outline" className="text-red-600">
                   <XCircle className="w-4 h-4 mr-2" />
-                  {isRTL ? 'Reject Order' : 'Reject Order'}
+                  'Reject Order'
                 </Button>
               </div>
             </div>

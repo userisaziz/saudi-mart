@@ -8,26 +8,26 @@ import { cn } from '@/shared/utils';
 
 // Saudi-specific data
 const SAUDI_REGIONS = [
-  { value: 'riyadh', label: 'Riyadh', labelAr: 'الرياض' },
-  { value: 'makkah', label: 'Makkah', labelAr: 'مكة المكرمة' },
-  { value: 'eastern', label: 'Eastern Province', labelAr: 'المنطقة الشرقية' },
-  { value: 'medina', label: 'Medina', labelAr: 'المدينة المنورة' },
-  { value: 'qassim', label: 'Qassim', labelAr: 'القصيم' },
-  { value: 'hail', label: 'Hail', labelAr: 'حائل' },
-  { value: 'northern', label: 'Northern Borders', labelAr: 'الحدود الشمالية' },
-  { value: 'jazan', label: 'Jazan', labelAr: 'جازان' },
-  { value: 'najran', label: 'Najran', labelAr: 'نجران' },
-  { value: 'bahah', label: 'Al Bahah', labelAr: 'الباحة' },
-  { value: 'tabuk', label: 'Tabuk', labelAr: 'تبوك' },
-  { value: 'asir', label: 'Asir', labelAr: 'عسير' },
-  { value: 'jouf', label: 'Al-Jouf', labelAr: 'الجوف' }
+  { value: 'riyadh', label: 'Riyadh', labelAr: 'Riyadh' },
+  { value: 'makkah', label: 'Makkah', labelAr: 'Makkah' },
+  { value: 'eastern', label: 'Eastern Province', labelAr: 'Eastern Province' },
+  { value: 'medina', label: 'Medina', labelAr: 'Medina' },
+  { value: 'qassim', label: 'Qassim', labelAr: 'Qassim' },
+  { value: 'hail', label: 'Hail', labelAr: 'Hail' },
+  { value: 'northern', label: 'Northern Borders', labelAr: 'Northern Borders' },
+  { value: 'jazan', label: 'Jazan', labelAr: 'Jazan' },
+  { value: 'najran', label: 'Najran', labelAr: 'Najran' },
+  { value: 'bahah', label: 'Al Bahah', labelAr: 'Al Bahah' },
+  { value: 'tabuk', label: 'Tabuk', labelAr: 'Tabuk' },
+  { value: 'asir', label: 'Asir', labelAr: 'Asir' },
+  { value: 'jouf', label: 'Al-Jouf', labelAr: 'Al-Jouf' }
 ];
 
 const SAUDI_CITIES = {
-  riyadh: ['الرياض', 'الخرج', 'الدوادمي', 'المجمعة', 'القويعية'],
-  makkah: ['مكة المكرمة', 'جدة', 'الطائف', 'القنفذة', 'الليث'],
-  eastern: ['الدمام', 'الخبر', 'الظهران', 'الأحساء', 'الجبيل'],
-  medina: ['المدينة المنورة', 'ينبع', 'العلا', 'بدر', 'خيبر'],
+  riyadh: ['Riyadh', 'Al-Kharj', 'Al-Dawadmi', 'Al-Majma\'ah', 'Al-Quwayiyah'],
+  makkah: ['Makkah', 'Jeddah', 'Taif', 'Al-Qunfudhah', 'Al-Lith'],
+  eastern: ['Dammam', 'Khobar', 'Dhahran', 'Al-Ahsa', 'Jubail'],
+  medina: ['Medina', 'Yanbu', 'Al-Ula', 'Badr', 'Khaybar'],
   // Add more cities as needed
 };
 

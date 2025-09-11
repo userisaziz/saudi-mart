@@ -37,8 +37,11 @@ const AdminOrdersShipping = React.lazy(() => import('@/admin/pages/Orders/Shippi
 const AdminOrdersReturns = React.lazy(() => import('@/admin/pages/Orders/Returns'))
 const AdminOrdersAnalytics = React.lazy(() => import('@/admin/pages/Orders/Analytics'))
 const AdminNotifications = React.lazy(() => import('@/admin/pages/Notifications/Management'))
+const AdminReviews = React.lazy(() => import('@/admin/pages/Reviews/Management'))
 const AdminAnalytics = React.lazy(() => import('@/admin/pages/Analytics/Dashboard'))
 const AdminReports = React.lazy(() => import('@/admin/pages/Reports/Dashboard'))
+
+const SellerReviews = React.lazy(() => import('@/seller/pages/Reviews/Management'))
 
 const AdminSellerVerification = React.lazy(() => import('@/admin/pages/Sellers/Verification/SellerVerification'))
 const AdminSettings = React.lazy(() => import('@/admin/pages/Settings/General'))
@@ -55,7 +58,6 @@ const ProductsInventory = React.lazy(() => import('@/seller/pages/Products/Inven
 const ProductsBulkUpload = React.lazy(() => import('@/seller/pages/Products/BulkUpload'))
 
 const LeadsInbox = React.lazy(() => import('@/seller/pages/Leads/Inbox'))
-const LeadsFunnel = React.lazy(() => import('@/seller/pages/Leads/Funnel'))
 const LeadsDetails = React.lazy(() => import('@/seller/pages/Leads/Details'))
 
 const ProfileCompanyInfo = React.lazy(() => import('@/seller/pages/Profile/CompanyInfo'))
@@ -80,13 +82,11 @@ const FinanceDashboard = React.lazy(() => import('@/seller/pages/Finance/Dashboa
 const OrdersReturns = React.lazy(() => import('@/seller/pages/Orders/Returns'))
 const OrdersShipping = React.lazy(() => import('@/seller/pages/Orders/Shipping'))
 const CommunicationTemplates = React.lazy(() => import('@/seller/pages/Communication/Templates'))
-const CommunicationWhatsApp = React.lazy(() => import('@/seller/pages/Communication/WhatsApp'))
 const FinanceInvoices = React.lazy(() => import('@/seller/pages/Finance/Invoices'))
 const FinancePayments = React.lazy(() => import('@/seller/pages/Finance/Payments'))
 const FinanceReports = React.lazy(() => import('@/seller/pages/Finance/Reports'))
 const LeadsFollowUp = React.lazy(() => import('@/seller/pages/Leads/FollowUp'))
 const LeadsTemplates = React.lazy(() => import('@/seller/pages/Leads/Templates'))
-const LeadsScoring = React.lazy(() => import('@/seller/pages/Leads/Scoring'))
 const Profile = React.lazy(() => import('@/seller/pages/Profile'))
 const ProfileContacts = React.lazy(() => import('@/seller/pages/Profile/Contacts'))
 const ProfileBusinessHours = React.lazy(() => import('@/seller/pages/Profile/BusinessHours'))
@@ -114,6 +114,12 @@ const ContractManagement = React.lazy(() => import('@/admin/pages/Contracts/Mana
 const SupplierSRM = React.lazy(() => import('@/admin/pages/Suppliers/SRM'))
 const ProcurementWorkflows = React.lazy(() => import('@/admin/pages/Procurement/Workflows'))
 const AuditTrails = React.lazy(() => import('@/admin/pages/Compliance/AuditTrails'))
+
+// RFQ Management
+const RFQManagement = React.lazy(() => import('@/admin/pages/RFQ/Management'))
+const RFQEvaluation = React.lazy(() => import('@/admin/pages/RFQ/Evaluation'))
+const RFQSupplierWorkflows = React.lazy(() => import('@/admin/pages/RFQ/SupplierWorkflows'))
+const RFQAnalytics = React.lazy(() => import('@/admin/pages/RFQ/Analytics'))
 
 // Missing Admin Pages
 const AdminProductsInventory = React.lazy(() => import('@/admin/pages/Products/Inventory'))
@@ -199,9 +205,16 @@ function App() {
                 <Route path="orders/analytics" element={<AdminOrdersAnalytics />} />
                 
                 <Route path="notifications" element={<AdminNotifications />} />
+                <Route path="reviews" element={<AdminReviews />} />
                 <Route path="analytics" element={<AdminAnalytics />} />
                 <Route path="reports" element={<AdminReports />} />
            
+                {/* RFQ Routes */}
+                <Route path="rfq" element={<RFQManagement />} />
+                <Route path="rfq/evaluation" element={<RFQEvaluation />} />
+                <Route path="rfq/suppliers" element={<RFQSupplierWorkflows />} />
+                <Route path="rfq/analytics" element={<RFQAnalytics />} />
+                
                 {/* Enterprise Features */}
                 <Route path="contracts" element={<ContractManagement />} />
                 <Route path="suppliers/srm" element={<SupplierSRM />} />
@@ -230,6 +243,9 @@ function App() {
                 <Route path="products/inventory" element={<ProductsInventory />} />
                 <Route path="products/bulk-upload" element={<ProductsBulkUpload />} />
                 
+                {/* RFQ Routes */}
+                <Route path="rfq" element={<RFQ />} />
+                
                 {/* Category Routes */}
                 <Route path="categories/request" element={<RequestCategory />} />
                 
@@ -242,7 +258,6 @@ function App() {
                 {/* Communication Routes */}
                 <Route path="communication/hub" element={<CommunicationHub />} />
                 <Route path="communication/templates" element={<CommunicationTemplates />} />
-                <Route path="communication/whatsapp" element={<CommunicationWhatsApp />} />
                 
                 {/* Finance Routes */}
                 <Route path="finance/dashboard" element={<FinanceDashboard />} />
@@ -252,11 +267,9 @@ function App() {
                 
                 {/* Leads Routes */}
                 <Route path="leads/inbox" element={<LeadsInbox />} />
-                <Route path="leads/funnel" element={<LeadsFunnel />} />
                 <Route path="leads/details/:id" element={<LeadsDetails />} />
                 <Route path="leads/follow-up" element={<LeadsFollowUp />} />
                 <Route path="leads/templates" element={<LeadsTemplates />} />
-                <Route path="leads/scoring" element={<LeadsScoring />} />
                 
                 {/* Profile Routes */}
                 <Route path="profile" element={<Profile />} />
@@ -282,6 +295,7 @@ function App() {
                 {/* Settings Routes */}
                 <Route path="settings" element={<SellerSettings />} />
                 <Route path="notifications" element={<SellerNotifications />} />
+                <Route path="reviews" element={<SellerReviews />} />
                 <Route path="help" element={<SellerHelp />} />
                 <Route path="reports" element={<SellerReports />} />
               </Route>

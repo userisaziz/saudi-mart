@@ -21,7 +21,9 @@ import {
   Plus,
   ShoppingCart,
   FileText,
-  Activity
+  Activity,
+  ClipboardList,
+  Star
 } from 'lucide-react'
 import {
   Avatar,
@@ -80,7 +82,6 @@ const navItems: NavItem[] = [
     subItems: [
       { title: 'Seller List', href: '/admin/sellers/list' },
       { title: 'Add Seller', href: '/admin/sellers/add' },
-      { title: 'Seller Details', href: '/admin/sellers/details' },
       { title: 'Seller Verification', href: '/admin/sellers/verification' },
       { title: 'Role Management', href: '/admin/sellers/roles' },
     ],
@@ -92,7 +93,6 @@ const navItems: NavItem[] = [
     subItems: [
       { title: 'Buyer List', href: '/admin/buyers/list' },
       { title: 'Add Buyer', href: '/admin/buyers/add' },
-      { title: 'Buyer Details', href: '/admin/buyers/details' },
       { title: 'Role Management', href: '/admin/buyers/roles' },
     ],
   },
@@ -118,6 +118,22 @@ const navItems: NavItem[] = [
       { title: 'Category Approval', href: '/admin/categories/approval' },
       { title: 'Category Tree', href: '/admin/categories/tree' },
     ],
+  },
+  {
+    title: 'RFQ Management',
+    href: '/admin/rfq',
+    icon: ClipboardList,
+    subItems: [
+      { title: 'RFQ Overview', href: '/admin/rfq' },
+      { title: 'Evaluation', href: '/admin/rfq/evaluation' },
+      { title: 'Supplier Workflows', href: '/admin/rfq/suppliers' },
+      { title: 'Analytics', href: '/admin/rfq/analytics' },
+    ],
+  },
+  {
+    title: 'Reviews & Ratings',
+    href: '/admin/reviews',
+    icon: Star,
   },
   {
     title: 'Notifications',
@@ -152,6 +168,7 @@ const getBreadcrumbs = (pathname: string) => {
     buyers: 'Buyers',
     products: 'Products',
     categories: 'Categories',
+    reviews: 'Reviews & Ratings',
     notifications: 'Notifications',
     verification: 'Seller Verification',
     analytics: 'Analytics',
@@ -168,6 +185,9 @@ const getBreadcrumbs = (pathname: string) => {
     pending: 'Pending',
     shipping: 'Shipping',
     returns: 'Returns',
+    rfq: 'RFQ Management',
+    evaluation: 'Evaluation',
+    suppliers: 'Supplier Workflows',
   }
   
   let currentPath = ''
