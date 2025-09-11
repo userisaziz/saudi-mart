@@ -160,29 +160,29 @@ export const Profile: React.FC = () => {
 
   const getProfileItems = () => [
     {
-      title: isRTL ? 'معلومات الشركة' : 'Company Information',
-      description: isRTL ? 'تفاصيل الشركة الأساسية والتجارية' : 'Basic company and business details',
+      title: t('profile.companyInfoSection', 'Company Information'),
+      description: t('profile.companyInfoSectionDesc', 'Basic company and business details'),
       href: '/seller/profile/company',
       icon: Building2,
       completed: true
     },
     {
-      title: isRTL ? 'الوثائق' : 'Documents',
-      description: isRTL ? 'السجل التجاري والوثائق المطلوبة' : 'Commercial registration and required documents',
+      title: t('profile.documentsSection', 'Documents'),
+      description: t('profile.documentsSectionDesc', 'Commercial registration and required documents'),
       href: '/seller/profile/documents',
       icon: FileText,
       completed: Object.values(mockSellerProfile.documents).every(Boolean)
     },
     {
-      title: isRTL ? 'جهات الاتصال' : 'Contacts',
-      description: isRTL ? 'معلومات الاتصال والأشخاص المسؤولين' : 'Contact information and responsible persons',
+      title: t('profile.contactsSection', 'Contacts'),
+      description: t('profile.contactsSectionDesc', 'Contact information and responsible persons'),
       href: '/seller/profile/contacts',
       icon: Users,
       completed: true
     },
     {
-      title: isRTL ? 'ساعات العمل' : 'Business Hours',
-      description: isRTL ? 'أوقات العمل والتوفر' : 'Working hours and availability',
+      title: t('profile.businessHoursSection', 'Business Hours'),
+      description: t('profile.businessHoursSectionDesc', 'Working hours and availability'),
       href: '/seller/profile/hours',
       icon: Clock,
       completed: true
@@ -208,7 +208,7 @@ export const Profile: React.FC = () => {
             className="absolute top-4 right-4"
           >
             <Camera className="h-4 w-4 mr-2" />
-            {isRTL ? 'تغيير الغلاف' : 'Change Cover'}
+            {t('profile.changeCover', 'Change Cover')}
           </Button>
         </div>
 
@@ -238,7 +238,7 @@ export const Profile: React.FC = () => {
         <div className="flex items-center space-x-4">
           <Badge className={getStatusColor(mockSellerProfile.verificationStatus)}>
             <CheckCircle className="h-3 w-3 mr-1" />
-            {isRTL ? 'محقق' : 'Verified'}
+            {t('profile.verified', 'Verified')}
           </Badge>
           <Badge className={getSubscriptionColor(mockSellerProfile.subscriptionPlan)}>
             <Star className="h-3 w-3 mr-1" />
@@ -248,20 +248,20 @@ export const Profile: React.FC = () => {
             <Star className="h-4 w-4 text-yellow-500 mr-1" />
             <span className="font-semibold">{mockSellerProfile.rating}</span>
             <span className="mx-1">•</span>
-            <span>{mockSellerProfile.totalOrders} {isRTL ? 'طلب' : 'orders'}</span>
+            <span>{mockSellerProfile.totalOrders} {t('profile.orders', 'orders')}</span>
           </div>
         </div>
         <div className="flex space-x-2">
           <Button variant="outline" size="sm" asChild>
             <Link to="/seller/settings">
               <Settings className="h-4 w-4 mr-2" />
-              {isRTL ? 'الإعدادات' : 'Settings'}
+              {t('profile.settings', 'Settings')}
             </Link>
           </Button>
           <Button size="sm" asChild>
             <Link to="/seller/profile/company">
               <Edit className="h-4 w-4 mr-2" />
-              {isRTL ? 'تحرير الملف' : 'Edit Profile'}
+              {t('profile.editProfile', 'Edit Profile')}
             </Link>
           </Button>
         </div>
@@ -269,10 +269,10 @@ export const Profile: React.FC = () => {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="overview">{isRTL ? 'نظرة عامة' : 'Overview'}</TabsTrigger>
-          <TabsTrigger value="stats">{isRTL ? 'الإحصائيات' : 'Statistics'}</TabsTrigger>
-          <TabsTrigger value="documents">{isRTL ? 'الوثائق' : 'Documents'}</TabsTrigger>
-          <TabsTrigger value="activity">{isRTL ? 'النشاط' : 'Activity'}</TabsTrigger>
+          <TabsTrigger value="overview">{t('profile.overview', 'Overview')}</TabsTrigger>
+          <TabsTrigger value="stats">{t('profile.statistics', 'Statistics')}</TabsTrigger>
+          <TabsTrigger value="documents">{t('profile.documents', 'Documents')}</TabsTrigger>
+          <TabsTrigger value="activity">{t('profile.activity', 'Activity')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -280,13 +280,13 @@ export const Profile: React.FC = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                <span>{isRTL ? 'اكتمال الملف الشخصي' : 'Profile Completeness'}</span>
+                <span>{t('profile.profileCompleteness', 'Profile Completeness')}</span>
                 <span className="text-2xl font-bold text-blue-600">
                   {mockSellerProfile.profileCompleteness}%
                 </span>
               </CardTitle>
               <CardDescription>
-                {isRTL ? 'أكمل ملفك الشخصي لزيادة الثقة مع العملاء' : 'Complete your profile to increase trust with customers'}
+                {t('profile.completeProfileDesc', 'Complete your profile to increase trust with customers')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -294,23 +294,23 @@ export const Profile: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div className="flex items-center p-2 bg-green-50 rounded-lg border border-green-200">
                   <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
-                  <span className="text-sm text-green-800">{isRTL ? 'المعلومات الأساسية' : 'Basic Info'}</span>
+                  <span className="text-sm text-green-800">{t('profile.basicInfo', 'Basic Info')}</span>
                 </div>
                 <div className="flex items-center p-2 bg-green-50 rounded-lg border border-green-200">
                   <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
-                  <span className="text-sm text-green-800">{isRTL ? 'الوثائق' : 'Documents'}</span>
+                  <span className="text-sm text-green-800">{t('profile.documents', 'Documents')}</span>
                 </div>
                 <div className="flex items-center p-2 bg-green-50 rounded-lg border border-green-200">
                   <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
-                  <span className="text-sm text-green-800">{isRTL ? 'التحقق' : 'Verification'}</span>
+                  <span className="text-sm text-green-800">{t('profile.verification', 'Verification')}</span>
                 </div>
                 <div className="flex items-center p-2 bg-yellow-50 rounded-lg border border-yellow-200">
                   <Clock className="h-4 w-4 text-yellow-600 mr-2" />
-                  <span className="text-sm text-yellow-800">{isRTL ? 'صور المنتجات' : 'Product Images'}</span>
+                  <span className="text-sm text-yellow-800">{t('profile.productImages', 'Product Images')}</span>
                 </div>
               </div>
               <p className="text-sm text-gray-600 mt-3">
-                {isRTL ? 'أضف المزيد من صور المنتجات لزيادة معدل الثقة بنسبة 8%' : 'Add more product images to increase trust score by 8%'}
+                {t('profile.productImagesDesc', 'Add more product images to increase trust score by 8%')}
               </p>
             </CardContent>
           </Card>
@@ -321,37 +321,37 @@ export const Profile: React.FC = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Building2 className="h-5 w-5 mr-2" />
-                  {isRTL ? 'معلومات الشركة' : 'Company Information'}
+                  {t('profile.companyInformation', 'Company Information')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center">
                   <User className="h-4 w-4 text-gray-400 mr-2" />
-                  <span className="text-sm text-gray-600 mr-2">{isRTL ? 'الاسم:' : 'Contact:'}</span>
+                  <span className="text-sm text-gray-600 mr-2">{t('profile.contact', 'Contact')}:</span>
                   <span className="font-medium">
                     {isRTL ? mockSellerProfile.contactNameAr : mockSellerProfile.contactName}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 text-gray-400 mr-2" />
-                  <span className="text-sm text-gray-600 mr-2">{isRTL ? 'البريد:' : 'Email:'}</span>
+                  <span className="text-sm text-gray-600 mr-2">{t('profile.email', 'Email')}:</span>
                   <span className="font-medium">{mockSellerProfile.email}</span>
                 </div>
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 text-gray-400 mr-2" />
-                  <span className="text-sm text-gray-600 mr-2">{isRTL ? 'الهاتف:' : 'Phone:'}</span>
+                  <span className="text-sm text-gray-600 mr-2">{t('profile.phone', 'Phone')}:</span>
                   <span className="font-medium">{mockSellerProfile.phone}</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="h-4 w-4 text-gray-400 mr-2" />
-                  <span className="text-sm text-gray-600 mr-2">{isRTL ? 'العنوان:' : 'Address:'}</span>
+                  <span className="text-sm text-gray-600 mr-2">{t('profile.address', 'Address')}:</span>
                   <span className="font-medium">
                     {isRTL ? mockSellerProfile.addressAr : mockSellerProfile.address}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <Globe className="h-4 w-4 text-gray-400 mr-2" />
-                  <span className="text-sm text-gray-600 mr-2">{isRTL ? 'الموقع:' : 'Website:'}</span>
+                  <span className="text-sm text-gray-600 mr-2">{t('profile.website', 'Website')}:</span>
                   <a 
                     href={mockSellerProfile.website} 
                     target="_blank" 
@@ -370,7 +370,7 @@ export const Profile: React.FC = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2" />
-                  {isRTL ? 'مؤشرات الأداء' : 'Performance Metrics'}
+                  {t('profile.performanceMetrics', 'Performance Metrics')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -380,27 +380,27 @@ export const Profile: React.FC = () => {
                       {mockSellerProfile.totalOrders}
                     </div>
                     <div className="text-sm text-gray-600">
-                      {isRTL ? 'إجمالي الطلبات' : 'Total Orders'}
+                      {t('profile.totalOrders', 'Total Orders')}
                     </div>
-                    <div className="text-xs text-green-600 mt-1">+12% {isRTL ? 'هذا الشهر' : 'this month'}</div>
+                    <div className="text-xs text-green-600 mt-1">+12% {t('profile.thisMonth', 'this month')}</div>
                   </div>
                   <div className="text-center p-3 bg-green-50 rounded-lg">
                     <div className="text-2xl font-bold text-green-600">
                       {((mockSellerProfile.completedOrders / mockSellerProfile.totalOrders) * 100).toFixed(1)}%
                     </div>
                     <div className="text-sm text-gray-600">
-                      {isRTL ? 'معدل الإنجاز' : 'Success Rate'}
+                      {t('profile.successRate', 'Success Rate')}
                     </div>
-                    <div className="text-xs text-green-600 mt-1">{isRTL ? 'ممتاز' : 'Excellent'}</div>
+                    <div className="text-xs text-green-600 mt-1">{t('profile.excellent', 'Excellent')}</div>
                   </div>
                   <div className="text-center p-3 bg-yellow-50 rounded-lg">
                     <div className="text-2xl font-bold text-yellow-600">
                       {mockSellerProfile.responseTime}h
                     </div>
                     <div className="text-sm text-gray-600">
-                      {isRTL ? 'وقت الاستجابة' : 'Response Time'}
+                      {t('profile.responseTime', 'Response Time')}
                     </div>
-                    <div className="text-xs text-yellow-600 mt-1">{isRTL ? 'جيد' : 'Good'}</div>
+                    <div className="text-xs text-yellow-600 mt-1">{t('profile.good', 'Good')}</div>
                   </div>
                   <div className="text-center p-3 bg-purple-50 rounded-lg">
                     <div className="flex items-center justify-center mb-1">
@@ -410,16 +410,16 @@ export const Profile: React.FC = () => {
                       </span>
                     </div>
                     <div className="text-sm text-gray-600">
-                      {isRTL ? 'التقييم' : 'Rating'}
+                      {t('profile.rating', 'Rating')}
                     </div>
-                    <div className="text-xs text-purple-600 mt-1">247 {isRTL ? 'تقييم' : 'reviews'}</div>
+                    <div className="text-xs text-purple-600 mt-1">247 {t('profile.reviews', 'reviews')}</div>
                   </div>
                 </div>
                 
                 {/* Additional metrics */}
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">{isRTL ? 'معدل التحويل' : 'Conversion Rate'}</span>
+                    <span className="text-sm text-gray-600">{t('profile.conversionRate', 'Conversion Rate')}</span>
                     <span className="font-semibold">3.2%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
@@ -433,9 +433,9 @@ export const Profile: React.FC = () => {
           {/* Profile Sections */}
           <Card>
             <CardHeader>
-              <CardTitle>{isRTL ? 'أقسام الملف الشخصي' : 'Profile Sections'}</CardTitle>
+              <CardTitle>{t('profile.profileSections', 'Profile Sections')}</CardTitle>
               <CardDescription>
-                {isRTL ? 'إدارة وتحديث أقسام ملفك الشخصي المختلفة' : 'Manage and update different sections of your profile'}
+                {t('profile.profileSectionsDesc', 'Manage and update different sections of your profile')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -474,7 +474,7 @@ export const Profile: React.FC = () => {
                   <Activity className="h-8 w-8 text-blue-600" />
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-600">
-                      {isRTL ? 'آخر نشاط' : 'Last Activity'}
+                      {t('profile.lastActivity', 'Last Activity')}
                     </p>
                     <p className="text-2xl font-bold">
                       {formatDate(mockSellerProfile.lastActive)}
@@ -490,7 +490,7 @@ export const Profile: React.FC = () => {
                   <Calendar className="h-8 w-8 text-green-600" />
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-600">
-                      {isRTL ? 'تاريخ الانضمام' : 'Member Since'}
+                      {t('profile.memberSince', 'Member Since')}
                     </p>
                     <p className="text-2xl font-bold">
                       {formatDate(mockSellerProfile.joinDate)}
@@ -506,7 +506,7 @@ export const Profile: React.FC = () => {
                   <Users className="h-8 w-8 text-purple-600" />
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-600">
-                      {isRTL ? 'عدد الموظفين' : 'Employees'}
+                      {t('profile.employees', 'Employees')}
                     </p>
                     <p className="text-2xl font-bold">
                       {mockSellerProfile.employees}
@@ -522,7 +522,7 @@ export const Profile: React.FC = () => {
                   <Building2 className="h-8 w-8 text-orange-600" />
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-600">
-                      {isRTL ? 'تأسست في' : 'Founded'}
+                      {t('profile.founded', 'Founded')}
                     </p>
                     <p className="text-2xl font-bold">
                       {mockSellerProfile.founded}
@@ -539,7 +539,7 @@ export const Profile: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Shield className="h-5 w-5 mr-2" />
-                {isRTL ? 'حالة الوثائق' : 'Document Status'}
+                {t('profile.documentStatus', 'Document Status')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -547,17 +547,17 @@ export const Profile: React.FC = () => {
                 <div className="p-4 border border-gray-200 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-medium">
-                      {isRTL ? 'السجل التجاري' : 'Commercial Registration'}
+                      {t('profile.commercialRegistration', 'Commercial Registration')}
                     </span>
                     {mockSellerProfile.documents.commercialRegistration ? (
                       <Badge className="text-green-600 bg-green-100">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مقبول' : 'Approved'}
+                        {t('profile.approved', 'Approved')}
                       </Badge>
                     ) : (
                       <Badge className="text-red-600 bg-red-100">
                         <AlertTriangle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مطلوب' : 'Required'}
+                        {t('profile.required', 'Required')}
                       </Badge>
                     )}
                   </div>
@@ -566,17 +566,17 @@ export const Profile: React.FC = () => {
                 <div className="p-4 border border-gray-200 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-medium">
-                      {isRTL ? 'شهادة الضريبة' : 'Tax Certificate'}
+                      {t('profile.taxCertificate', 'Tax Certificate')}
                     </span>
                     {mockSellerProfile.documents.taxCertificate ? (
                       <Badge className="text-green-600 bg-green-100">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مقبول' : 'Approved'}
+                        {t('profile.approved', 'Approved')}
                       </Badge>
                     ) : (
                       <Badge className="text-red-600 bg-red-100">
                         <AlertTriangle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مطلوب' : 'Required'}
+                        {t('profile.required', 'Required')}
                       </Badge>
                     )}
                   </div>
@@ -585,17 +585,17 @@ export const Profile: React.FC = () => {
                 <div className="p-4 border border-gray-200 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-medium">
-                      {isRTL ? 'التفاصيل المصرفية' : 'Bank Details'}
+                      {t('profile.bankDetails', 'Bank Details')}
                     </span>
                     {mockSellerProfile.documents.bankDetails ? (
                       <Badge className="text-green-600 bg-green-100">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مقبول' : 'Approved'}
+                        {t('profile.approved', 'Approved')}
                       </Badge>
                     ) : (
                       <Badge className="text-red-600 bg-red-100">
                         <AlertTriangle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مطلوب' : 'Required'}
+                        {t('profile.required', 'Required')}
                       </Badge>
                     )}
                   </div>
@@ -604,17 +604,17 @@ export const Profile: React.FC = () => {
                 <div className="p-4 border border-gray-200 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-medium">
-                      {isRTL ? 'إثبات الهوية' : 'Identity Verification'}
+                      {t('profile.identityVerification', 'Identity Verification')}
                     </span>
                     {mockSellerProfile.documents.identity ? (
                       <Badge className="text-green-600 bg-green-100">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مقبول' : 'Approved'}
+                        {t('profile.approved', 'Approved')}
                       </Badge>
                     ) : (
                       <Badge className="text-red-600 bg-red-100">
                         <AlertTriangle className="h-3 w-3 mr-1" />
-                        {isRTL ? 'مطلوب' : 'Required'}
+                        {t('profile.required', 'Required')}
                       </Badge>
                     )}
                   </div>
@@ -625,7 +625,7 @@ export const Profile: React.FC = () => {
                 <Button asChild>
                   <Link to="/seller/profile/documents">
                     <FileText className="h-4 w-4 mr-2" />
-                    {isRTL ? 'إدارة الوثائق' : 'Manage Documents'}
+                    {t('profile.manageDocuments', 'Manage Documents')}
                   </Link>
                 </Button>
               </div>
@@ -638,7 +638,7 @@ export const Profile: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Activity className="h-5 w-5 mr-2" />
-                {isRTL ? 'النشاط الأخير' : 'Recent Activity'}
+                {t('profile.recentActivity', 'Recent Activity')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -646,40 +646,40 @@ export const Profile: React.FC = () => {
                 <div className="flex items-center p-3 bg-blue-50 rounded-lg">
                   <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
                   <span className="text-sm">
-                    {isRTL ? 'تم تحديث معلومات الشركة' : 'Company information updated'} - 
-                    <span className="text-gray-500 mr-1">2 {isRTL ? 'ساعات مضت' : 'hours ago'}</span>
+                    {t('profile.companyInfoUpdated', 'Company information updated')} - 
+                    <span className="text-gray-500 mr-1">2 {t('profile.hoursAgo', 'hours ago')}</span>
                   </span>
                 </div>
                 
                 <div className="flex items-center p-3 bg-green-50 rounded-lg">
                   <div className="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
                   <span className="text-sm">
-                    {isRTL ? 'تم قبول طلب جديد' : 'New order received'} - 
-                    <span className="text-gray-500 mr-1">5 {isRTL ? 'ساعات مضت' : 'hours ago'}</span>
+                    {t('profile.newOrderReceived', 'New order received')} - 
+                    <span className="text-gray-500 mr-1">5 {t('profile.hoursAgo', 'hours ago')}</span>
                   </span>
                 </div>
                 
                 <div className="flex items-center p-3 bg-purple-50 rounded-lg">
                   <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
                   <span className="text-sm">
-                    {isRTL ? 'تم تحديث كتالوج المنتجات' : 'Product catalog updated'} - 
-                    <span className="text-gray-500 mr-1">1 {isRTL ? 'يوم مضى' : 'day ago'}</span>
+                    {t('profile.productCatalogUpdated', 'Product catalog updated')} - 
+                    <span className="text-gray-500 mr-1">1 {t('profile.dayAgo', 'day ago')}</span>
                   </span>
                 </div>
                 
                 <div className="flex items-center p-3 bg-yellow-50 rounded-lg">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mr-3"></div>
                   <span className="text-sm">
-                    {isRTL ? 'تم تجديد الاشتراك المميز' : 'Premium subscription renewed'} - 
-                    <span className="text-gray-500 mr-1">3 {isRTL ? 'أيام مضت' : 'days ago'}</span>
+                    {t('profile.premiumSubscriptionRenewed', 'Premium subscription renewed')} - 
+                    <span className="text-gray-500 mr-1">3 {t('profile.daysAgo', 'days ago')}</span>
                   </span>
                 </div>
                 
                 <div className="flex items-center p-3 bg-orange-50 rounded-lg">
                   <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
                   <span className="text-sm">
-                    {isRTL ? 'تم رفع وثائق جديدة' : 'New documents uploaded'} - 
-                    <span className="text-gray-500 mr-1">1 {isRTL ? 'أسبوع مضى' : 'week ago'}</span>
+                    {t('profile.newDocumentsUploaded', 'New documents uploaded')} - 
+                    <span className="text-gray-500 mr-1">1 {t('profile.weekAgo', 'week ago')}</span>
                   </span>
                 </div>
               </div>

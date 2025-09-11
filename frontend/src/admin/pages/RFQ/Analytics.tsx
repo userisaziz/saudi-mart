@@ -5,8 +5,8 @@ import {
   ClockIcon,
   CurrencyDollarIcon,
   UserGroupIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   ArrowDownTrayIcon,
   CalendarIcon,
   FunnelIcon,
@@ -242,8 +242,8 @@ const RFQAnalytics: React.FC = () => {
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
-      case 'up': return <TrendingUpIcon className="h-4 w-4 text-green-500" />
-      case 'down': return <TrendingDownIcon className="h-4 w-4 text-red-500" />
+      case 'up': return <ArrowTrendingUpIcon className="h-4 w-4 text-green-500" />
+      case 'down': return <ArrowTrendingDownIcon className="h-4 w-4 text-red-500" />
       default: return <span className="h-4 w-4 text-gray-400">→</span>
     }
   }
@@ -290,7 +290,7 @@ const RFQAnalytics: React.FC = () => {
           <nav className="-mb-px flex space-x-8 px-6">
             {[
               { id: 'overview', name: 'Overview', nameAr: 'نظرة عامة', icon: ChartBarIcon },
-              { id: 'trends', name: 'Trends', nameAr: 'الاتجاهات', icon: TrendingUpIcon },
+              { id: 'trends', name: 'Trends', nameAr: 'الاتجاهات', icon: ArrowTrendingUpIcon },
               { id: 'suppliers', name: 'Suppliers', nameAr: 'الموردين', icon: UserGroupIcon },
               { id: 'categories', name: 'Categories', nameAr: 'الفئات', icon: ChartPieIcon },
               { id: 'risks', name: 'Risk Analysis', nameAr: 'تحليل المخاطر', icon: ExclamationTriangleIcon }

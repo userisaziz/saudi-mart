@@ -22,7 +22,7 @@ import {
   GlobeAltIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
-import { Save } from 'lucide-react';
+import { Save, Package, Layers, Plus, X, DollarSign, FileText, Tag } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
@@ -30,43 +30,51 @@ import { Textarea } from '@/shared/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select';
 import { Switch } from '@/shared/components/ui/switch';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
+import { Badge } from '@/shared/components/ui/badge';
 import { SaudiProduct, SaudiCategory, ProductVerificationStatus, SaudiRegion, UserRole } from '@/admin/types/saudi-admin';
 
 interface AdminProductFormData {
   nameEn: string;
   nameAr: string;
+  name: string;
+  brand: string;
+  model: string;
+  sku: string;
+  description: string;
   descriptionEn: string;
   descriptionAr: string;
+  category: string;
+  subcategory: string;
   categoryId: string;
-  price: {
-    amount: number;
-    currency: 'SAR';
-    vatIncluded: boolean;
-  };
-  inventory: {
-    quantity: number;
-    lowStockThreshold: number;
-    location: string;
-  };
-  specifications: Array<{ 
-    nameEn: string; 
-    nameAr: string; 
-    valueEn: string; 
-    valueAr: string; 
-    unit?: string;
-  }>;
+  price: number;
+  salePrice: number;
+  currency: string;
+  taxRate: number;
+  trackInventory: boolean;
+  stockQuantity: number;
+  lowStockThreshold: number;
+  allowBackorders: boolean;
+  specifications: Array<{ name: string; value: string }>;
+  tags: string[];
+  status: string;
+  visibility: string;
+  featured: boolean;
+  images: File[];
+  sellerId: string;
+  verificationStatus: ProductVerificationStatus;
+  adminNotes: string;
+  priority: 'low' | 'medium' | 'high';
   compliance: {
     saudiStandards: boolean;
     halalCertified: boolean;
     importLicense?: string;
     customsCode?: string;
   };
-  images: File[];
-  tags: string[];
-  sellerId: string;
-  verificationStatus: ProductVerificationStatus;
-  adminNotes: string;
-  priority: 'low' | 'medium' | 'high';
+  inventory: {
+    quantity: number;
+    lowStockThreshold: number;
+    location: string;
+  };
 }
 
 interface ValidationError {
@@ -77,32 +85,45 @@ interface ValidationError {
 const initialFormData: AdminProductFormData = {
   nameEn: '',
   nameAr: '',
+  name: '',
+  brand: '',
+  model: '',
+  sku: '',
+  description: '',
   descriptionEn: '',
   descriptionAr: '',
+  category: '',
+  subcategory: '',
   categoryId: '',
-  price: {
-    amount: 0,
-    currency: 'SAR',
-    vatIncluded: true,
-  },
-  inventory: {
-    quantity: 0,
-    lowStockThreshold: 5,
-    location: '',
-  },
+  price: 0,
+  salePrice: 0,
+  currency: 'SAR',
+  taxRate: 15,
+  trackInventory: true,
+  stockQuantity: 0,
+  lowStockThreshold: 5,
+  allowBackorders: false,
   specifications: [],
+  tags: [],
+  status: 'draft',
+  visibility: 'public',
+  featured: false,
+  images: [],
+  sellerId: '',
+  verificationStatus: ProductVerificationStatus.PENDING,
+  adminNotes: '',
+  priority: 'medium',
   compliance: {
     saudiStandards: false,
     halalCertified: false,
     importLicense: '',
     customsCode: '',
   },
-  images: [],
-  tags: [],
-  sellerId: '',
-  verificationStatus: ProductVerificationStatus.PENDING,
-  adminNotes: '',
-  priority: 'medium',
+  inventory: {
+    quantity: 0,
+    lowStockThreshold: 5,
+    location: '',
+  },
 };
 
 // Mock categories
@@ -154,6 +175,7 @@ const AdminProductAdd: React.FC = () => {
   const [autoSaveStatus, setAutoSaveStatus] = useState<'saved' | 'saving' | 'error'>('saved');
   const [newTag, setNewTag] = useState('');
   const [previewMode, setPreviewMode] = useState(false);
+  const [newSpec, setNewSpec] = useState({ name: '', value: '' });
 
   const steps = [
     { number: 1, title: 'Basic Information', icon: DocumentTextIcon },
@@ -188,21 +210,20 @@ const AdminProductAdd: React.FC = () => {
 
     switch (step) {
       case 1:
-        if (!formData.nameEn.trim()) stepErrors.push({ field: 'nameEn', message: 'English name is required' });
+        if (!formData.name.trim()) stepErrors.push({ field: 'name', message: 'Product name is required' });
         if (!formData.nameAr.trim()) stepErrors.push({ field: 'nameAr', message: 'Arabic name is required' });
-        if (!formData.categoryId) stepErrors.push({ field: 'categoryId', message: 'Category is required' });
+        if (!formData.category) stepErrors.push({ field: 'category', message: 'Category is required' });
         break;
       case 2:
-        if (!formData.descriptionEn.trim()) stepErrors.push({ field: 'descriptionEn', message: 'English description is required' });
+        if (!formData.description.trim()) stepErrors.push({ field: 'description', message: 'Description is required' });
         if (!formData.descriptionAr.trim()) stepErrors.push({ field: 'descriptionAr', message: 'Arabic description is required' });
         break;
       case 3:
-        if (formData.price.amount <= 0) stepErrors.push({ field: 'price', message: 'Price must be greater than 0' });
-        if (formData.inventory.quantity < 0) stepErrors.push({ field: 'inventory', message: 'Stock cannot be negative' });
-        if (!formData.inventory.location.trim()) stepErrors.push({ field: 'location', message: 'Inventory location is required' });
+        if (formData.price <= 0) stepErrors.push({ field: 'price', message: 'Price must be greater than 0' });
+        if (formData.stockQuantity < 0) stepErrors.push({ field: 'stockQuantity', message: 'Stock cannot be negative' });
         break;
       case 4:
-        if (!formData.sellerId) stepErrors.push({ field: 'sellerId', message: 'Seller must be selected' });
+        // No specific validation for this step
         break;
     }
 
@@ -264,11 +285,14 @@ const AdminProductAdd: React.FC = () => {
   };
 
   const addSpecification = () => {
-    setFormData(prev => ({
-      ...prev,
-      specifications: [...prev.specifications, { nameEn: '', nameAr: '', valueEn: '', valueAr: '', unit: '' }]
-    }));
-    setIsDirty(true);
+    if (newSpec.name.trim() && newSpec.value.trim()) {
+      setFormData(prev => ({
+        ...prev,
+        specifications: [...prev.specifications, { name: newSpec.name.trim(), value: newSpec.value.trim() }]
+      }));
+      setNewSpec({ name: '', value: '' });
+      setIsDirty(true);
+    }
   };
 
   const updateSpecification = (index: number, field: string, value: string) => {
@@ -289,7 +313,8 @@ const AdminProductAdd: React.FC = () => {
     setIsDirty(true);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!validateStep(5)) return;
     
     setIsLoading(true);
@@ -393,7 +418,7 @@ const AdminProductAdd: React.FC = () => {
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <StepIndicator />
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Information */}
         <Card>
           <CardHeader>
@@ -791,6 +816,7 @@ const AdminProductAdd: React.FC = () => {
           </Button>
         </div>
       </form>
+    </div>
     </div>
   )
 }
